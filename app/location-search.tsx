@@ -33,9 +33,25 @@ export default function LocationSearchScreen() {
 
   const handleSelectLocation = (location: LocationResult) => {
     console.log('Selected location:', location);
-    // TODO: Save selected location and navigate back
-    // For now, just log it
-    alert(`Selected: ${location.town}, ${location.county} County, ${location.stateCode}`);
+
+    // Create a town ID from the location data
+    const townId = `${location.stateCode.toLowerCase()}-${location.county.toLowerCase().replace(/\s+/g, '-')}-${location.town.toLowerCase().replace(/\s+/g, '-')}`;
+    const displayName = `${location.town}, ${location.county} County, ${location.stateCode}`;
+
+    // Navigate to address input screen with location data
+    router.push({
+      pathname: '/address-input',
+      params: {
+        townId,
+        displayName,
+        town: location.town,
+        county: location.county,
+        state: location.state,
+        stateCode: location.stateCode,
+        lat: location.coordinates.lat.toString(),
+        lng: location.coordinates.lng.toString(),
+      },
+    });
   };
 
   return (
@@ -45,7 +61,7 @@ export default function LocationSearchScreen() {
           style={styles.backButton}
           onPress={() => router.back()}
         >
-          <Text style={styles.backButtonText}>← Back</Text>
+          <Text style={styles.backButtonText}>← Cancel</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Find Your Location</Text>
       </View>

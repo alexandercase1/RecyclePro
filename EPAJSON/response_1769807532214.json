@@ -1,0 +1,590 @@
+[
+  {
+    "id": 1,
+    "name": "Open Space",
+    "categories": [
+      {
+        "id": 1,
+        "name": "Soil",
+        "categoryGroupId": 1,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 1,
+        "absoluteSort": 1,
+        "guidanceHtml": "<h5>Soil</h5><p>The waste estimate for soil is calculated based on the size of the total affected area, the percentage of the total affected area that is open space, the percentage of open space that is comprised of soil, and the depth of soil that is removed due to decontamination/remediation activities. To calculate the mass of soil, the tool uses a default soil density of 1,521 kilograms per cubic meter (kg/m<sup>3</sup>), which is equal to 1.282 tons per cubic yard (tons/yd<sup>3</sup>).</p>"
+      },
+      {
+        "id": 2,
+        "name": "Vegetation",
+        "categoryGroupId": 1,
+        "parentId": null,
+        "sortOrder": 2,
+        "parentSort": 2,
+        "absoluteSort": 2,
+        "guidanceHtml": "<h5>Vegetation</h5><p>The waste estimate for vegetation is calculated based on the size of the total affected area, the percentage of the total affected area that is open space, the percentage of open space that is comprised of vegetation, and the volume of vegetation that is removed from open spaces due to decontamination/remediation activities. To calculate the volume of vegetation removed, the tool uses a default value of 16,117 cubic yards of vegetation per acre (yd<sup>3</sup>/acre)<sup>1</sup> and a bulk vegetation density of 0.0635 tons per cubic yard (tons/yd<sup>3</sup>).<sup>2</sup><br></p><hr><sup>1</sup> FEMA 325, p.60.  1 acre of debris, 3.33 yards high = 16,117 yd<sup>3</sup>.<br><sup>2</sup> Volume-to-Weight Conversion Factors, U.S. Environmental Protection Agency Office of Resource Conservation and Recovery April 2016 (<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.epa.gov/smm/volume-weight-conversion-factors-solid-waste\">https://www.epa.gov/smm/volume-weight-conversion-factors-solid-waste</a>). Page 5: Year Trimmings/Mixed Yard Waste/Prunings & Trimmings + Branches & Stumps: 127 lbs/yd<sup>3</sup>.<p></p>"
+      },
+      {
+        "id": 3,
+        "name": "Asphalt",
+        "categoryGroupId": 1,
+        "parentId": null,
+        "sortOrder": 3,
+        "parentSort": 3,
+        "absoluteSort": 3,
+        "guidanceHtml": "<h5>Asphalt</h5><p>The waste estimate for asphalt is calculated based on the size of the total affected area, the percentage of the total affected area that is open space, the percentage of open space that is comprised of asphalt, and the depth of asphalt that is removed due to decontamination/remediation activities. To calculate the mass of asphalt, the tool uses a default asphalt density of 819 kilograms per cubic meter (kg/m<sup>3</sup>), which is equal to 0.690 tons per cubic yard (tons/ydMsup&gt;3).</p>"
+      },
+      {
+        "id": 4,
+        "name": "Concrete",
+        "categoryGroupId": 1,
+        "parentId": null,
+        "sortOrder": 4,
+        "parentSort": 4,
+        "absoluteSort": 4,
+        "guidanceHtml": "<h5>Concrete</h5><p>The waste estimate for concrete is calculated based on the size of the total affected area, the percentage of the total affected area that is open space, the percentage of open space that is comprised of concrete, and the depth of concrete that is removed due to decontamination/remediation activities.  To calculate the mass of concrete, the tool uses a default concrete density of 2,160 kilograms per cubic meter (kg/m<sup>3</sup>), which is equal to 1.820 tons per cubic yard (tons/yd<sup>3</sup>).</p>"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Structural",
+    "categories": [
+      {
+        "id": 5,
+        "name": "Brick, Wood, and Other Structural Building Materials",
+        "categoryGroupId": 2,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 5,
+        "absoluteSort": 5,
+        "guidanceHtml": "<h5>Brick, Wood, and Other Structural Building Materials</h5><p>This category includes building <a href='/waste-materials-estimator/guidance/structural-materials' target='_blank'>structural materials</a> such as frames, columns, beams, diaphragms, trusses, joists, shear walls, infill walls, tilt-up walls, and flooring. This category may also include interior partitions. The building structural components listed are comprised of brick, masonry, wood, and/or another building material other than concrete or steel.</p>"
+      },
+      {
+        "id": 6,
+        "name": "Reinforced Concrete and Steel",
+        "categoryGroupId": 2,
+        "parentId": null,
+        "sortOrder": 2,
+        "parentSort": 6,
+        "absoluteSort": 6,
+        "guidanceHtml": "<h5>Reinforced Concrete and Steel</h5><p>This category includes building <a href='/waste-materials-estimator/guidance/structural-materials' target='_blank'>structural materials</a> such as frames, columns, beams, diaphragms, trusses, joists, shear walls, infill walls, tilt-up walls, and flooring. This category may also include interior partitions. The building structural components listed are comprised of concrete and/or steel.</p>"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Interior/Non-Structural",
+    "categories": [
+      {
+        "id": 7,
+        "name": "Total Non-Structural Building Materials",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 8,
+        "absoluteSort": 7,
+        "guidanceHtml": "<h5>Total Non-Structural Building Materials</h5><p>This category may include the estimates for drywall, ceiling tiles, carpet, wood floorings, marble and ceramic tiles, curtains and acoustical material, concrete/masonry, as well as restroom equipment (i.e., toilets, sinks, stall dividers, etc.), doors, blinds and window coverings, other floor coverings (e.g., ceramic tiles, wood floors, linoleum), and ventilation systems. Note that ventilation systems estimates only includes duct work and vents. Air handlers and other mechanical ventilation equipment are not included. Sprinkler systems, piping, and frames supporting the drywall are assumed to remain in place and are also not included in this estimate. Since some buildings may be constructed without using many of the materials included in the estimate, and because these materials may not be removed during the decontamination process, these estimates are also broken out separately within the building materials category.</p><p><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Total Non-Structural Building Materials Details</span></span><br>Note that hospital estimates assume the hospital is gutted.</p>"
+      },
+      {
+        "id": 8,
+        "name": "Drywall",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 1,
+        "parentSort": 8,
+        "absoluteSort": 8,
+        "guidanceHtml": "<h5>Drywall</h5><p>This estimate only includes drywall on walls. Drywall covering ceilings and frames supporting the drywall are not included in this estimate.</p><p><em><strong>Office Drywall Details</strong></em><br />This estimate is based on the assumption that all interior walls are covered with drywall. If some walls in the building are made of other materials, such as cinder blocks, an overestimate may occur. Ceiling heights used to generate the drywall estimate are 9 feet for offices and all other rooms except vaulted 12-foot lobbies.</p><p><em><strong>School Drywall Details</strong></em><br />Walls in schools are made primarily of cinderblock. Of schools visited, less than twenty walls per school were constructed with drywall. If more walls in the school are constructed with drywall, this may be an underestimate.</p><p><em><strong>Hospital Drywall Details</strong></em><br />This estimate is based on hospitals with approximately 90% interior walls are covered with drywall (only utility and back storage room walls were not covered with drywall). Ceiling heights used to generate the drywall estimate are 9 feet for patient care areas, hallways, and offices and 12 feet for lobbies and cafeterias. Only minimal use of drywall on ceiling was observed in the hospital visited (e.g., vaulted ceilings in atriums).</p><p><em><strong>Hotel Drywall Details</strong></em><br />This estimate is based on residences with over 90% interior walls are covered with drywall (only some back utility and garages were not covered with drywall). Ceiling heights used to generate the drywall estimate are 9 feet for guest rooms, hallways, offices, and other back rooms, 12 feet for lobbies and restaurants, and 16 feet for conference rooms. During the site visits to develop these factors, it was observed that larger hotels with conference facilities tended to have drywall ceiling in the most rooms; however, in newer extended-stay type hotels with all suite guest rooms, ceilings were not covered with drywall. Therefore, estimates for standard rooms include drywall on ceilings and estimates for suite rooms do not.</p><p><em><strong>Single-Family Residence Drywall Details</strong></em><br />This estimate is based on residences with over 90% interior walls are covered with drywall (only some back utility and garages were not covered with drywall).</p><p><em><strong>Shopping Mall Drywall Details</strong></em><br />This estimate is based on shopping malls with approximately 90% interior walls are covered with drywall (only some back utility and storage room walls were not covered with drywall). Additionally, approximately 10% of the ceilings were covered with drywall). Additionally, approximately 10% of the ceilings were covered with drywall (vaulted ceilings in the hallways, and a few stores). Ceiling heights used to generate the drywall estimate are 9 feet for back offices and restrooms, 12 feet for most stores, and 16 feet for hallways and lobbies.</p><p><em><strong>Movie Theater Drywall Details</strong></em><br />This estimate is based on theaters with 95% of interior walls covered with drywall (only some back utility room walls were not covered with drywall). The use of drywall for ceilings was not observed in the site visits. Ceiling heights used to generate the drywall estimate are 9 feet for hallways, restrooms, and other back rooms, 14 feet for lobbies and concessions areas, and up to 40 feet for theaters.</p><p>Because drywall will not be neatly stacked when removed from a building, the base volume of drywall (i.e., length x width x height) is multiplied by a factor of 1.3 to arrive at the total volume including void spaces.</p>"
+      },
+      {
+        "id": 29,
+        "name": "Gym and Sports Equipment",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 6,
+        "parentSort": 12,
+        "absoluteSort": 31,
+        "guidanceHtml": "<h5>Gym and Sports Equipment (Schools Only)</h5><p>This estimate includes basketball hoops and mounts, gym lockers, gym dividers, wall and floor pads, workout equipment, gymnastics equipment, wrestling mats, and sports equipment (i.e., football pads, basketballs, etc.) This estimate also includes large gymnasium bleachers. Main high school gymnasium bleachers from schools visited could hold between 1,000 and 1,500 people. The size and capacity of bleachers may vary widely between schools.</p>"
+      },
+      {
+        "id": 30,
+        "name": "Art and Music Equipment",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 7,
+        "parentSort": 13,
+        "absoluteSort": 32,
+        "guidanceHtml": "<h5>Art and Music Equipment (Schools Only)</h5><p>This estimate includes all musical instruments and cases, music stands, theatrical props and sets, and art supplies. The amount of theatrical props and sets and art supplies may vary widely between schools, depending on storage space available.</p>"
+      },
+      {
+        "id": 9,
+        "name": "Ceiling Tiles",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 2,
+        "parentSort": 8,
+        "absoluteSort": 9,
+        "guidanceHtml": "<h5>Ceiling Tiles</h5><p>This estimate includes ceiling tiles and frames.</p><p><em><strong>Office Ceiling Tiles Details</strong></em><br />This estimate includes ceiling tiles and frames. This estimate is based on offices where 95% of the ceilings were covered with tiles. If some ceilings are covered with other materials, this may be an overestimate.</p><p><em><strong>School Ceiling Tiles Details</strong></em><br />The size and number of rooms without tiled ceilings (e.g., gymnasiums, auditoriums, and mechanical rooms) increases from elementary to middle to high schools. Estimates are based on elementary schools with approximately 90%, middle schools with 85%, and high schools with 80% of the total square footage of the school covered with ceiling tiles. If more ceilings are exposed or covered with other materials, this may be an overestimate.</p><p><em><strong>Hospital Ceiling Tiles Details</strong></em><br />Almost all ceilings in the hospital visited were covered with ceiling tiles (only ceilings in utility and back storage room walls were not covered with ceiling tiles).</p><p><em><strong>Hotel Ceiling Tiles Details</strong></em><br />Hotels visited had between 5 and 15 percent of their ceilings covered with ceiling tiles (mostly back offices and work space).</p><p><em><strong>Shopping Mall Ceiling Tiles Details</strong></em><br />Most ceiling within the retail stores at the mall visited were covered with ceiling tiles. Additionally, the ceilings in the mall management offices and back hallways were also covered with ceiling tiles.</p><p><em><strong>Movie Theater Ceiling Tiles Details</strong></em><br />Theaters visited had between 90 and 95 percent of their ceilings covered with ceiling tiles, with the exception of some lobby areas.</p><p>Because tiles will not be neatly stacked when removed from a building, the base volume of tiles (i.e., length x width x height) is multiplied by a factor of 1.3 to arrive at the total volume including void spaces.</p>"
+      },
+      {
+        "id": 10,
+        "name": "Carpet",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 3,
+        "parentSort": 8,
+        "absoluteSort": 10,
+        "guidanceHtml": "<h5>Carpet</h5><p>This estimate only includes carpet on floors. Carpet padding (except for residences) is not included because padding was not found at the buildings visited.</p><p><em><strong>Office Carpet Details</strong></em><br />This estimate is based on offices with 90% of the floor space carpeted. Bathrooms, kitchens, and some other common areas were not carpeted. If floors are covered with other materials, this may be an overestimate.</p><p><em><strong>School Carpet Details</strong></em><br />The estimate is based on middle and high schools where approximately 20% of the floor space is carpeted (libraries, multi-purpose rooms, and offices were carpeted). For elementary schools, approximately 50% of the floor space is carpeted (most classrooms, gymnasiums, libraries, multi-purpose room, and offices were carpeted). Elementary school floors are more likely to be carpeted to cushion children's falls.</p><p><em><strong>Hospital Carpet Details</strong></em><br />Carpet was utilized in waiting rooms, staff lounges, gift shops, dining areas, and approximately 70% of the offices.</p><p><em><strong>Hotel Carpet Details</strong></em><br />Carpet was found in all guest rooms, guest hallways, conference rooms, dining rooms, and offices. Bathrooms, lobbies, and most back areas other than offices were not carpeted.</p><p><em><strong>Single-Family Residence Carpet Details</strong></em><br />Carpet padding is assumed under all carpet in residences. Padding is assumed to be rolled and dry along with the carpet.</p><p><em><strong>Shopping Mall Carpet Details</strong></em><br />Carpet was found in the mall management office and in approximately 70% of floors within the retail stores.</p><p><em><strong>Movie Theater Carpet Details</strong></em><br />Carpet was found in all offices, hallways, lobby/concession area, and in the auditorium walkways. In the auditoriums, carpet was also found on the lower three feet of the auditorium walls, for acoustical purposes. Bathrooms, kitchens, storage rooms, projection rooms, lobbies, floor underneath the auditorium seats, and most back areas other than offices were not carpeted. Approximately 30-35% of the facilities total square footage was carpeted.</p><p>Carpet was assumed to be rolled and dry.</p>"
+      },
+      {
+        "id": 11,
+        "name": "Marble and Ceramic Tiles",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 4,
+        "parentSort": 8,
+        "absoluteSort": 11,
+        "guidanceHtml": "<h5>Marble and Ceramic Tiles</h5><p>This estimate includes all marble and ceramic tiles on the floors and walls.</p><p><em><strong>Hotel Marble and Ceramic Tiles Details</strong></em><br />In lavish hotels marble may cover the floor and walls of all bathrooms and cover large spaces in the lobby. If the lavish hotel box is checked, this estimate includes the marble in all of these locations. If the lavish hotel box is not checked, it assumes that all of these floors and walls are covered with ceramic tiles.</p><p><em><strong>Shopping Mall Marble and Ceramic Tiles Details</strong></em><br />Most hallways of the shopping mall visited were covered with tiles, as well as around fountains.</p>"
+      },
+      {
+        "id": 39,
+        "name": "Wood Flooring",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 5,
+        "parentSort": 8,
+        "absoluteSort": 12,
+        "guidanceHtml": "<h5>Wood Flooring (Schools Only)</h5><p>This estimate includes wood and padding. Wood floors are not expected at elementary schools (gymnasiums were carpeted). In middle and high schools visited, wooden-floored gymnasiums and stages accounted for between 8 and 12% of the total square footage of the school, depending on the size and number of gymnasiums. Estimates based on 7/8 inch thick wood flooring with appropriate padding and support structure underneath.</p>"
+      },
+      {
+        "id": 12,
+        "name": "Wood",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 6,
+        "parentSort": 8,
+        "absoluteSort": 13,
+        "guidanceHtml": "<h5>Wood (Residential Only)</h5><p>This estimate includes all wood used for framing walls, ceilings, and roofs, as well as plywood used for floors and sheathing under shingles and siding. Note that wood framing is assumed to be behind most brick/masonry-faced exterior walls. This estimate does not include wood furniture. Because wood will not be neatly stacked when removed from a building, the base volume of wood (i.e., length x width x height) is multiplied by a factor of 1.3 to arrive at the total volume including void spaces.</p>"
+      },
+      {
+        "id": 13,
+        "name": "Curtains and Acoustical Material",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 7,
+        "parentSort": 8,
+        "absoluteSort": 14,
+        "guidanceHtml": "<h5>Curtains and Acoustical Material (Theaters Only)</h5><p>This estimate includes acoustic tiles, acoustical wall padding, and curtains. Because of the acoustical requirements of the auditoriums, all auditorium walls were covered with acoustical materials. Typically, the lowest three feet of the walls around the auditoriums were covered with carpet (accounted in the Carpet category). Acoustical padding covered by a fixed curtain covered the remaining height of the side walls. Acoustical tiles were used on the rear walls. A retractable curtain covered the front wall.</p>"
+      },
+      {
+        "id": 14,
+        "name": "Other Non-Structural Building Materials",
+        "categoryGroupId": 3,
+        "parentId": 7,
+        "sortOrder": 8,
+        "parentSort": 8,
+        "absoluteSort": 15,
+        "guidanceHtml": "<h5>Other Non-Structural Building Materials</h5><p>This estimate includes all building material not included in other building material subcategories. The building materials in this estimate may include restroom equipment, doors, glass panes, blinds and window coverings, other floor coverings, duct work, and vents.</p><p><em><strong>Single-Family Residence Other Non-Structural Building Materials Details</strong></em><br />The building materials in this estimate also include windows, siding and shingles, pipes, and electrical wiring.</p><p><em><strong>Movie Theater Other Non-Structural Building Materials Details</strong></em><br />Bathrooms, kitchens, storage rooms, projection rooms, lobbies, floor underneath the auditorium seats, and most back areas other than offices were covered with floor tiles and other types of floor coverings.</p>"
+      },
+      {
+        "id": 15,
+        "name": "Electronic Equipment",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 2,
+        "parentSort": 9,
+        "absoluteSort": 17,
+        "guidanceHtml": "<h5>Electronic Equipment</h5><p ><span class=\"text-italic\"><span class=\"text-bold\">Offices Electronic Equipment Details</span></span><br>This estimate includes all computers, telephones, servers and routers, office machine, lights and light fixtures, kitchen equipment, etc. Two potential types of waste that were not included are wiring and mechanical ventilation and climate control equipment (e.g., air handlers). Two other factors that may result in additional electronic equipment waste are offices that do not dispose of outdated computers and electronic equipment, and offices that are heavily based on electronics (e.g., graphic design, hardware design, publishing).</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Electronic Equipment Details</span></span><br>Included in this category is the estimate for Patient Care Equipment, Imaging Equipment, Laboratory/Surgery Equipment, Industrial Electronic Equipment, and Other Electronic Equipment. While this estimate includes air handlers, it does not include boilers and other climate control equipment located on the exterior of the hospital. Additional types of waste that were not included are wiring, elevators, and escalators.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Electronic Equipment Details</span></span><br>Included in this category is the estimate for industrial electronic equipment, as well as all computers, televisions, electronic janitorial equipment (i.e., vacuum cleaners, floor cleaners, etc.), cooking equipment in guest rooms, and lights and light fixtures. Potential types of waste that were not included are wiring, mechanical ventilation, and climate control equipment (i.e., air handlers, boilers, etc.).</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Movie Theaters Electronic Equipment Details</span></span><br>Included in this category are the estimates for Theater Electronic Equipment and Concession Electronic Equipment, as well as all computers, televisions, electronic janitorial equipment (i.e., vacuum cleaners, floor cleaners, etc.), and lights and light fixtures. Potential types of waste that were not included are wiring, mechanical ventilation, and climate control equipment (i.e., air handlers, boilers, etc.).</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Schools Electronic Equipment Details</span></span><br>Included in this category is the estimate for industrial electronic equipment, as well as all computers, televisions, electronic lab equipment, electronic janitorial equipment (i.e., vacuum cleaners, floor cleaners, etc.), cooking equipment in teacher's lounges and cooking classrooms, and lights and light fixtures. Potential types of waste that were not included are wiring, mechanical ventilation, and climate control equipment (i.e., air handlers, boilers, etc.). This estimate is based on schools with a television in every classroom, multiple computer labs, and one computer for every staff member.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Shopping Malls Electronic Equipment Details</span></span><br>Included in this category is the estimate for industrial electronic equipment, as well as all computers, televisions, and other electronic merchandise, electronic janitorial equipment (i.e., vacuum cleaners, floor cleaners, etc.), and lights and light fixtures. Potential types of waste that were not included are wiring, mechanical ventilation and climate control equipment (i.e., air handlers, boilers, etc.), and elevators and escalators.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Single-Family Residences Electronic Equipment Details</span></span><br>This estimate included all electronic equipment and appliances. Included in this category are laundry washers and dryers, kitchen appliances (e.g., refrigerators, dishwashers, ovens, microwaves, toasters, garbage disposals), televisions, computers, stereos, clocks, water heaters, heat pumps, and all other electronic items. Please note that these estimates differ from estimates for other facility types (e.g., offices, schools, theaters), in that climate control equipment is included.</p>"
+      },
+      {
+        "id": 31,
+        "name": "Medical Supplies",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 8,
+        "parentSort": 14,
+        "absoluteSort": 33,
+        "guidanceHtml": "<h5>Medical Supplies (Hospitals Only)</h5><p>This estimate is based on data on the standard hospital use rate of linens. This includes sheets, pillow cases, towels, and patient gowns.</p>"
+      },
+      {
+        "id": 42,
+        "name": "Used Oil",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 2,
+        "parentSort": 23,
+        "absoluteSort": 44,
+        "guidanceHtml": null
+      },
+      {
+        "id": 16,
+        "name": "Industrial Electronic Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 1,
+        "parentSort": 9,
+        "absoluteSort": 18,
+        "guidanceHtml": "<h5>Industrial Electronic Equipment</h5><p><em><strong>School Industrial Electronic Equipment Details</strong></em><br />This estimate includes all cafeteria electronic equipment (i.e., industrial ovens, freezers, etc.), circuit breaker boxes, and telephone routing boxes.</p><p><em><strong>Hospital Industrial Electronic Equipment Details</strong></em><br />This estimate includes all kitchen electronic equipment (i.e., industrial ovens, freezers, etc.), air handlers, laundry equipment, circuit breaker boxes, and telephone routing boxes.</p><p><em><strong>Hotel Industrial Electronic Equipment Details</strong></em><br />This estimate includes all kitchen electronic equipment (i.e., industrial ovens, freezers, etc.), water heaters, laundry equipment, circuit breaker boxes, and telephone routing boxes.</p><p><em><strong>Shopping Mall Industrial Electronic Equipment Details</strong></em><br />This estimate includes all kitchen electronic equipment (i.e., industrial ovens, freezers, etc.), water heaters, laundry equipment, circuit breaker boxes, and telephone routing boxes. Most of the industrial electronic equipment identified at shopping malls was found in restaurants.</p>"
+      },
+      {
+        "id": 17,
+        "name": "Patient Care Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 2,
+        "parentSort": 9,
+        "absoluteSort": 19,
+        "guidanceHtml": "<h5>Patient Care Equipment</h5><p>This estimate includes IV pumps, vital statistics monitors, ventilators, incubators, and other electrical patient care equipment.</p>"
+      },
+      {
+        "id": 18,
+        "name": "Imaging Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 3,
+        "parentSort": 9,
+        "absoluteSort": 20,
+        "guidanceHtml": "<h5>Imaging Equipment</h5><p>This estimate includes x-ray machines, CT scanners, MRI machines, and other associated imaging electronic equipment.</p>"
+      },
+      {
+        "id": 19,
+        "name": "Laboratory/Surgery Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 4,
+        "parentSort": 9,
+        "absoluteSort": 21,
+        "guidanceHtml": "<h5>Laboratory/Surgery Equipment</h5><p>This estimate includes electronic equipment used in hospital laboratories (e.g., blood analyzers, centrifuges) and electronic surgical equipment (e.g., blood transfusion units, anesthesia units, scopes/surgical cameras).</p>"
+      },
+      {
+        "id": 20,
+        "name": "Theater Electronic Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 5,
+        "parentSort": 9,
+        "absoluteSort": 22,
+        "guidanceHtml": "<h5>Theater Electronic Equipment</h5><p>This estimate includes all electronic equipment used to play movies in the theaters. Equipment includes film and digital projectors, winding machines, sound units, speakers, and electrical panels.</p>"
+      },
+      {
+        "id": 21,
+        "name": "Concession Electronic Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 6,
+        "parentSort": 9,
+        "absoluteSort": 23,
+        "guidanceHtml": "<h5>Concession Electronic Equipment (Theaters Only)</h5><p>This estimate includes all electronic equipment used for concession and food preparation purposes. Equipment includes popcorn poppers, food warmers, soda fountains, microwaves, and freezers.</p>"
+      },
+      {
+        "id": 22,
+        "name": "Other Electronic Equipment",
+        "categoryGroupId": 3,
+        "parentId": 15,
+        "sortOrder": 7,
+        "parentSort": 9,
+        "absoluteSort": 24,
+        "guidanceHtml": "<h5>Other Electronic Equipment</h5><p><em><strong>Schools Other Electronic Equipment Details</strong></em><br />This estimate includes all electronic equipment not included in another electronic equipment category.</p><p><em><strong>Hospital Other Electronic Equipment Details</strong></em><br />This estimate includes all electronic equipment not included in another electronic equipment category including computers, televisions, telephones, vacuums, and lights and light fixtures.</p><p><em><strong>Hotel Other Electronic Equipment Details</strong></em><br />This estimate includes all electronic equipment not included in another electronic equipment category.</p><p><em><strong>Shopping Mall Other Electronic Equipment Details</strong></em><br />This estimate includes all electronic equipment not included in another electronic equipment category.</p><p><em><strong>Movie Theater Other Electronic Equipment Details</strong></em><br />This estimate includes all electronic equipment not included in another electronic equipment category.</p>"
+      },
+      {
+        "id": 23,
+        "name": "Furniture",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 3,
+        "parentSort": 10,
+        "absoluteSort": 25,
+        "guidanceHtml": "<h5>Furniture</h5><p>This estimate includes all furniture, divider panels, plants, and pictures.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Offices Furniture Details</span></span><br>Cabinetry and counter tops are also included.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Furniture Details</span></span><br>This estimate includes all patient care furniture. Other office furniture (e.g., desks, office chairs, filing cabinets) found at nurses’ stations, registration, and other offices throughout the hospital and all other non-patient care furniture (e.g., storage cabinets, storage shelves, trash cans) are included in the Hospital Other Furniture category.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Furniture Details</span></span><br>Cabinetry and counter tops are also included.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Movie Theaters Furniture Details</span></span><br>This estimate also includes all seating, cabinets, desks, chairs, tables, trash cans, and other furniture items.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Schools Furniture Details</span></span><br>This estimate also includes cabinetry, counter tops, lockers, chalkboards, and bulletin boards. Also included in this estimate are non-electronic lab equipment (i.e., metal stands, glassware, hoses, etc.) and auditorium items (i.e., theater seating, curtains, podiums, risers, etc.).</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Shopping Malls Furniture Details</span></span><br>This estimate includes all items in the Retail Furniture and Office Furniture categories. Office furniture in the management office and in back rooms in the retail stores (e.g., desks, office chairs, filing cabinets) are included in the Shopping Mall Other Furniture category.</p><p><span class=\"text-italic\"><span class=\"text-bold\">Single-Family Residences Furniture Details</span></span><br>This estimate also includes all residential furniture including beds, couches, recliners, dining room tables, chairs, desks, coffee tables, end tables, and night stands.</p><p>The volume for each item was determined by multiplying the overall dimensions. All items are assumed to still be fully assembled. Only minimum size reduction is assumed (e.g., folding tables and chairs are folded).</p>"
+      },
+      {
+        "id": 24,
+        "name": "Other Furniture",
+        "categoryGroupId": 3,
+        "parentId": 23,
+        "sortOrder": 3,
+        "parentSort": 10,
+        "absoluteSort": 28,
+        "guidanceHtml": "<h5>Other Furniture</h5><p><em><strong>Hospital Other Furniture Details</strong></em><br />This estimate includes office furniture (e.g., desks, office chairs, filing cabinets) found at nurses stations, registration, and other offices throughout the hospital. It also includes all other non-patient care furniture (e.g., storage cabinets, storage shelves, trash cans).</p><p><em><strong>Shopping Mall Other Furniture Details</strong></em><br />This estimate includes only office furniture in the management office and in back rooms in the retail stores (e.g., desks, office chairs, filing cabinets).</p>"
+      },
+      {
+        "id": 25,
+        "name": "Patient Care Furniture",
+        "categoryGroupId": 3,
+        "parentId": 23,
+        "sortOrder": 1,
+        "parentSort": 10,
+        "absoluteSort": 26,
+        "guidanceHtml": "<h5>Patient Care Furniture (Hospitals Only)</h5><p>This estimate includes patient beds, infant cribs, exam tables, wheel chairs and other furniture used for patient care.</p>"
+      },
+      {
+        "id": 26,
+        "name": "Retail Furniture",
+        "categoryGroupId": 3,
+        "parentId": 23,
+        "sortOrder": 2,
+        "parentSort": 10,
+        "absoluteSort": 27,
+        "guidanceHtml": "<h5>Retail Furniture (Shopping Malls Only)</h5><p>This estimate includes all furniture for retail displays (e.g., clothes racks, shelving). The estimate also includes check out counters, seating and tables in restaurants, furniture for sale in furniture stores and trash cans.</p>"
+      },
+      {
+        "id": 27,
+        "name": "Bathroom and Kitchen Materials",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 4,
+        "parentSort": 10,
+        "absoluteSort": 29,
+        "guidanceHtml": "<h5>Bathroom and Kitchen Materials (Residential Only)</h5><p>This estimate includes all kitchen and bathroom items, including toilets, showers, sinks, faucets and knobs, cabinets, and counter tops. Appliances are excluded from this estimate.</p>"
+      },
+      {
+        "id": 28,
+        "name": "Paper and Office Supplies",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 5,
+        "parentSort": 11,
+        "absoluteSort": 30,
+        "guidanceHtml": "<h5>Paper and Office Supplies</h5><p ><span class=\"text-italic\"><span class=\"text-bold\">Offices Paper and Office Supplies Details</span></span><br>This estimate is based on the assumption that all filing cabinets, bookshelves, etc. are 50% full of paper and office supplies. Note that the amount of paper in an office is highly dependent on the type/product of an office, the amount of archive storage, and the length of occupancy. The amount of paper and office supplies may vary significantly between facilities of similar size.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Paper and Office Supplies Details</span></span><br>This estimate is based on the assumption that all office filing cabinets, bookshelves, etc. are 75% full of paper and office supplies. Additionally, phone books, toilet paper, janitorial paper products, food service paper products (e.g., plates, napkins), and other paper products are also included in this estimate.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Paper and Office Supplies Details</span></span><br>This estimate is based on the assumption that all filing cabinets, bookshelves, etc. are 50% full of paper and office supplies.  Phone books, toilet paper, and other paper products are also included in this estimate.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Schools Paper and Office Supplies Details</span></span><br>This estimate is based on the assumption that all filing cabinets, bookshelves, lockers, etc. are 75% full of paper and school supplies. This estimation is consistent with the schools visited; however, the quantity of paper and school supplies may vary based on the age of the school (quantity of archived student records and other accumulated material), point in the school year (paper slowly builds up in the school throughout the year), and the size of the library. School libraries visited had between 5,000 (elementary school library) and 15,000 books (high school library).</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Shopping Malls Paper and Office Supplies Details</span></span><br>This estimate is based on the assumption that all office filing cabinets, bookshelves, etc. are 50% full of paper and office supplies. Additionally, books and other paper/office supply merchandise, phone books, toilet paper, janitorial paper products, food service paper products (e.g., plates, napkins), and other paper products are also included in this estimate.</p>"
+      },
+      {
+        "id": 41,
+        "name": "Oil & Latex Paint",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 1,
+        "parentSort": 23,
+        "absoluteSort": 43,
+        "guidanceHtml": null
+      },
+      {
+        "id": 32,
+        "name": "Pharmaceuticals",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 9,
+        "parentSort": 15,
+        "absoluteSort": 34,
+        "guidanceHtml": "<h5>Pharmaceuticals (Hospitals)</h5><p>This estimate includes all pharmaceuticals in the hospital and is based on the quantity of storage space for pharmaceuticals at a hospital. Please note that many pharmaceuticals are regulated hazardous waste under the Resource Conservation and Recovery Act (RCRA).</p><p>Some pharmaceuticals may also be radioactive; however, even large hospitals typically never have more than one pound of radioactive pharmaceuticals on site at a given time. The hospital should already have procedures for disposing of these materials. If additional disposal guidance is needed, consult the Radiological/Nuclear topic in the Guidance & Information section of the tool.</p><h5>Pharmaceuticals (Household Medicines Single-Family Residences)</h5><p>This estimate includes unused medicines which may be present in a single-family residence, including solid/tablet medicines and liquid medicines (e.g., cough syrup). It’s estimated that an average U.S. household has four medications with about two-thirds of those being tablets/capsules and one-third being liquids.</p>"
+      },
+      {
+        "id": 33,
+        "name": "Food",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 10,
+        "parentSort": 16,
+        "absoluteSort": 35,
+        "guidanceHtml": "<h5>Food</h5><p>This estimate is based on detailed inventories of all standard food kept on hand.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Food Details</span></span><br>The food on hand may be significantly lower between deliveries.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Food Details</span></span><br>If a large conference is in session, significant quantities of additional food may also require disposal.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Movie Theaters Food Details</span></span><br>This estimate includes all chips, popcorn, soda, ice cream, and other food served at a theater. This estimate does not include items associated with food preparation (e.g., popcorn popper) or food severing (e.g., paper cup). The estimate may vary significantly based on delivery schedules.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Shopping Malls Food Details</span></span><br>The food on hand may be significantly lower between deliveries or after several busy nights.</p>"
+      },
+      {
+        "id": 34,
+        "name": "Linens",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 11,
+        "parentSort": 17,
+        "absoluteSort": 36,
+        "guidanceHtml": "<h5>Linens</h5><p>This estimate may include towels, sheets, and pillow cases as well as all shoes, shirts, pants, ties, towels, sheets, and other linens and apparel.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Linens Details</span></span><br>This estimate is based on data on the standard hospital use rate of linens. This estimate also includes patient gowns.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Linens Details</span></span><br>The estimate is based on standard hotel practices (i.e., for each bed, one dirty sheet is on a bed, one clean sheet is ready to be put on the bed, one sheet is being cleaned, and one sheet is in transit or extra). This estimate also includes blankets, tablecloths, and linen napkins.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Shopping Malls Linens Details</span></span><br>This estimate is based on available inventories at several apparel stores. This estimate includes all shoes, shirts, pants, ties, towels, sheets, and other linens and apparel. This estimate is based on available inventories at several apparel stores.</p>"
+      },
+      {
+        "id": 35,
+        "name": "Dishware",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 12,
+        "parentSort": 18,
+        "absoluteSort": 37,
+        "guidanceHtml": "<h5>Dishware (Hotels Only)</h5><p>This estimate includes all glasses, plates, silverware, cookware, pitchers, etc. The estimate is based on detailed inventories of purchased equipment.</p>"
+      },
+      {
+        "id": 36,
+        "name": "Personal Effects",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 13,
+        "parentSort": 19,
+        "absoluteSort": 38,
+        "guidanceHtml": "<h5 >Personal Effects</h5><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Personal Effects Details</span></span><br>This estimate includes luggage and personal items that will be in the hotel. The estimate assumes one large suitcase and one backpack/briefcase per guest room and 85% occupancy.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Single-Family Residences Personal Effects Details</span></span><br>This estimate includes all other materials found in a residence, including personal items, food, toiletries, pots, pans, dishes, linens, clothes, plants, pictures, paper, and window coverings.</p>"
+      },
+      {
+        "id": 37,
+        "name": "Medical Waste",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 14,
+        "parentSort": 21,
+        "absoluteSort": 40,
+        "guidanceHtml": "<h5 >Medical Waste</h5><p></p><p>Based on survey responses from 35 hospitals in the state of Florida an average metropolitan community hospital generates 189 pounds of medical waste per occupied bed per month (rural community hospitals averaged 134 pounds per occupied bed per month) (<a href='#ref1'>1</a>). The estimate includes medical waste <a href='/guidance/natural-disaster/fact-sheets/regulations-guidance-facilities/other-disposal-guidance' target='_blank'>Types A through H</a>. The tool uses the data for metropolitan hospitals and assumes 90% occupancy and a max of 3 days (conservative estimates from hospital contacts) to generate medical waste estimates (i.e., 189 lbs/occupied bed-month × 0.9 occupied beds/total beds × 3 days / 30 days/month = 17 lbs/bed). The following link provides additional information on <a href='/guidance/natural-disaster/fact-sheets/regulations-guidance-facilities/other-disposal-guidance#medical' target='_blank'>medical waste handling and disposal</a>.</p><p>References:</p><ol><li><a id=\"ref1\"></a>Sengupta, S. Medical Waste Generation, Treatment and Disposal Practices in the State of Florida, Florida Center for Solid and Hazardous Waste Management, Report #90-3, June 1990.</li></ol>"
+      },
+      {
+        "id": 38,
+        "name": "Other Items and Equipment",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 15,
+        "parentSort": 22,
+        "absoluteSort": 41,
+        "guidanceHtml": "<h5 >Other Items and Equipment</h5><p>This estimate includes all other materials found at hospitals, including dishes and cookware, pictures and posters, janitorial carts, cleaning supplies, maintenance supplies (e.g., cans of paint, tools), and plants.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hospitals Other Items and Equipment Details</span></span><br>This estimate includes all other materials found at hospitals, including dishes and cookware, pictures and posters, janitorial carts, cleaning supplies, maintenance supplies (e.g., cans of paint, tools), and plants.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Hotels Other Items and Equipment Details</span></span><br>This estimate includes all other materials found at the hotel, including toiletries, cleaning supplies, maintenance supplies (e.g., cans of paint, rock salt, tools), and plants.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Movie Theaters Other Items and Equipment Details</span></span><br>This estimate includes all other materials found at a theater, including movie screens, cleaning supplies, maintenance supplies, paper cups and plates, and movie posters and other movie advertisements.</p><p ><span class=\"text-italic\"><span class=\"text-bold\">Shopping Malls Other Items and Equipment Details</span></span><br>This estimate includes all other materials found at the shopping mall, including dishes at restaurants, jewelry, plastic toys, pots and other cooking supplies, cleaning supplies, perfumes, soaps, sporting goods, maintenance supplies (e.g., cans of paint, rock salt, tools), and plants.</p>"
+      },
+      {
+        "id": 40,
+        "name": "Household Hazardous Waste",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 16,
+        "parentSort": 23,
+        "absoluteSort": 42,
+        "guidanceHtml": "<h5>Household Hazardous Waste (Single-Family Residences)</h5><p>This estimate includes various categories of household hazardous waste (HHW) that may be present in a single-family residence, including paints, oils, flammables, pesticides, poisons, batteries, etc. On average, single-family residences may have as much as 100 pounds of HHW accumulated in the home. Households may also have compact fluorescent lights (CFLs) which may or may not be considered HHW. It’s estimated that an average single-family residence may have approximately 14 CFLs.</p>"
+      },
+      {
+        "id": 43,
+        "name": "Lab Packed Aerosols",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 3,
+        "parentSort": 23,
+        "absoluteSort": 45,
+        "guidanceHtml": null
+      },
+      {
+        "id": 44,
+        "name": "Flammable Liquids",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 4,
+        "parentSort": 23,
+        "absoluteSort": 46,
+        "guidanceHtml": null
+      },
+      {
+        "id": 45,
+        "name": "Bulk Fuels",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 5,
+        "parentSort": 23,
+        "absoluteSort": 47,
+        "guidanceHtml": null
+      },
+      {
+        "id": 46,
+        "name": "Flammable Solids",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 6,
+        "parentSort": 23,
+        "absoluteSort": 48,
+        "guidanceHtml": null
+      },
+      {
+        "id": 47,
+        "name": "Pesticides",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 7,
+        "parentSort": 23,
+        "absoluteSort": 49,
+        "guidanceHtml": null
+      },
+      {
+        "id": 48,
+        "name": "Poisons",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 8,
+        "parentSort": 23,
+        "absoluteSort": 50,
+        "guidanceHtml": null
+      },
+      {
+        "id": 49,
+        "name": "Antifreeze",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 9,
+        "parentSort": 23,
+        "absoluteSort": 51,
+        "guidanceHtml": null
+      },
+      {
+        "id": 50,
+        "name": "Batteries",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 10,
+        "parentSort": 23,
+        "absoluteSort": 52,
+        "guidanceHtml": null
+      },
+      {
+        "id": 51,
+        "name": "Other Corrosives",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 11,
+        "parentSort": 23,
+        "absoluteSort": 53,
+        "guidanceHtml": null
+      },
+      {
+        "id": 52,
+        "name": "Cleaning Supplies ",
+        "categoryGroupId": 3,
+        "parentId": 40,
+        "sortOrder": 12,
+        "parentSort": 23,
+        "absoluteSort": 54,
+        "guidanceHtml": null
+      },
+      {
+        "id": 53,
+        "name": "Compact Fluorescent Lights",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 17,
+        "parentSort": 24,
+        "absoluteSort": 55,
+        "guidanceHtml": null
+      },
+      {
+        "id": 54,
+        "name": "Ammunition/Explosives",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 7,
+        "absoluteSort": 16,
+        "guidanceHtml": "<h5>Ammunition/Explosives</h5><p><span class=\"text-bold text-italic\">Single-Family Residences</span><br />The estimate of handgun, rifle, and shotgun ammunition that might be found in an average U.S. residence assumes that 45% of single-family residences contain one gun; 62% of those have a handgun, 22% have a rifle, and 16% have a shotgun. It is further assumed that for residences containing a handgun, there would be 100 rounds (9mm Luger). For residences containing a rifle there would be 50 rounds (30-06 Springfield). For residences containing a shotgun would have 25 shells (12 gauge).</p>"
+      },
+      {
+        "id": 55,
+        "name": "Hazardous Materials (Asbestos Containing Materials)",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 20,
+        "absoluteSort": 39,
+        "guidanceHtml": "<h5>Hazardous Materials (Asbestos Containing Materials)</h5><p><span class=\"text-bold text-italic\">Single-Family Residences, Offices, Schools</span><br />Many residential, public, and commercial buildings contain hazardous materials such as asbestos, particularly buildings constructed before 1980. While not classified as a hazardous waste under RCRA, asbestos is a hazardous material whose handling, removal, and disposal is regulated under CERCLA and CAA. The estimate assumes that 50% of the U.S. residential building stock was constructed before 1980 and 20% of offices and schools were constructed before 1980 and may contain asbestos containing materials. The estimate further assumes that the amount of asbestos contained in building materials (particularly drywall) is 1% by weight.</p>"
+      },
+      {
+        "id": 56,
+        "name": "Tanks/Cylinders",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 25,
+        "absoluteSort": 56,
+        "guidanceHtml": "<h5>Tanks/Cylinders</h5><p><span class=\"text-bold text-italic\">Single-Family Residences, Offices</span><br />Single-family residences and offices are assumed to commonly have propane tanks/cylinders for either cooking and heating (residences) or for heating only (offices). The 500-gallon tank is the most common size propane tank for residential propane use. It is often used for home heating, generator powering, cooking, pool heating, and more. Typically, a home needs to be at least 2,500 square feet, and use propane for multiple appliances for a 500-gallon tank to be appropriate.  The 1,000-gallon propane tank is most often used for large commercial businesses and the agricultural industry and 34% of commercial energy consumption comes from natural gas.</p><p>The estimate for Tanks/Cylinders assumes that 9.5% of single-family residences use propane for heating fuel and 34% use propane for outdoor grilling. The typical propane tank for residential grilling is a 20 pound tank and the typical tank for heating is a 500 gallon tank. It is also assumed that 34% of commercial entities have tanks at an average size of 1,000 gallons. The tanks are assumed to be 80% full.</p>"
+      },
+      {
+        "id": 57,
+        "name": "Marine Vessel Debris",
+        "categoryGroupId": 3,
+        "parentId": null,
+        "sortOrder": 1,
+        "parentSort": 26,
+        "absoluteSort": 57,
+        "guidanceHtml": "<h5>Marine Vessel Debris</h5><p>Damaged or destroyed marine vessels (boats) can comprise a significant fraction of the waste generated following a disaster. The estimate of marine vessel debris that might be generated following an incident is based on the total mileage of waterfront/shoreline in the affected area.</p><p>The vessel debris quantities and estimates for Florida from Hurricane Irma (2017/2018) indicate that 2,679 vessels were damaged or displaced and 252,000 cubic yards marine debris was removed. The average weight of a recreational vessel is estimated to be 2,500 lbs (or, 1.25 tons). The total shoreline mileage of the US is 95,439 statute miles.</p>"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1517 @@
+[
+  {
+    "id": 1,
+    "structureTypeId": 1,
+    "name": "Number of occupants (Cubicle)",
+    "label": "Occupants (cubicle)",
+    "unit": "occupants",
+    "type": "cubicle",
+    "sortOrder": 4,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 1,
+        "parameterId": 1,
+        "structureSubtypeId": 1,
+        "defaultValue": 29
+      },
+      {
+        "id": 10,
+        "parameterId": 1,
+        "structureSubtypeId": 2,
+        "defaultValue": 115
+      },
+      {
+        "id": 19,
+        "parameterId": 1,
+        "structureSubtypeId": 3,
+        "defaultValue": 372
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "structureTypeId": 1,
+    "name": "Square footage (Cubicle)",
+    "label": "Square Feet (cubicle)",
+    "unit": "ft3",
+    "type": "cubicle",
+    "sortOrder": 3,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 2,
+        "parameterId": 2,
+        "structureSubtypeId": 1,
+        "defaultValue": 15000
+      },
+      {
+        "id": 11,
+        "parameterId": 2,
+        "structureSubtypeId": 2,
+        "defaultValue": 60000
+      },
+      {
+        "id": 20,
+        "parameterId": 2,
+        "structureSubtypeId": 3,
+        "defaultValue": 195000
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "structureTypeId": 1,
+    "name": "Number of occupants  (Individual Walled)",
+    "label": "Occupants (walled)",
+    "unit": "occupants",
+    "type": "walled",
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 3,
+        "parameterId": 3,
+        "structureSubtypeId": 1,
+        "defaultValue": 8
+      },
+      {
+        "id": 12,
+        "parameterId": 3,
+        "structureSubtypeId": 2,
+        "defaultValue": 32
+      },
+      {
+        "id": 21,
+        "parameterId": 3,
+        "structureSubtypeId": 3,
+        "defaultValue": 104
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "structureTypeId": 1,
+    "name": "Square footage  (Individual Walled)",
+    "label": "Square Feet (walled)",
+    "unit": "ft3",
+    "type": "walled",
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 4,
+        "parameterId": 4,
+        "structureSubtypeId": 1,
+        "defaultValue": 5000
+      },
+      {
+        "id": 13,
+        "parameterId": 4,
+        "structureSubtypeId": 2,
+        "defaultValue": 20000
+      },
+      {
+        "id": 22,
+        "parameterId": 4,
+        "structureSubtypeId": 3,
+        "defaultValue": 65000
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "structureTypeId": 1,
+    "name": "Percent of offices constructed prior to 1980",
+    "label": "% offices constructed pre-1980",
+    "unit": null,
+    "type": null,
+    "sortOrder": 5,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 5,
+        "parameterId": 55,
+        "structureSubtypeId": 1,
+        "defaultValue": 20
+      },
+      {
+        "id": 14,
+        "parameterId": 55,
+        "structureSubtypeId": 2,
+        "defaultValue": 20
+      },
+      {
+        "id": 23,
+        "parameterId": 55,
+        "structureSubtypeId": 3,
+        "defaultValue": 20
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "structureTypeId": 1,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 7,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 7,
+        "parameterId": 5,
+        "structureSubtypeId": 1,
+        "defaultValue": 0
+      },
+      {
+        "id": 16,
+        "parameterId": 5,
+        "structureSubtypeId": 2,
+        "defaultValue": 0
+      },
+      {
+        "id": 25,
+        "parameterId": 5,
+        "structureSubtypeId": 3,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "structureTypeId": 1,
+    "name": "Remove paper and supplies from furniture (e.g., paper and office supplies should be packaged and transported in separate containers rather than remaining in furniture)",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 8,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 8,
+        "parameterId": 6,
+        "structureSubtypeId": 1,
+        "defaultValue": 0
+      },
+      {
+        "id": 17,
+        "parameterId": 6,
+        "structureSubtypeId": 2,
+        "defaultValue": 0
+      },
+      {
+        "id": 26,
+        "parameterId": 6,
+        "structureSubtypeId": 3,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "structureTypeId": 1,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 9,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 9,
+        "parameterId": 7,
+        "structureSubtypeId": 1,
+        "defaultValue": 1
+      },
+      {
+        "id": 18,
+        "parameterId": 7,
+        "structureSubtypeId": 2,
+        "defaultValue": 1
+      },
+      {
+        "id": 27,
+        "parameterId": 7,
+        "structureSubtypeId": 3,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "structureTypeId": 2,
+    "name": "Percent of brick/masonry-faced exterior walls",
+    "label": "% brick/masonry-faced exterior walls",
+    "unit": null,
+    "type": null,
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 28,
+        "parameterId": 8,
+        "structureSubtypeId": 4,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "structureTypeId": 2,
+    "name": "Percent of residences constructed prior to 1980",
+    "label": "% residences constructed pre-1980",
+    "unit": null,
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 29,
+        "parameterId": 54,
+        "structureSubtypeId": 4,
+        "defaultValue": 50
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "structureTypeId": 2,
+    "name": "Percent of residences that own a firearm of some type",
+    "label": "% residences that own firearm of some type",
+    "unit": null,
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 30,
+        "parameterId": 57,
+        "structureSubtypeId": 4,
+        "defaultValue": 45
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "structureTypeId": 2,
+    "name": "Square footage",
+    "label": "Square Feet",
+    "unit": null,
+    "type": null,
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 32,
+        "parameterId": 9,
+        "structureSubtypeId": 4,
+        "defaultValue": 2500
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "structureTypeId": 2,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 5,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 33,
+        "parameterId": 10,
+        "structureSubtypeId": 4,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "structureTypeId": 2,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 6,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 34,
+        "parameterId": 11,
+        "structureSubtypeId": 4,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "structureTypeId": 2,
+    "name": "Include structure foundation",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 7,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 35,
+        "parameterId": 12,
+        "structureSubtypeId": 4,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "structureTypeId": 3,
+    "name": "Number of beds",
+    "label": "beds",
+    "unit": null,
+    "type": null,
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 36,
+        "parameterId": 13,
+        "structureSubtypeId": 5,
+        "defaultValue": 26
+      },
+      {
+        "id": 40,
+        "parameterId": 13,
+        "structureSubtypeId": 6,
+        "defaultValue": 95
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "structureTypeId": 3,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 2,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 37,
+        "parameterId": 14,
+        "structureSubtypeId": 5,
+        "defaultValue": 0
+      },
+      {
+        "id": 41,
+        "parameterId": 14,
+        "structureSubtypeId": 6,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "structureTypeId": 3,
+    "name": "Only include materials in patient care areas",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 38,
+        "parameterId": 15,
+        "structureSubtypeId": 5,
+        "defaultValue": 0
+      },
+      {
+        "id": 42,
+        "parameterId": 15,
+        "structureSubtypeId": 6,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "structureTypeId": 3,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 39,
+        "parameterId": 16,
+        "structureSubtypeId": 5,
+        "defaultValue": 1
+      },
+      {
+        "id": 43,
+        "parameterId": 16,
+        "structureSubtypeId": 6,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "structureTypeId": 4,
+    "name": "Number of restaurant seats",
+    "label": "restaurant/bar seats",
+    "unit": null,
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 44,
+        "parameterId": 17,
+        "structureSubtypeId": 7,
+        "defaultValue": 84
+      },
+      {
+        "id": 51,
+        "parameterId": 17,
+        "structureSubtypeId": 8,
+        "defaultValue": 230
+      },
+      {
+        "id": 58,
+        "parameterId": 17,
+        "structureSubtypeId": 9,
+        "defaultValue": 768
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "structureTypeId": 4,
+    "name": "Square feet of conference rooms",
+    "label": "sq ft of conf room space",
+    "unit": null,
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 45,
+        "parameterId": 18,
+        "structureSubtypeId": 7,
+        "defaultValue": 4961
+      },
+      {
+        "id": 52,
+        "parameterId": 18,
+        "structureSubtypeId": 8,
+        "defaultValue": 13668
+      },
+      {
+        "id": 59,
+        "parameterId": 18,
+        "structureSubtypeId": 9,
+        "defaultValue": 45561
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "structureTypeId": 4,
+    "name": "Number of suite guest rooms",
+    "label": "suite room(s)",
+    "unit": null,
+    "type": null,
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 46,
+        "parameterId": 19,
+        "structureSubtypeId": 7,
+        "defaultValue": 1
+      },
+      {
+        "id": 53,
+        "parameterId": 19,
+        "structureSubtypeId": 8,
+        "defaultValue": 3
+      },
+      {
+        "id": 60,
+        "parameterId": 19,
+        "structureSubtypeId": 9,
+        "defaultValue": 11
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "structureTypeId": 4,
+    "name": "Number of standard guest rooms",
+    "label": "std room(s)",
+    "unit": null,
+    "type": null,
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 47,
+        "parameterId": 20,
+        "structureSubtypeId": 7,
+        "defaultValue": 49
+      },
+      {
+        "id": 54,
+        "parameterId": 20,
+        "structureSubtypeId": 8,
+        "defaultValue": 135
+      },
+      {
+        "id": 61,
+        "parameterId": 20,
+        "structureSubtypeId": 9,
+        "defaultValue": 451
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "structureTypeId": 4,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 5,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 48,
+        "parameterId": 21,
+        "structureSubtypeId": 7,
+        "defaultValue": 0
+      },
+      {
+        "id": 55,
+        "parameterId": 21,
+        "structureSubtypeId": 8,
+        "defaultValue": 0
+      },
+      {
+        "id": 62,
+        "parameterId": 21,
+        "structureSubtypeId": 9,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "structureTypeId": 4,
+    "name": "Luxury hotel containing extensive marble/decorations",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 6,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 49,
+        "parameterId": 22,
+        "structureSubtypeId": 7,
+        "defaultValue": 0
+      },
+      {
+        "id": 56,
+        "parameterId": 22,
+        "structureSubtypeId": 8,
+        "defaultValue": 0
+      },
+      {
+        "id": 63,
+        "parameterId": 22,
+        "structureSubtypeId": 9,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "structureTypeId": 4,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 7,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 50,
+        "parameterId": 23,
+        "structureSubtypeId": 7,
+        "defaultValue": 1
+      },
+      {
+        "id": 57,
+        "parameterId": 23,
+        "structureSubtypeId": 8,
+        "defaultValue": 1
+      },
+      {
+        "id": 64,
+        "parameterId": 23,
+        "structureSubtypeId": 9,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "structureTypeId": 5,
+    "name": "Square footage",
+    "label": "Square Feet",
+    "unit": null,
+    "type": "school",
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 65,
+        "parameterId": 24,
+        "structureSubtypeId": 10,
+        "defaultValue": 45000
+      },
+      {
+        "id": 71,
+        "parameterId": 24,
+        "structureSubtypeId": 11,
+        "defaultValue": 110000
+      },
+      {
+        "id": 77,
+        "parameterId": 24,
+        "structureSubtypeId": 12,
+        "defaultValue": 130000
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "structureTypeId": 5,
+    "name": "Number of students",
+    "label": "Students",
+    "unit": null,
+    "type": "school",
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 66,
+        "parameterId": 25,
+        "structureSubtypeId": 10,
+        "defaultValue": 301
+      },
+      {
+        "id": 72,
+        "parameterId": 25,
+        "structureSubtypeId": 11,
+        "defaultValue": 567
+      },
+      {
+        "id": 78,
+        "parameterId": 25,
+        "structureSubtypeId": 12,
+        "defaultValue": 646
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "structureTypeId": 5,
+    "name": "Percent of schools constructed prior to 1980",
+    "label": "% schools constructed pre-1980",
+    "unit": null,
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 67,
+        "parameterId": 56,
+        "structureSubtypeId": 10,
+        "defaultValue": 20
+      },
+      {
+        "id": 73,
+        "parameterId": 56,
+        "structureSubtypeId": 11,
+        "defaultValue": 20
+      },
+      {
+        "id": 79,
+        "parameterId": 56,
+        "structureSubtypeId": 12,
+        "defaultValue": 20
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "structureTypeId": 5,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 68,
+        "parameterId": 26,
+        "structureSubtypeId": 10,
+        "defaultValue": 0
+      },
+      {
+        "id": 74,
+        "parameterId": 26,
+        "structureSubtypeId": 11,
+        "defaultValue": 0
+      },
+      {
+        "id": 80,
+        "parameterId": 26,
+        "structureSubtypeId": 12,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "structureTypeId": 5,
+    "name": "Remove paper and supplies from furniture (e.g., paper and office supplies should be packaged and transported in separate containers rather than remaining in furniture)",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 5,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 69,
+        "parameterId": 27,
+        "structureSubtypeId": 10,
+        "defaultValue": 0
+      },
+      {
+        "id": 75,
+        "parameterId": 27,
+        "structureSubtypeId": 11,
+        "defaultValue": 0
+      },
+      {
+        "id": 81,
+        "parameterId": 27,
+        "structureSubtypeId": 12,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "structureTypeId": 5,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 6,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 70,
+        "parameterId": 28,
+        "structureSubtypeId": 10,
+        "defaultValue": 1
+      },
+      {
+        "id": 76,
+        "parameterId": 28,
+        "structureSubtypeId": 11,
+        "defaultValue": 1
+      },
+      {
+        "id": 82,
+        "parameterId": 28,
+        "structureSubtypeId": 12,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "structureTypeId": 6,
+    "name": "Fast food/food court",
+    "label": "Fast food/food court",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 10,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 83,
+        "parameterId": 29,
+        "structureSubtypeId": 13,
+        "defaultValue": 2
+      },
+      {
+        "id": 96,
+        "parameterId": 29,
+        "structureSubtypeId": 14,
+        "defaultValue": 2
+      },
+      {
+        "id": 109,
+        "parameterId": 29,
+        "structureSubtypeId": 15,
+        "defaultValue": 2
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "structureTypeId": 6,
+    "name": "Restaurants",
+    "label": "Restaurants",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 9,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 84,
+        "parameterId": 30,
+        "structureSubtypeId": 13,
+        "defaultValue": 2
+      },
+      {
+        "id": 97,
+        "parameterId": 30,
+        "structureSubtypeId": 14,
+        "defaultValue": 2
+      },
+      {
+        "id": 110,
+        "parameterId": 30,
+        "structureSubtypeId": 15,
+        "defaultValue": 2
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "structureTypeId": 6,
+    "name": "Jewelry",
+    "label": "Jewelry",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 8,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 85,
+        "parameterId": 31,
+        "structureSubtypeId": 13,
+        "defaultValue": 2
+      },
+      {
+        "id": 98,
+        "parameterId": 31,
+        "structureSubtypeId": 14,
+        "defaultValue": 2
+      },
+      {
+        "id": 111,
+        "parameterId": 31,
+        "structureSubtypeId": 15,
+        "defaultValue": 2
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "structureTypeId": 6,
+    "name": "Books/toys",
+    "label": "Books/toys",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 7,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 86,
+        "parameterId": 32,
+        "structureSubtypeId": 13,
+        "defaultValue": 5
+      },
+      {
+        "id": 99,
+        "parameterId": 32,
+        "structureSubtypeId": 14,
+        "defaultValue": 5
+      },
+      {
+        "id": 112,
+        "parameterId": 32,
+        "structureSubtypeId": 15,
+        "defaultValue": 5
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "structureTypeId": 6,
+    "name": "Services/specialty stores",
+    "label": "Services/specialty stores",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 6,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 87,
+        "parameterId": 33,
+        "structureSubtypeId": 13,
+        "defaultValue": 5
+      },
+      {
+        "id": 100,
+        "parameterId": 33,
+        "structureSubtypeId": 14,
+        "defaultValue": 5
+      },
+      {
+        "id": 113,
+        "parameterId": 33,
+        "structureSubtypeId": 15,
+        "defaultValue": 5
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "structureTypeId": 6,
+    "name": "Electronics",
+    "label": "Electronics",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 5,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 88,
+        "parameterId": 34,
+        "structureSubtypeId": 13,
+        "defaultValue": 3
+      },
+      {
+        "id": 101,
+        "parameterId": 34,
+        "structureSubtypeId": 14,
+        "defaultValue": 3
+      },
+      {
+        "id": 114,
+        "parameterId": 34,
+        "structureSubtypeId": 15,
+        "defaultValue": 3
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "structureTypeId": 6,
+    "name": "Furniture",
+    "label": "Furniture",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 89,
+        "parameterId": 35,
+        "structureSubtypeId": 13,
+        "defaultValue": 3
+      },
+      {
+        "id": 102,
+        "parameterId": 35,
+        "structureSubtypeId": 14,
+        "defaultValue": 3
+      },
+      {
+        "id": 115,
+        "parameterId": 35,
+        "structureSubtypeId": 15,
+        "defaultValue": 3
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "structureTypeId": 6,
+    "name": "Apparel",
+    "label": "Apparel",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 90,
+        "parameterId": 36,
+        "structureSubtypeId": 13,
+        "defaultValue": 22
+      },
+      {
+        "id": 103,
+        "parameterId": 36,
+        "structureSubtypeId": 14,
+        "defaultValue": 22
+      },
+      {
+        "id": 116,
+        "parameterId": 36,
+        "structureSubtypeId": 15,
+        "defaultValue": 22
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "structureTypeId": 6,
+    "name": "Department stores/anchors",
+    "label": "Stores/anchors",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": "Enter the percent of the gross leasable area that applies to each store category below (must add up to 100%).",
+    "values": [
+      {
+        "id": 91,
+        "parameterId": 37,
+        "structureSubtypeId": 13,
+        "defaultValue": 56
+      },
+      {
+        "id": 104,
+        "parameterId": 37,
+        "structureSubtypeId": 14,
+        "defaultValue": 56
+      },
+      {
+        "id": 117,
+        "parameterId": 37,
+        "structureSubtypeId": 15,
+        "defaultValue": 56
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "structureTypeId": 6,
+    "name": "Gross Leasable Area (sq ft)",
+    "label": "Square Feet",
+    "unit": null,
+    "type": null,
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 92,
+        "parameterId": 38,
+        "structureSubtypeId": 13,
+        "defaultValue": 250000
+      },
+      {
+        "id": 105,
+        "parameterId": 38,
+        "structureSubtypeId": 14,
+        "defaultValue": 500000
+      },
+      {
+        "id": 118,
+        "parameterId": 38,
+        "structureSubtypeId": 15,
+        "defaultValue": 1000000
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "structureTypeId": 6,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 11,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 93,
+        "parameterId": 39,
+        "structureSubtypeId": 13,
+        "defaultValue": 0
+      },
+      {
+        "id": 106,
+        "parameterId": 39,
+        "structureSubtypeId": 14,
+        "defaultValue": 0
+      },
+      {
+        "id": 119,
+        "parameterId": 39,
+        "structureSubtypeId": 15,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "structureTypeId": 6,
+    "name": "Do not account for material in common areas",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 12,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 94,
+        "parameterId": 40,
+        "structureSubtypeId": 13,
+        "defaultValue": 0
+      },
+      {
+        "id": 107,
+        "parameterId": 40,
+        "structureSubtypeId": 14,
+        "defaultValue": 0
+      },
+      {
+        "id": 120,
+        "parameterId": 40,
+        "structureSubtypeId": 15,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "structureTypeId": 6,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 13,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 95,
+        "parameterId": 41,
+        "structureSubtypeId": 13,
+        "defaultValue": 1
+      },
+      {
+        "id": 108,
+        "parameterId": 41,
+        "structureSubtypeId": 14,
+        "defaultValue": 1
+      },
+      {
+        "id": 121,
+        "parameterId": 41,
+        "structureSubtypeId": 15,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "structureTypeId": 7,
+    "name": "Number of seats",
+    "label": "Seats",
+    "unit": null,
+    "type": "theater",
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 122,
+        "parameterId": 42,
+        "structureSubtypeId": 16,
+        "defaultValue": 552
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "structureTypeId": 7,
+    "name": "Number of screens",
+    "label": "Screens",
+    "unit": null,
+    "type": "theater",
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 123,
+        "parameterId": 43,
+        "structureSubtypeId": 16,
+        "defaultValue": 2
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "structureTypeId": 7,
+    "name": "Include the additional weight and volume added by packaging materials",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 124,
+        "parameterId": 44,
+        "structureSubtypeId": 16,
+        "defaultValue": 0
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "structureTypeId": 7,
+    "name": "Include estimates for building structural material",
+    "label": null,
+    "unit": null,
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": true,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 125,
+        "parameterId": 45,
+        "structureSubtypeId": 16,
+        "defaultValue": 1
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "structureTypeId": 8,
+    "name": "Percent open space (%)",
+    "label": "% open space",
+    "unit": null,
+    "type": null,
+    "sortOrder": 1,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 126,
+        "parameterId": 46,
+        "structureSubtypeId": 17,
+        "defaultValue": 50
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "structureTypeId": 8,
+    "name": "Concrete (in)",
+    "label": "in. of concrete",
+    "unit": null,
+    "type": null,
+    "sortOrder": 8,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 127,
+        "parameterId": 47,
+        "structureSubtypeId": 17,
+        "defaultValue": 3
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "structureTypeId": 8,
+    "name": "Asphalt (in)",
+    "label": "in. of asphalt",
+    "unit": null,
+    "type": null,
+    "sortOrder": 7,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 128,
+        "parameterId": 48,
+        "structureSubtypeId": 17,
+        "defaultValue": 3
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "structureTypeId": 8,
+    "name": "Soil (in)",
+    "label": "in. of soil",
+    "unit": null,
+    "type": null,
+    "sortOrder": 6,
+    "checkbox": false,
+    "prependLabel": "Depth of materials removed:",
+    "values": [
+      {
+        "id": 129,
+        "parameterId": 49,
+        "structureSubtypeId": 17,
+        "defaultValue": 6
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "structureTypeId": 8,
+    "name": "Concrete (%)",
+    "label": "% concrete",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 5,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 130,
+        "parameterId": 50,
+        "structureSubtypeId": 17,
+        "defaultValue": 15
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "structureTypeId": 8,
+    "name": "Asphalt (%)",
+    "label": "% asphalt",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 4,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 131,
+        "parameterId": 51,
+        "structureSubtypeId": 17,
+        "defaultValue": 25
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "structureTypeId": 8,
+    "name": "Vegetation (%)",
+    "label": "% vegetation",
+    "unit": null,
+    "type": null,
+    "sortOrder": 2,
+    "checkbox": false,
+    "prependLabel": null,
+    "values": [
+      {
+        "id": 132,
+        "parameterId": 52,
+        "structureSubtypeId": 17,
+        "defaultValue": 60
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "structureTypeId": 8,
+    "name": "Soil (%)",
+    "label": "% soil",
+    "unit": "%",
+    "type": null,
+    "sortOrder": 3,
+    "checkbox": false,
+    "prependLabel": "Enter the percent of the open space area that applies to each material category below (must add up to 100%).",
+    "values": [
+      {
+        "id": 133,
+        "parameterId": 53,
+        "structureSubtypeId": 17,
+        "defaultValue": 60
+      }
+    ]
+  }
+]

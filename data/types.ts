@@ -26,6 +26,13 @@ export interface ZoneSchedule {
   yardWaste?: SeasonalSchedule;
 }
 
+export interface AddressRange {
+  street: string;
+  fromNumber?: number;
+  toNumber?: number;
+  parity?: 'odd' | 'even' | 'all'; // For odd/even side of street
+}
+
 export interface Street {
   name: string;
   rangeStart?: number;  // Address range start
@@ -33,11 +40,25 @@ export interface Street {
   crossStreets?: string[];
 }
 
+export interface GeoBoundary {
+  type: 'polygon' | 'circle';
+  coordinates: {
+    lat: number;
+    lng: number;
+  }[];
+  radius?: number; // For circle type in meters
+}
+
 export interface CollectionZone {
   id: string;
   name: string;
   description?: string;
-  streets: Street[];
+
+  // Zone matching options (use one or more)
+  streets?: Street[];              // Simple street name list
+  addressRanges?: AddressRange[];  // Precise address ranges
+  boundary?: GeoBoundary;          // Geographic boundary
+
   schedule: ZoneSchedule;
 }
 

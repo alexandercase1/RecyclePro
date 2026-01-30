@@ -1,0 +1,191 @@
+[
+  {
+    "id": 8,
+    "name": "Open Space",
+    "keyword": "Square Miles",
+    "sortOrder": 1,
+    "guidanceHtml": "<p>The Waste Materials Estimator (WME) includes functionality for users to estimate the amount of waste that may result from decontamination and/or remediation activities in open spaces. Because of the wide variety of items and materials that can be found in large open space areas across the U.S., the open space estimation feature of the WME provides only mass and volume estimates of:</p>\n\n<ul><li>Soil,</li>\n<li>Vegetation,</li>\n<li>Asphalt, and</li>\n<li>Concrete.</li></ul>\n\n<p>The amount of waste estimated for each of the four waste categories above is dependent entirely upon the size of the affected area, the percentage of the affected area that is open space, and the quantity (or depth) of materials removed from the ground surface as a result of decontamination and/or remediation activities. Users can model an entire area based on a single set of characteristics or model specific parcels to reflect significant differences within an affected area of open space.</p>\n\n<p>The total affected area, in square miles, is entered on the WME Home Page. The total affected area includes the areas occupied by buildings and other structures, roadways, sidewalks, parks, bodies of water, etc.</p>\n\n<p>The following default parameters may be modified by clicking the Pencil icon after entering the Total affected area:</p>\n\n<ul>\n<li>Percentage of the Total Affected Area that is Comprised of Open Space\n<ul>\n<li>Open space is any area that is not otherwise occupied by a building or other structure.  Examples of open spaces include parking lots, sidewalks, parks, greenways, roadways, and plazas.  For the purposes of this estimator, bodies of water (lakes, rivers, streams, etc.) can be included as open space, but waste estimates resulting from removal or remediation of these features are not available in the WME.</li>\n</ul>\n</li>\n<li>Percentage of Open Space that is Comprised of Soil, Vegetation, Asphalt, and Concrete\n<ul>\n<li>\nSoil includes any area covered by grass, vegetation, or other landscaping and that is not covered by asphalt, concrete, or another improved surface type.  The percentage of vegetation in an affected area can, and will, overlap with the percentage of soil.  For example, a city park with an area of one square mile may consist of 70% soil, 5% water, 15% asphalt, and 10% concrete.  The same square mile may contain various types of vegetation (trees, shrubs, etc.) that makes up approximately 60% of the total park area, or 0.6 square miles.  If a user is interested in generating waste estimates only for the city park in the above example, then the following values would be entered in the open space parameter values:\n</li>\n<li>Percent of open space that is:\n<ul>\n<li>Soil (%): 70</li>\n<li>Vegetation (%): 60</li>\n<li>Asphalt (%): 15</li>\n<li>Concrete (%): 10</li>\n</ul>\n</li>\n</ul>\n</li>\n<li>Depth of Surface Material Removed\n<ul>\n<li>\nDepending upon the nature of the incident, different decontamination and/or remediation strategies may be employed to decontaminate soils, asphalt, and concrete surfaces.  Some of those strategies may include removing only the uppermost layers of the surface, deeper excavation, or complete removal.  For soil, asphalt, and concrete, users can enter an estimate of how much of the material will be removed from the surface.  For decontamination of some materials, this may involve removing only an inch or two from the surface.  Soils may require deeper excavation (e.g., 15 inches) to remove contamination, and to completely remove asphalt from a parking lot, for example, several inches of asphalt may be involved.\n</li>\n</ul>\n</li>\n</ul>\n<p>Once all values are entered, users can continue to enter parameters for building structures (by entering quantities for the appropriate building structures) or click the “Generate Estimate” button to generate the waste estimates.</p>",
+    "subtypes": [
+      {
+        "id": 17,
+        "structureTypeId": 8,
+        "name": "Open Space",
+        "sortOrder": 1
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Marine Vessels",
+    "keyword": "Miles",
+    "sortOrder": 2,
+    "guidanceHtml": "<p>Damaged or destroyed marine vessels (boats) can comprise a significant fraction of the waste generated following a disaster. The WME provides the capability to estimate the quantity of marine vessel debris that might be generated following an incident based on the total mileage of waterfront/shoreline in the affected area.</p><p>The vessel debris quantities and estimates for Florida from Hurricane Irma (2017/2018) indicate that 2,679 vessels were damaged or displaced and 252,000 cubic yards marine debris was removed. The average weight of a recreational vessel is estimated to be 2,500 lbs (or, 1.25 tons). The total shoreline mileage of the US is 95,439 statute miles.</p>",
+    "subtypes": [
+      {
+        "id": 18,
+        "structureTypeId": 9,
+        "name": "Marine Vessels",
+        "sortOrder": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Single-Family Residences",
+    "keyword": null,
+    "sortOrder": 3,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong> N/A</p>\n<p><strong>Applicability to Other Structure Types:</strong> N/A</p>\n\n<p>The Waste Materials Estimator currently only provides estimates for single-family homes.</p>",
+    "subtypes": [
+      {
+        "id": 4,
+        "structureTypeId": 2,
+        "name": "Single-Family Residence",
+        "sortOrder": 1
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Movie Theaters",
+    "keyword": null,
+    "sortOrder": 4,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong> N/A</p>\n\n<p><strong>Applicability to Other Structure Types:</strong><br>\nPerforming arts auditorium<br>\nOther type of auditorium</p>\n\n<p>Estimates for Movie Theaters are based on multiplex movie theaters. The estimates may also be applicable to performing arts theaters and other auditoriums. While the quantity of projection equipment is anticipated to be significantly less in performing arts theaters, performing arts theaters will have significantly more lighting and stage electronic equipment.</p>",
+    "subtypes": [
+      {
+        "id": 16,
+        "structureTypeId": 7,
+        "name": "Movie Theater",
+        "sortOrder": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Hospitals",
+    "keyword": null,
+    "sortOrder": 5,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong> N/A</p>\n\n<p><strong>Applicability to Other Structure Types:</strong><br>\nSpecialty hospital<br>\nNursing homes<br>\nPsychiatric care centers<br>\nOther types of medical facilities</p>\n\n<p>The estimates are based on general community hospitals; however, specialty hospitals (e.g., cardiovascular centers, orthopedic hospitals), nursing homes, psychiatric care centers, and other medical facilities could also be modeled using the Hospital structure type. Specialty surgical hospitals will likely have quantities of items and materials similar to general community hospitals. For other non-surgical healthcare facilities (e.g., nursing homes, psychiatric care centers) enter the number of beds in the structure and select to only account for materials in patient care areas. Non-patient care areas are anticipated to be significantly less in non-surgical healthcare facilities. Additionally, the quantity for surgical/laboratory equipment estimated by the tool would not be expected for non-surgical healthcare facilities.</p>",
+    "subtypes": [
+      {
+        "id": 5,
+        "structureTypeId": 3,
+        "name": "Medium Hospital",
+        "sortOrder": 1
+      },
+      {
+        "id": 6,
+        "structureTypeId": 3,
+        "name": "Large Hospital",
+        "sortOrder": 2
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Hotels",
+    "keyword": null,
+    "sortOrder": 6,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong> N/A</p>\n\n<p><strong>Applicability to Other Structure Types:</strong><br>\nConvention center<br>\nConference hall</p>\n\n<p>The Estimator provides significant flexibility to model almost all types of hotels from small roadside motels to lavish downtown hotels. The Hotel structure type could also be used to model conference centers by only entering square footage of conference rooms affected. The estimate for conference space also includes kitchens and food preparation areas associated with conference rooms in hotels. Categories such as dishware and food may need to be excluded if the conference center does not have food preparation areas.</p>",
+    "subtypes": [
+      {
+        "id": 7,
+        "structureTypeId": 4,
+        "name": "Small Hotel",
+        "sortOrder": 1
+      },
+      {
+        "id": 8,
+        "structureTypeId": 4,
+        "name": "Medium Hotel",
+        "sortOrder": 2
+      },
+      {
+        "id": 9,
+        "structureTypeId": 4,
+        "name": "Large Hotel",
+        "sortOrder": 3
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Offices",
+    "keyword": null,
+    "sortOrder": 7,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong><br>\nIndividual walled<br>\nOpen space cubicle</p>\n\n<p><strong>Applicability to Other Structure Types:</strong><br>The office portion of any type of building</p>\n\n<p>Separate estimates are available for individual walled offices and open-space cubical office buildings. Regardless of the structure type, the Office structure type may be appropriate for the office portion of any structure.</p>",
+    "subtypes": [
+      {
+        "id": 1,
+        "structureTypeId": 1,
+        "name": "Small Office",
+        "sortOrder": 1
+      },
+      {
+        "id": 2,
+        "structureTypeId": 1,
+        "name": "Medium Office",
+        "sortOrder": 2
+      },
+      {
+        "id": 3,
+        "structureTypeId": 1,
+        "name": "Large Office",
+        "sortOrder": 3
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Schools",
+    "keyword": null,
+    "sortOrder": 8,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong><br>\nElementary school<br>\nMiddle school<br>\nHigh school</p>\n\n<p><strong>Applicability to Other Structure Types:</strong><br>\nChild care facility<br>\nPreschool</p>\n\n<p>Separate estimates are available for elementary, middle, and high schools. The estimates for elementary schools may also be appropriate for child care facilities and preschools.</p>",
+    "subtypes": [
+      {
+        "id": 10,
+        "structureTypeId": 5,
+        "name": "Elementary School",
+        "sortOrder": 1
+      },
+      {
+        "id": 11,
+        "structureTypeId": 5,
+        "name": "Middle School",
+        "sortOrder": 2
+      },
+      {
+        "id": 12,
+        "structureTypeId": 5,
+        "name": "High School",
+        "sortOrder": 3
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Shopping Malls",
+    "keyword": null,
+    "sortOrder": 9,
+    "guidanceHtml": "<p><strong>Structure Sub-Type(s):</strong> N/A</p>\n\n<p><strong>Applicability to Other Structure Types:</strong><br>\nRetail store<br>\nRestaurant</p>\n\n<p>Estimates are based on enclosed shopping malls and the estimator allows the user to partition the mall between the types of stores in the mall (e.g., electronics, apparel, restaurants). Additionally, the tool allows users to include or exclude material in common areas (e.g., hallways, management offices). An individual retail store could be modeled by entering 100% of the GLA associated with the individual store and selecting not to include material in mall common areas. An individual restaurant could be modeled by entering 100% of the GLA associated with restaurants and selecting not to include material in mall common areas.</p>\n\n<p>NOTE: The estimates for shopping malls do not account for movie theaters within a mall. The movie theaters structure type should be selected to estimate waste from this portion of a mall.</p>",
+    "subtypes": [
+      {
+        "id": 13,
+        "structureTypeId": 6,
+        "name": "Small Shopping Mall",
+        "sortOrder": 1
+      },
+      {
+        "id": 14,
+        "structureTypeId": 6,
+        "name": "Medium Shopping Mall",
+        "sortOrder": 2
+      },
+      {
+        "id": 15,
+        "structureTypeId": 6,
+        "name": "Large Shopping Mall",
+        "sortOrder": 3
+      }
+    ]
+  }
+]
