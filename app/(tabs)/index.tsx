@@ -1,5 +1,6 @@
 import { oradell } from '@/data/towns/oradell';
 import { CollectionZone } from '@/data/types';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -8,6 +9,7 @@ export default function HomeScreen() {
   // Later, we'll let users select their zone
   const [selectedZone] = useState<CollectionZone>(oradell.zones[0]);
   const [currentDate] = useState(new Date());
+  const router = useRouter();
 
   // Function to get the current week's dates
   const getWeekDates = () => {
@@ -92,6 +94,13 @@ export default function HomeScreen() {
         <Text style={styles.title}>Recycle Pro</Text>
         <Text style={styles.subtitle}>{oradell.name}, {oradell.state}</Text>
         <Text style={styles.zoneText}>{selectedZone.name}</Text>
+
+        <TouchableOpacity
+          style={styles.changeLocationButton}
+          onPress={() => router.push('/location-search')}
+          >
+          <Text style={styles.changeLocationText}>Change Location</Text>
+          </TouchableOpacity>
       </View>
 
       {/* Weekly Calendar */}
@@ -293,5 +302,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
     marginTop: 2,
+  },
+  changeLocationButton: {
+    marginTop: 15,
+    padding: 10,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  changeLocationText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '600',
   },
 });
