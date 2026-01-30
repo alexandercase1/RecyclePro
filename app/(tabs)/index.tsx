@@ -1,98 +1,211 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  // State to track the current week
+  const [currentDate] = useState(new Date());
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  // Function to get the current week's dates
+  const getWeekDates = () => {
+    const week = [];
+    const today = new Date(currentDate);
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
+    
+    // Get Monday of current week
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - dayOfWeek + 1);
+    
+    // Generate all 7 days
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(monday);
+      date.setDate(monday.getDate() + i);
+      week.push(date);
+    }
+    
+    return week;
+  };
+
+  // Check if a date is today
+  const isToday = (date: Date) => {
+    const today = new Date();
+    return date.toDateString() === today.toDateString();
+  };
+
+  // Get collection type for a specific date
+  const getCollectionType = (date: Date) => {
+    const day = date.getDay();
+    
+    // Example schedule for Oradell:
+    // Monday & Thursday: Garbage
+    // Wednesday: Recycling (alternating weeks)
+    if (day === 1 || day === 4 || day === 5) return 'Garbage';
+    if (day === 3) return 'Recycling';
+    return null;
+  };
+
+  const weekDates = getWeekDates();
+  const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  return (
+    <ScrollView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Recycle Pro</Text>
+        <Text style={styles.subtitle}>Oradell, NJ</Text>
+      </View>
+
+      {/* Weekly Calendar */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>This Week's Schedule</Text>
+        
+        <View style={styles.weekContainer}>
+          {weekDates.map((date, index) => {
+            const collectionType = getCollectionType(date);
+            const today = isToday(date);
+            
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.dayCard,
+                  today && styles.dayCardToday,
+                  collectionType && styles.dayCardWithCollection,
+                ]}
+              >
+                <Text style={[styles.dayName, today && styles.textToday]}>
+                  {dayNames[index]}
+                </Text>
+                <Text style={[styles.dayNumber, today && styles.textToday]}>
+                  {date.getDate()}
+                </Text>
+                {collectionType && (
+                  <View style={[
+                    styles.collectionBadge,
+                    collectionType === 'Garbage' ? styles.garbageBadge : styles.recyclingBadge
+                  ]}>
+                    <Text style={styles.badgeText}>
+                      {collectionType === 'Garbage' ? '🗑️' : '♻️'}
+                    </Text>
+                  </View>
+                )}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+
+      {/* Today's Collection */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Today's Collection</Text>
+        {getCollectionType(new Date()) ? (
+          <Text style={styles.collectionText}>
+            {getCollectionType(new Date())} Collection
+          </Text>
+        ) : (
+          <Text style={styles.collectionText}>No collection today</Text>
+        )}
+      </View>
+
+      {/* Next Collection */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Next Collection</Text>
+        <Text style={styles.collectionText}>Garbage - Thursday, Jan 30</Text>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  header: {
+    backgroundColor: '#2E7D8B',
+    padding: 40,
+    paddingTop: 60,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  subtitle: {
+    fontSize: 18,
+    color: 'white',
+    marginTop: 5,
+  },
+  section: {
+    backgroundColor: 'white',
+    margin: 15,
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  sectionTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#666',
+    marginBottom: 12,
+    textTransform: 'uppercase',
+  },
+  collectionText: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#333',
+  },
+  weekContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  dayCard: {
+    flex: 1,
     alignItems: 'center',
-    gap: 8,
+    padding: 10,
+    marginHorizontal: 2,
+    borderRadius: 8,
+    backgroundColor: '#f9f9f9',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  dayCardToday: {
+    backgroundColor: '#2E7D8B',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  dayCardWithCollection: {
+    borderWidth: 2,
+    borderColor: '#e0e0e0',
+  },
+  dayName: {
+    fontSize: 12,
+    color: '#666',
+    fontWeight: '600',
+  },
+  dayNumber: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginTop: 4,
+  },
+  textToday: {
+    color: 'white',
+  },
+  collectionBadge: {
+    marginTop: 6,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  garbageBadge: {
+    backgroundColor: '#757575',
+  },
+  recyclingBadge: {
+    backgroundColor: '#4CAF50',
+  },
+  badgeText: {
+    fontSize: 16,
   },
 });
