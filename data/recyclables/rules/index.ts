@@ -1,10 +1,12 @@
 import { RecyclingRule } from '@/data/types';
 
-// Import rule files
+// National baseline rules (kept here)
 import { nationalRules } from './national';
-import { newJerseyRules } from './new-jersey';
-import { bergenCountyRules } from './bergen-county';
-import { oradellRules } from './oradell';
+
+// Location-specific rules (imported from their locations)
+import { newJerseyRules } from '@/data/locations/new-jersey/rules';
+import { bergenCountyRules } from '@/data/locations/new-jersey/bergen/rules';
+import { oradellRules } from '@/data/locations/new-jersey/bergen/towns/oradell';
 
 /**
  * All recycling rules in the database

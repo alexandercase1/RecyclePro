@@ -12,6 +12,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { getTownById } from '@/data/locations';
+import { findMatchingZone } from '@/services/zoneMatchingService';
 
 export default function AddressInputScreen() {
   const router = useRouter();
@@ -39,7 +41,7 @@ export default function AddressInputScreen() {
     setIsLoading(true);
 
     try {
-      const savedLocation: SavedLocation = {
+      const locationData: SavedLocation = {
         townId,
         displayName,
         town,
@@ -48,39 +50,90 @@ export default function AddressInputScreen() {
         stateCode,
         streetAddress: streetAddress.trim(),
         coordinates: lat && lng ? { lat, lng } : undefined,
-        // zoneId will be determined later based on address/coordinates
       };
 
-      console.log('Saving complete location:', savedLocation);
+      console.log('Attempting to match zone for:', locationData);
 
-      await saveLocation(savedLocation);
+      // Try to automatically match the zone based on address
+      const townData = getTownById(townId);
+      if (townData && townData.zones.length > 0) {
+        const matchedZone = findMatchingZone(
+          streetAddress.trim(),
+          townData.zones,
+          locationData.coordinates
+        );
 
-      console.log('Location saved successfully, navigating to home');
+        if (matchedZone) {
+          // Zone matched successfully
+          locationData.zoneId = matchedZone.id;
+          console.log('Zone matched:', matchedZone.id);
 
-      // Navigate back to home
-      router.replace('/(tabs)');
+          await saveLocation(locationData);
+
+          // Small delay to ensure AsyncStorage flush
+          await new Promise(resolve => setTimeout(resolve, 100));
+
+          router.replace('/(tabs)');
+        } else {
+          // No zone match - navigate to manual zone selector
+          console.log('No zone match found, navigating to zone selector');
+          setIsLoading(false);
+
+          router.push({
+            pathname: '/zone-selector' as any,
+            params: {
+              townId: locationData.townId,
+              townName: townData.name,
+              streetAddress: streetAddress.trim(),
+              displayName: locationData.displayName,
+              county: locationData.county,
+              state: locationData.state,
+              stateCode: locationData.stateCode,
+              lat: lat?.toString(),
+              lng: lng?.toString(),
+            }
+          });
+        }
+      } else {
+        // Town has no zones - save without zoneId
+        console.log('Town has no zones, saving without zone');
+        await saveLocation(locationData);
+
+        // Small delay to ensure AsyncStorage flush
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        router.replace('/(tabs)');
+      }
     } catch (error) {
       console.error('Error saving location:', error);
       Alert.alert('Error', 'Failed to save your location. Please try again.');
-    } finally {
       setIsLoading(false);
     }
   };
 
   const handleSkip = async () => {
-    // Save location without street address
-    const savedLocation: SavedLocation = {
-      townId,
-      displayName,
-      town,
-      county,
-      state,
-      stateCode,
-      coordinates: lat && lng ? { lat, lng } : undefined,
-    };
+    try {
+      // Save location without street address
+      const savedLocation: SavedLocation = {
+        townId,
+        displayName,
+        town,
+        county,
+        state,
+        stateCode,
+        coordinates: lat && lng ? { lat, lng } : undefined,
+      };
 
-    await saveLocation(savedLocation);
-    router.replace('/(tabs)');
+      await saveLocation(savedLocation);
+
+      // Small delay to ensure AsyncStorage flush
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      router.replace('/(tabs)');
+    } catch (error) {
+      console.error('Error saving location:', error);
+      Alert.alert('Error', 'Failed to save your location. Please try again.');
+    }
   };
 
   return (

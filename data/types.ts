@@ -20,10 +20,30 @@ export interface SeasonalSchedule {
   seasonEnd: string;   // Format: "MM-DD"
 }
 
+export interface HolidayException {
+  date: string;                    // Format: "YYYY-MM-DD"
+  reason: string;                  // e.g., "Memorial Day"
+  affectedTypes: ('garbage' | 'recycling' | 'yardWaste')[];
+  delayedTo?: string;              // Format: "YYYY-MM-DD" (if pickup is rescheduled)
+  cancelled?: boolean;             // true if no makeup day
+}
+
+export interface SpecialCollection {
+  name: string;                    // e.g., "Leaf Collection", "Bulk Waste Week"
+  dates: string[];                 // Format: ["YYYY-MM-DD", "YYYY-MM-DD"]
+  day?: number;                    // Optional specific day of week (0=Sunday, 1=Monday, etc.)
+  description?: string;            // Additional details
+}
+
 export interface ZoneSchedule {
   garbage: ScheduleDay;
   recycling: AlternatingSchedule;
   yardWaste?: SeasonalSchedule;
+
+  // FUTURE: Holiday exceptions and special collections (leave empty for MVP)
+  // These will be populated in Phase 2 when annual calendars are added
+  holidayExceptions?: HolidayException[];
+  specialCollections?: SpecialCollection[];
 }
 
 export interface AddressRange {

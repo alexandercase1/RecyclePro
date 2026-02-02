@@ -1,11 +1,11 @@
-import { Town } from '../types';
+import { Town, RecyclingRule } from '@/data/types';
 
 export const oradell: Town = {
   id: 'oradell-nj',
   name: 'Oradell',
   state: 'NJ',
   county: 'Bergen',
-  
+
   zones: [
     {
       id: 'oradell-zone-1',
@@ -102,7 +102,7 @@ export const oradell: Town = {
       }
     }
   ],
-  
+
   recyclingCenter: {
     name: 'Oradell Recycling Center',
     address: '2 Marginal Road, Oradell, NJ 07649',
@@ -117,7 +117,7 @@ export const oradell: Town = {
     },
     phone: '(201) 261-8610'
   },
-  
+
   specialInstructions: [
     'Place containers at curb after 5 PM the day before collection',
     'Remove containers before 7 PM on collection day',
@@ -126,3 +126,22 @@ export const oradell: Town = {
     'No plastic bags for recycling - use bins or bundles'
   ]
 };
+
+/**
+ * Oradell, NJ municipal recycling rules
+ *
+ * These override county, state, and national defaults for Oradell residents
+ */
+export const oradellRules: RecyclingRule[] = [
+  // Example: Oradell-specific rules
+  // You can add these as you research Oradell's specific recycling program
+  // {
+  //   id: 'rule-oradell-styrofoam',
+  //   itemId: 'item-styrofoam',
+  //   scope: 'municipal',
+  //   townId: 'nj-bergen-oradell',
+  //   disposal: 'curbside_trash',
+  //   specialNotes: 'Oradell does not accept styrofoam',
+  //   source: 'Oradell DPW 2026',
+  // },
+];

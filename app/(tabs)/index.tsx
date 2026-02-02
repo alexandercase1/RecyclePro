@@ -1,18 +1,19 @@
-import { oradell } from '@/data/towns/oradell';
-import { CollectionZone } from '@/data/types';
+import { CollectionZone, Town } from '@/data/types';
 import { getSavedLocation, SavedLocation } from '@/services/storageService';
+import { getTownById } from '@/data/locations';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const [selectedZone] = useState<CollectionZone>(oradell.zones[0]);
+  const [selectedZone, setSelectedZone] = useState<CollectionZone | null>(null);
+  const [selectedTown, setSelectedTown] = useState<Town | null>(null);
   const [currentDate] = useState(new Date());
   const [savedLocation, setSavedLocation] = useState<SavedLocation | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load saved location on component mount and when screen gains focus
+  // Load saved location on component mount
   useEffect(() => {
     loadSavedLocation();
   }, []);
@@ -31,6 +32,33 @@ export default function HomeScreen() {
     const location = await getSavedLocation();
     console.log('Got saved location:', location);
     setSavedLocation(location);
+
+    // Load the correct zone based on saved location
+    if (location) {
+      const town = getTownById(location.townId);
+      setSelectedTown(town || null);
+
+      if (town && town.zones.length > 0) {
+        if (location.zoneId) {
+          // Find the specific zone the user is in
+          const zone = town.zones.find(z => z.id === location.zoneId);
+          setSelectedZone(zone || town.zones[0]); // Fallback to first zone
+          console.log('Loaded zone:', zone?.id || town.zones[0].id);
+        } else {
+          // No zone ID saved, default to first zone
+          setSelectedZone(town.zones[0]);
+          console.log('No zone ID saved, using first zone:', town.zones[0].id);
+        }
+      } else {
+        setSelectedZone(null);
+        console.log('Town has no zones');
+      }
+    } else {
+      setSelectedZone(null);
+      setSelectedTown(null);
+      console.log('No saved location');
+    }
+
     setIsLoading(false);
   };
 
@@ -57,25 +85,27 @@ export default function HomeScreen() {
   };
 
   const getCollectionType = (date: Date) => {
+    if (!selectedZone) return null;
+
     const day = date.getDay();
-    
+
     if (selectedZone.schedule.garbage.days.includes(day)) {
       return 'Garbage';
     }
-    
+
     if (selectedZone.schedule.recycling.day === day) {
       const weekNumber = getWeekNumber(date);
       const isEvenWeek = weekNumber % 2 === 0;
       return isEvenWeek ? 'Recycling (Commingled)' : 'Recycling (Paper)';
     }
-    
+
     if (selectedZone.schedule.yardWaste) {
       const { days, seasonStart, seasonEnd } = selectedZone.schedule.yardWaste;
       if (days.includes(day) && isInSeason(date, seasonStart, seasonEnd)) {
         return 'Yard Waste';
       }
     }
-    
+
     return null;
   };
 
@@ -111,8 +141,8 @@ export default function HomeScreen() {
     );
   }
 
-  // If no location saved, show welcome screen
-  if (!savedLocation) {
+  // If no location saved or no zone data, show welcome screen
+  if (!savedLocation || !selectedZone) {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -121,23 +151,31 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.welcomeContainer}>
-          <Text style={styles.welcomeTitle}>Welcome!</Text>
+          <Text style={styles.welcomeTitle}>
+            {!savedLocation ? 'Welcome!' : 'Schedule Not Available'}
+          </Text>
           <Text style={styles.welcomeText}>
-            Get your local trash and recycling pickup schedule delivered right to your device.
+            {!savedLocation
+              ? 'Get your local trash and recycling pickup schedule delivered right to your device.'
+              : 'We don\'t have schedule data for your location yet. Please check back later or contact support.'}
           </Text>
 
           <TouchableOpacity
             style={styles.setupButton}
             onPress={() => router.push('/location-search')}
           >
-            <Text style={styles.setupButtonText}>Enter Location</Text>
+            <Text style={styles.setupButtonText}>
+              {!savedLocation ? 'Enter Location' : 'Change Location'}
+            </Text>
           </TouchableOpacity>
 
-          <View style={styles.featuresContainer}>
-            <Text style={styles.featureItem}>📅 View your weekly schedule</Text>
-            <Text style={styles.featureItem}>♻️ Track recycling days</Text>
-            <Text style={styles.featureItem}>🗑️ Never miss garbage day</Text>
-          </View>
+          {!savedLocation && (
+            <View style={styles.featuresContainer}>
+              <Text style={styles.featureItem}>📅 View your weekly schedule</Text>
+              <Text style={styles.featureItem}>♻️ Track recycling days</Text>
+              <Text style={styles.featureItem}>🗑️ Never miss garbage day</Text>
+            </View>
+          )}
         </View>
       </View>
     );
@@ -223,16 +261,16 @@ export default function HomeScreen() {
       </View>
 
       {/* Recycling Center Info */}
-      {oradell.recyclingCenter && (
+      {selectedTown?.recyclingCenter && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Recycling Center</Text>
-          <Text style={styles.centerName}>{oradell.recyclingCenter.name}</Text>
-          <Text style={styles.centerAddress}>{oradell.recyclingCenter.address}</Text>
+          <Text style={styles.centerName}>{selectedTown.recyclingCenter.name}</Text>
+          <Text style={styles.centerAddress}>{selectedTown.recyclingCenter.address}</Text>
           <Text style={styles.centerHours}>
-            Hours: {oradell.recyclingCenter.hours.weekday}
+            Hours: {selectedTown.recyclingCenter.hours.weekday}
           </Text>
-          {oradell.recyclingCenter.hours.saturday && (
-            <Text style={styles.centerHours}>{oradell.recyclingCenter.hours.saturday}</Text>
+          {selectedTown.recyclingCenter.hours.saturday && (
+            <Text style={styles.centerHours}>{selectedTown.recyclingCenter.hours.saturday}</Text>
           )}
         </View>
       )}
