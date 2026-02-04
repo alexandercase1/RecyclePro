@@ -37,8 +37,8 @@ export default function ZoneSelectorScreen() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-            <Text style={styles.backButtonText}>← Back</Text>
+          <TouchableOpacity onPress={() => router.replace('/(tabs)')} style={styles.backButton}>
+            <Text style={styles.backButtonText}>Cancel</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Zone Selection</Text>
         </View>
@@ -65,8 +65,6 @@ export default function ZoneSelectorScreen() {
         coordinates: lat && lng ? { lat, lng } : undefined,
       };
 
-      console.log('Saving location with manually selected zone:', locationData);
-
       await saveLocation(locationData);
 
       // Small delay to ensure AsyncStorage flush
@@ -87,8 +85,8 @@ export default function ZoneSelectorScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backButtonText}>← Back</Text>
+        <TouchableOpacity onPress={() => router.replace('/(tabs)')} style={styles.backButton}>
+          <Text style={styles.backButtonText}>Cancel</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Select Your Zone</Text>
       </View>

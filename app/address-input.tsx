@@ -52,8 +52,6 @@ export default function AddressInputScreen() {
         coordinates: lat && lng ? { lat, lng } : undefined,
       };
 
-      console.log('Attempting to match zone for:', locationData);
-
       // Try to automatically match the zone based on address
       const townData = getTownById(townId);
       if (townData && townData.zones.length > 0) {
@@ -66,8 +64,6 @@ export default function AddressInputScreen() {
         if (matchedZone) {
           // Zone matched successfully
           locationData.zoneId = matchedZone.id;
-          console.log('Zone matched:', matchedZone.id);
-
           await saveLocation(locationData);
 
           // Small delay to ensure AsyncStorage flush
@@ -76,10 +72,9 @@ export default function AddressInputScreen() {
           router.replace('/(tabs)');
         } else {
           // No zone match - navigate to manual zone selector
-          console.log('No zone match found, navigating to zone selector');
           setIsLoading(false);
 
-          router.push({
+          router.replace({
             pathname: '/zone-selector' as any,
             params: {
               townId: locationData.townId,
@@ -96,7 +91,6 @@ export default function AddressInputScreen() {
         }
       } else {
         // Town has no zones - save without zoneId
-        console.log('Town has no zones, saving without zone');
         await saveLocation(locationData);
 
         // Small delay to ensure AsyncStorage flush

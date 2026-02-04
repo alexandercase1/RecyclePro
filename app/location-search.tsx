@@ -32,14 +32,12 @@ export default function LocationSearchScreen() {
   };
 
   const handleSelectLocation = (location: LocationResult) => {
-    console.log('Selected location:', location);
-
     // Create a town ID from the location data
     const townId = `${location.stateCode.toLowerCase()}-${location.county.toLowerCase().replace(/\s+/g, '-')}-${location.town.toLowerCase().replace(/\s+/g, '-')}`;
     const displayName = `${location.town}, ${location.county} County, ${location.stateCode}`;
 
     // Navigate to address input screen with location data
-    router.push({
+    router.replace({
       pathname: '/address-input',
       params: {
         townId,

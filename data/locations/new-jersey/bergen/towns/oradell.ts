@@ -1,7 +1,7 @@
 import { Town, RecyclingRule } from '@/data/types';
 
 export const oradell: Town = {
-  id: 'oradell-nj',
+  id: 'nj-bergen-oradell',
   name: 'Oradell',
   state: 'NJ',
   county: 'Bergen',
@@ -132,16 +132,4 @@ export const oradell: Town = {
  *
  * These override county, state, and national defaults for Oradell residents
  */
-export const oradellRules: RecyclingRule[] = [
-  // Example: Oradell-specific rules
-  // You can add these as you research Oradell's specific recycling program
-  // {
-  //   id: 'rule-oradell-styrofoam',
-  //   itemId: 'item-styrofoam',
-  //   scope: 'municipal',
-  //   townId: 'nj-bergen-oradell',
-  //   disposal: 'curbside_trash',
-  //   specialNotes: 'Oradell does not accept styrofoam',
-  //   source: 'Oradell DPW 2026',
-  // },
-];
+export const oradellRules: RecyclingRule[] = [];

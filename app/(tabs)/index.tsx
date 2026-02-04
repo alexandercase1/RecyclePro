@@ -5,108 +5,107 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+// Collection type keys used for indicators
+type CollectionType = 'garbage' | 'paper' | 'commingled' | 'yardWaste';
+
+// Indicator shape component for the calendar
+const CollectionIndicator = ({ type }: { type: CollectionType }) => {
+  switch (type) {
+    case 'garbage':
+      return <View style={styles.triangleIndicator} />;
+    case 'paper':
+      return <View style={[styles.circleIndicator, { backgroundColor: '#4CAF50' }]} />;
+    case 'commingled':
+      return <View style={[styles.squareIndicator, { backgroundColor: '#2196F3' }]} />;
+    case 'yardWaste':
+      return <View style={[styles.diamondIndicator, { backgroundColor: '#8B4513' }]} />;
+  }
+};
+
+// Human-readable labels for collection types
+const collectionLabels: Record<CollectionType, string> = {
+  garbage: 'Garbage',
+  paper: 'Paper & Cardboard Recycling',
+  commingled: 'Commingled Recycling (Glass, Plastic, Metal)',
+  yardWaste: 'Yard Waste',
+};
+
 export default function HomeScreen() {
   const router = useRouter();
   const [selectedZone, setSelectedZone] = useState<CollectionZone | null>(null);
   const [selectedTown, setSelectedTown] = useState<Town | null>(null);
-  const [currentDate] = useState(new Date());
+  const [viewDate, setViewDate] = useState(new Date());
   const [savedLocation, setSavedLocation] = useState<SavedLocation | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load saved location on component mount
   useEffect(() => {
     loadSavedLocation();
   }, []);
 
-  // Reload location when screen comes into focus
   useFocusEffect(
     useCallback(() => {
-      console.log('Screen focused, reloading location');
       loadSavedLocation();
     }, [])
   );
 
   const loadSavedLocation = async () => {
-    console.log('Loading saved location...');
     setIsLoading(true);
     const location = await getSavedLocation();
-    console.log('Got saved location:', location);
     setSavedLocation(location);
 
-    // Load the correct zone based on saved location
     if (location) {
       const town = getTownById(location.townId);
       setSelectedTown(town || null);
 
       if (town && town.zones.length > 0) {
         if (location.zoneId) {
-          // Find the specific zone the user is in
           const zone = town.zones.find(z => z.id === location.zoneId);
-          setSelectedZone(zone || town.zones[0]); // Fallback to first zone
-          console.log('Loaded zone:', zone?.id || town.zones[0].id);
+          setSelectedZone(zone || town.zones[0]);
         } else {
-          // No zone ID saved, default to first zone
           setSelectedZone(town.zones[0]);
-          console.log('No zone ID saved, using first zone:', town.zones[0].id);
         }
       } else {
         setSelectedZone(null);
-        console.log('Town has no zones');
       }
     } else {
       setSelectedZone(null);
       setSelectedTown(null);
-      console.log('No saved location');
     }
 
     setIsLoading(false);
   };
 
-  const getWeekDates = () => {
-    const week = [];
-    const today = new Date(currentDate);
-    const dayOfWeek = today.getDay();
-    
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - dayOfWeek + 1);
-    
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(monday);
-      date.setDate(monday.getDate() + i);
-      week.push(date);
+  // --- Calendar helpers ---
+
+  const getMonthDates = (year: number, month: number): (Date | null)[] => {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDayOfWeek = firstDay.getDay(); // 0 = Sun
+
+    const dates: (Date | null)[] = [];
+
+    for (let i = 0; i < startDayOfWeek; i++) {
+      dates.push(null);
     }
-    
-    return week;
+
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+      dates.push(new Date(year, month, d));
+    }
+
+    // Pad to fill the last row
+    while (dates.length % 7 !== 0) {
+      dates.push(null);
+    }
+
+    return dates;
   };
 
-  const isToday = (date: Date) => {
-    const today = new Date();
-    return date.toDateString() === today.toDateString();
+  const goToPrevMonth = () => {
+    setViewDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
   };
 
-  const getCollectionType = (date: Date) => {
-    if (!selectedZone) return null;
-
-    const day = date.getDay();
-
-    if (selectedZone.schedule.garbage.days.includes(day)) {
-      return 'Garbage';
-    }
-
-    if (selectedZone.schedule.recycling.day === day) {
-      const weekNumber = getWeekNumber(date);
-      const isEvenWeek = weekNumber % 2 === 0;
-      return isEvenWeek ? 'Recycling (Commingled)' : 'Recycling (Paper)';
-    }
-
-    if (selectedZone.schedule.yardWaste) {
-      const { days, seasonStart, seasonEnd } = selectedZone.schedule.yardWaste;
-      if (days.includes(day) && isInSeason(date, seasonStart, seasonEnd)) {
-        return 'Yard Waste';
-      }
-    }
-
-    return null;
+  const goToNextMonth = () => {
+    setViewDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
   };
 
   const getWeekNumber = (date: Date): number => {
@@ -118,21 +117,130 @@ export default function HomeScreen() {
   const isInSeason = (date: Date, start: string, end: string): boolean => {
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    
     const [startMonth, startDay] = start.split('-').map(Number);
     const [endMonth, endDay] = end.split('-').map(Number);
-    
     const dateNum = month * 100 + day;
-    const startNum = startMonth * 100 + startDay;
-    const endNum = endMonth * 100 + endDay;
-    
-    return dateNum >= startNum && dateNum <= endNum;
+    return dateNum >= startMonth * 100 + startDay && dateNum <= endMonth * 100 + endDay;
   };
 
-  const weekDates = getWeekDates();
-  const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const getCollectionTypes = (date: Date): CollectionType[] => {
+    if (!selectedZone) return [];
+    const types: CollectionType[] = [];
+    const day = date.getDay();
 
-  // Show loading state while checking for saved location
+    if (selectedZone.schedule.garbage.days.includes(day)) {
+      types.push('garbage');
+    }
+
+    if (selectedZone.schedule.recycling.day === day) {
+      const weekNumber = getWeekNumber(date);
+      const isEvenWeek = weekNumber % 2 === 0;
+      types.push(isEvenWeek ? 'commingled' : 'paper');
+    }
+
+    if (selectedZone.schedule.yardWaste) {
+      const { days, seasonStart, seasonEnd } = selectedZone.schedule.yardWaste;
+      if (days.includes(day) && isInSeason(date, seasonStart, seasonEnd)) {
+        types.push('yardWaste');
+      }
+    }
+
+    return types;
+  };
+
+  // --- Render helpers ---
+
+  const renderMonthCalendar = (showIndicators: boolean) => {
+    const year = viewDate.getFullYear();
+    const month = viewDate.getMonth();
+    const monthDates = getMonthDates(year, month);
+    const monthName = viewDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+    const dayHeaders = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const today = new Date();
+
+    // Chunk dates into weeks
+    const weeks: (Date | null)[][] = [];
+    for (let i = 0; i < monthDates.length; i += 7) {
+      weeks.push(monthDates.slice(i, i + 7));
+    }
+
+    return (
+      <View style={styles.calendarContainer}>
+        {/* Month nav header */}
+        <View style={styles.monthHeader}>
+          <TouchableOpacity onPress={goToPrevMonth} style={styles.monthNavButton}>
+            <Text style={styles.monthNavText}>{'<'}</Text>
+          </TouchableOpacity>
+          <Text style={styles.monthTitle}>{monthName}</Text>
+          <TouchableOpacity onPress={goToNextMonth} style={styles.monthNavButton}>
+            <Text style={styles.monthNavText}>{'>'}</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Day-of-week headers */}
+        <View style={styles.dayHeaderRow}>
+          {dayHeaders.map((d, i) => (
+            <View key={i} style={styles.dayHeaderCell}>
+              <Text style={styles.dayHeaderText}>{d}</Text>
+            </View>
+          ))}
+        </View>
+
+        {/* Calendar grid */}
+        {weeks.map((week, weekIdx) => (
+          <View key={weekIdx} style={styles.weekRow}>
+            {week.map((date, dayIdx) => {
+              if (!date) {
+                return <View key={dayIdx} style={styles.dayCell} />;
+              }
+
+              const isCurrentDay = date.toDateString() === today.toDateString();
+              const collections = showIndicators ? getCollectionTypes(date) : [];
+
+              return (
+                <View key={dayIdx} style={styles.dayCell}>
+                  <Text style={[
+                    styles.dayNumber,
+                    isCurrentDay && styles.todayNumber,
+                  ]}>
+                    {date.getDate()}
+                  </Text>
+                  {collections.length > 0 && (
+                    <View style={styles.indicatorRow}>
+                      {collections.map((type, idx) => (
+                        <CollectionIndicator key={idx} type={type} />
+                      ))}
+                    </View>
+                  )}
+                </View>
+              );
+            })}
+          </View>
+        ))}
+
+        {/* Legend */}
+        {showIndicators && (
+          <View style={styles.legendContainer}>
+            <View style={styles.legendItem}>
+              <View style={styles.legendTriangle} />
+              <Text style={styles.legendText}>Garbage</Text>
+            </View>
+            <View style={styles.legendItem}>
+              <View style={[styles.legendCircle, { backgroundColor: '#4CAF50' }]} />
+              <Text style={styles.legendText}>Paper Recycling</Text>
+            </View>
+            <View style={styles.legendItem}>
+              <View style={[styles.legendSquare, { backgroundColor: '#2196F3' }]} />
+              <Text style={styles.legendText}>Commingled</Text>
+            </View>
+          </View>
+        )}
+      </View>
+    );
+  };
+
+  // --- Loading state ---
+
   if (isLoading) {
     return (
       <View style={[styles.container, styles.centerContent]}>
@@ -141,8 +249,9 @@ export default function HomeScreen() {
     );
   }
 
-  // If no location saved or no zone data, show welcome screen
-  if (!savedLocation || !selectedZone) {
+  // --- State A: No location saved ---
+
+  if (!savedLocation) {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -150,36 +259,59 @@ export default function HomeScreen() {
           <Text style={styles.subtitle}>Your Local Recycling & Waste Schedule</Text>
         </View>
 
-        <View style={styles.welcomeContainer}>
-          <Text style={styles.welcomeTitle}>
-            {!savedLocation ? 'Welcome!' : 'Schedule Not Available'}
-          </Text>
-          <Text style={styles.welcomeText}>
-            {!savedLocation
-              ? 'Get your local trash and recycling pickup schedule delivered right to your device.'
-              : 'We don\'t have schedule data for your location yet. Please check back later or contact support.'}
-          </Text>
+        <ScrollView style={styles.contentScroll}>
+          {renderMonthCalendar(false)}
 
-          <TouchableOpacity
-            style={styles.setupButton}
-            onPress={() => router.push('/location-search')}
-          >
-            <Text style={styles.setupButtonText}>
-              {!savedLocation ? 'Enter Location' : 'Change Location'}
+          <View style={styles.promptCard}>
+            <Text style={styles.promptTitle}>Set Your Location</Text>
+            <Text style={styles.promptText}>
+              Enter your location to see your personalized collection schedule.
             </Text>
-          </TouchableOpacity>
-
-          {!savedLocation && (
-            <View style={styles.featuresContainer}>
-              <Text style={styles.featureItem}>📅 View your weekly schedule</Text>
-              <Text style={styles.featureItem}>♻️ Track recycling days</Text>
-              <Text style={styles.featureItem}>🗑️ Never miss garbage day</Text>
-            </View>
-          )}
-        </View>
+            <TouchableOpacity
+              style={styles.setupButton}
+              onPress={() => router.push('/location-search')}
+            >
+              <Text style={styles.setupButtonText}>Enter Location</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     );
   }
+
+  // --- State B: Location saved but no zone data ---
+
+  if (!selectedZone) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Recycle Pro</Text>
+          <Text style={styles.subtitle}>{savedLocation.displayName}</Text>
+        </View>
+
+        <ScrollView style={styles.contentScroll}>
+          {renderMonthCalendar(false)}
+
+          <View style={styles.promptCard}>
+            <Text style={styles.promptTitle}>Schedule Coming Soon</Text>
+            <Text style={styles.promptText}>
+              We don't have schedule data for your location yet. Check back later as we add more towns.
+            </Text>
+            <TouchableOpacity
+              style={styles.setupButton}
+              onPress={() => router.push('/location-search')}
+            >
+              <Text style={styles.setupButtonText}>Change Location</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
+
+  // --- State C: Location + zone loaded ---
+
+  const todayCollections = getCollectionTypes(new Date());
 
   return (
     <ScrollView style={styles.container}>
@@ -200,63 +332,28 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Weekly Calendar */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>This Week's Schedule</Text>
-        
-        <View style={styles.weekContainer}>
-          {weekDates.map((date, index) => {
-            const collectionType = getCollectionType(date);
-            const today = isToday(date);
-            
-            return (
-              <TouchableOpacity
-                key={index}
-                style={[
-                  styles.dayCard,
-                  today && styles.dayCardToday,
-                  collectionType && styles.dayCardWithCollection,
-                ]}
-              >
-                <Text style={[styles.dayName, today && styles.textToday]}>
-                  {dayNames[index]}
-                </Text>
-                <Text style={[styles.dayNumber, today && styles.textToday]}>
-                  {date.getDate()}
-                </Text>
-                {collectionType && (
-                  <View style={[
-                    styles.collectionBadge,
-                    collectionType.includes('Garbage') ? styles.garbageBadge : 
-                    collectionType.includes('Yard') ? styles.yardWasteBadge :
-                    styles.recyclingBadge
-                  ]}>
-                    <Text style={styles.badgeText}>
-                      {collectionType.includes('Garbage') ? '🗑️' : 
-                       collectionType.includes('Yard') ? '🍂' : '♻️'}
-                    </Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </View>
+      {/* Monthly Calendar */}
+      {renderMonthCalendar(true)}
 
       {/* Today's Collection */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Today's Collection</Text>
-        {getCollectionType(new Date()) ? (
+        {todayCollections.length > 0 ? (
           <View>
-            <Text style={styles.collectionText}>
-              {getCollectionType(new Date())}
-            </Text>
+            {todayCollections.map((type, idx) => (
+              <View key={idx} style={styles.collectionDetailRow}>
+                <CollectionIndicator type={type} />
+                <Text style={styles.collectionDetailText}>
+                  {collectionLabels[type]}
+                </Text>
+              </View>
+            ))}
             <Text style={styles.collectionTime}>
-              Collection starts at {selectedZone.schedule.garbage.time}
+              Place at curb by {selectedZone.schedule.garbage.time}
             </Text>
           </View>
         ) : (
-          <Text style={styles.collectionText}>No collection today</Text>
+          <Text style={styles.noCollectionText}>No collection scheduled for today</Text>
         )}
       </View>
 
@@ -290,6 +387,9 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 18,
     color: '#666',
+  },
+  contentScroll: {
+    flex: 1,
   },
   header: {
     backgroundColor: '#2E7D8B',
@@ -328,6 +428,193 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
   },
+
+  // --- Calendar ---
+  calendarContainer: {
+    backgroundColor: 'white',
+    margin: 15,
+    borderRadius: 10,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  monthHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  monthNavButton: {
+    padding: 10,
+  },
+  monthNavText: {
+    fontSize: 20,
+    color: '#2E7D8B',
+    fontWeight: '600',
+  },
+  monthTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#333',
+  },
+  dayHeaderRow: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+    paddingBottom: 8,
+    marginBottom: 4,
+  },
+  dayHeaderCell: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  dayHeaderText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#999',
+  },
+  weekRow: {
+    flexDirection: 'row',
+  },
+  dayCell: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    minHeight: 44,
+  },
+  dayNumber: {
+    fontSize: 16,
+    color: '#333',
+  },
+  todayNumber: {
+    color: '#2E7D8B',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  indicatorRow: {
+    flexDirection: 'row',
+    gap: 3,
+    marginTop: 3,
+  },
+
+  // --- Indicator shapes ---
+  triangleIndicator: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 4,
+    borderRightWidth: 4,
+    borderBottomWidth: 8,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#757575',
+  },
+  circleIndicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  squareIndicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 1,
+  },
+  diamondIndicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 1,
+    transform: [{ rotate: '45deg' }],
+  },
+
+  // --- Legend ---
+  legendContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 15,
+    paddingTop: 15,
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
+    gap: 16,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  legendTriangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 5,
+    borderRightWidth: 5,
+    borderBottomWidth: 10,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#757575',
+  },
+  legendCircle: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
+  legendSquare: {
+    width: 10,
+    height: 10,
+    borderRadius: 1,
+  },
+  legendText: {
+    fontSize: 12,
+    color: '#666',
+  },
+
+  // --- Prompt card ---
+  promptCard: {
+    margin: 15,
+    padding: 25,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  promptTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  promptText: {
+    fontSize: 15,
+    color: '#666',
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 20,
+  },
+  setupButton: {
+    backgroundColor: '#2E7D8B',
+    paddingVertical: 14,
+    paddingHorizontal: 32,
+    borderRadius: 12,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  setupButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+
+  // --- Section cards ---
   section: {
     backgroundColor: 'white',
     margin: 15,
@@ -346,68 +633,25 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     textTransform: 'uppercase',
   },
-  collectionText: {
-    fontSize: 18,
-    fontWeight: '500',
+  collectionDetailRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 8,
+  },
+  collectionDetailText: {
+    fontSize: 16,
     color: '#333',
   },
   collectionTime: {
     fontSize: 14,
     color: '#666',
-    marginTop: 5,
+    marginTop: 8,
   },
-  weekContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  dayCard: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 10,
-    marginHorizontal: 2,
-    borderRadius: 8,
-    backgroundColor: '#f9f9f9',
-  },
-  dayCardToday: {
-    backgroundColor: '#2E7D8B',
-  },
-  dayCardWithCollection: {
-    borderWidth: 2,
-    borderColor: '#e0e0e0',
-  },
-  dayName: {
-    fontSize: 12,
-    color: '#666',
-    fontWeight: '600',
-  },
-  dayNumber: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginTop: 4,
-  },
-  textToday: {
-    color: 'white',
-  },
-  collectionBadge: {
-    marginTop: 6,
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  garbageBadge: {
-    backgroundColor: '#757575',
-  },
-  recyclingBadge: {
-    backgroundColor: '#4CAF50',
-  },
-  yardWasteBadge: {
-    backgroundColor: '#8B4513',
-  },
-  badgeText: {
+  noCollectionText: {
     fontSize: 16,
+    color: '#999',
+    fontStyle: 'italic',
   },
   centerName: {
     fontSize: 16,
@@ -424,57 +668,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
     marginTop: 2,
-  },
-  welcomeContainer: {
-    flex: 1,
-    padding: 30,
-    justifyContent: 'center',
-  },
-  welcomeTitle: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  welcomeText: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    lineHeight: 24,
-    marginBottom: 40,
-  },
-  setupButton: {
-    backgroundColor: '#2E7D8B',
-    padding: 18,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginBottom: 40,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  setupButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: '600',
-  },
-  featuresContainer: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  featureItem: {
-    fontSize: 16,
-    color: '#333',
-    marginVertical: 8,
-    lineHeight: 24,
   },
 });

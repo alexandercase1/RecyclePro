@@ -16,15 +16,30 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen 
-          name="location-search" 
-          options={{ 
+        <Stack.Screen
+          name="location-search"
+          options={{
             presentation: 'modal',
             title: 'Find Your Location',
-            headerShown: false 
-          }} 
+            headerShown: false
+          }}
         />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        <Stack.Screen
+          name="address-input"
+          options={{
+            presentation: 'modal',
+            title: 'Enter Address',
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="zone-selector"
+          options={{
+            presentation: 'modal',
+            title: 'Select Zone',
+            headerShown: false
+          }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
