@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#2E7D8B',
+    backgroundColor: '#2E8B57',
     padding: 40,
     paddingTop: 60,
   },
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
   },
   monthNavText: {
     fontSize: 20,
-    color: '#2E7D8B',
+    color: '#2E8B57',
     fontWeight: '600',
   },
   monthTitle: {
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   todayNumber: {
-    color: '#2E7D8B',
+    color: '#2E8B57',
     fontWeight: 'bold',
     fontSize: 18,
   },
@@ -597,7 +597,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   setupButton: {
-    backgroundColor: '#2E7D8B',
+    backgroundColor: '#2E8B57',
     paddingVertical: 14,
     paddingHorizontal: 32,
     borderRadius: 12,

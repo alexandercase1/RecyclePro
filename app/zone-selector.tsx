@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    backgroundColor: '#2E7D8B',
+    backgroundColor: '#2E8B57',
     padding: 20,
     paddingTop: 60,
   },
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   zoneNumber: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#2E7D8B',
+    color: '#2E8B57',
     backgroundColor: '#E8F5F7',
     paddingHorizontal: 12,
     paddingVertical: 4,
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   },
   streetsToggleText: {
     fontSize: 14,
-    color: '#2E7D8B',
+    color: '#2E8B57',
     fontWeight: '600',
   },
   streetsList: {
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   selectButton: {
-    backgroundColor: '#2E7D8B',
+    backgroundColor: '#2E8B57',
     padding: 14,
     borderRadius: 10,
     alignItems: 'center',

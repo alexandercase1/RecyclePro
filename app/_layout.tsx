@@ -40,6 +40,13 @@ export default function RootLayout() {
             headerShown: false
           }}
         />
+        <Stack.Screen
+          name="item-detail"
+          options={{
+            presentation: 'modal',
+            headerShown: false
+          }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 32,
     fontWeight: 'bold',
+    lineHeight: 42,
     marginBottom: 8,
   },
   subcategory: {
