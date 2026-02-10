@@ -96,6 +96,7 @@ This runs `expo start` and opens the Expo developer tools. You'll see a QR code 
 | `npm run android` | Start and open in Android Emulator |
 | `npm run web` | Start in web browser |
 | `npm run lint` | Run the linter to check code style |
+| `npx expo install expo-camera` | Manually install dependencies for camera use |
 
 ---
 
