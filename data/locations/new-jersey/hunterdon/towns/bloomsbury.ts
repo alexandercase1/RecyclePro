@@ -9,11 +9,11 @@ export const bloomsbury: Town = {
     zones: [
         {
             id: 'bloomsbury',
-            name: 'Curch Street',
+            name: 'Church Street',
             description: 'Whole Town',
             streets: [
                 {
-                    name: 'Church Srteet',
+                    name: 'Church Street',
                     rangeStart: 1,
                     rangeEnd: 500, //Temp Value
                     crossStreets: []
@@ -29,9 +29,11 @@ export const bloomsbury: Town = {
                     type: 'alternating',
                     day: 3, //Wed
                     weeks: {
-                        even: 'Recycling Pickup',
-                        odd: 'No Recycling'
-                    }
+                        even: 'commingled',
+                        odd: 'none'
+                    },
+                    evenLabel: 'Recycling Pickup',
+                    oddLabel: 'No Recycling'
                 }
             }
         }

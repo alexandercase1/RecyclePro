@@ -6,6 +6,9 @@ export const bergenCounty: CountyInfo = {
   name: 'Bergen County',
   towns: [
     oradell,
+    fairlawn,
+    paramus,
+    wayne,
   ],
 };
 

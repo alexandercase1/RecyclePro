@@ -135,7 +135,12 @@ export default function HomeScreen() {
     if (selectedZone.schedule.recycling.day === day) {
       const weekNumber = getWeekNumber(date);
       const isEvenWeek = weekNumber % 2 === 0;
-      types.push(isEvenWeek ? 'commingled' : 'paper');
+      const weekType = isEvenWeek
+        ? selectedZone.schedule.recycling.weeks.even
+        : selectedZone.schedule.recycling.weeks.odd;
+      if (weekType !== 'none') {
+        types.push(weekType);
+      }
     }
 
     if (selectedZone.schedule.yardWaste) {
