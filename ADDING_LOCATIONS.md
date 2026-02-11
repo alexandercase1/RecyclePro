@@ -285,6 +285,12 @@ Available disposal methods:
 - `mail_back` — mail-in recycling program
 
 ---
+When you add a new town, you touch 3 files:
+Say you're adding "Clinton" to Hunterdon County:
+
+Create hunterdon/towns/clinton.ts — the town data
+Add to hunterdon/towns/index.ts — add export { clinton } from './clinton'; (note: Hunterdon doesn't have a towns/index.ts yet, so you'd need to check if the county imports directly from the town file or via the barrel)
+Add to hunterdon/index.ts — add clinton to the towns: [bloomsbury, clinton] array
 
 ## Finding Schedule Data
 
