@@ -81,8 +81,7 @@ export const oradell: Town = {
       description: 'General collection zone for remaining areas',
       streets: [
         { name: 'Demarest Ave' },
-        { name: '
-          Forest Ave' },
+        { name: 'Forest Ave' },
         { name: 'Kinderkamack Ave' }
         // Add more streets as needed
       ],
