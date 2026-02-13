@@ -31,9 +31,7 @@ export const bloomsbury: Town = {
                     weeks: {
                         even: 'commingled',
                         odd: 'none'
-                    },
-                    evenLabel: 'Recycling Pickup',
-                    oddLabel: 'No Recycling'
+                    }
                 }
             }
         }
