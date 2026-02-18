@@ -383,7 +383,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#efefef',
   },
   centerContent: {
     justifyContent: 'center',
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#2E8B57',
+    backgroundColor: '#00b34e',
     padding: 40,
     paddingTop: 60,
   },
