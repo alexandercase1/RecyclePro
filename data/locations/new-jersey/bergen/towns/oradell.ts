@@ -28,9 +28,11 @@ export const oradell: Town = {
           type: 'alternating',
           day: 3, // Wednesday
           weeks: {
-            even: 'Commingled (Glass, Plastic, Metal)',
-            odd: 'Paper & Cardboard'
-          }
+            even: 'commingled',
+            odd: 'paper'
+          },
+          evenLabel: 'Commingled (Glass, Plastic, Metal)',
+          oddLabel: 'Paper & Cardboard'
         },
         yardWaste: {
           days: [1], // Monday
@@ -60,9 +62,11 @@ export const oradell: Town = {
           type: 'alternating',
           day: 3, // Wednesday
           weeks: {
-            even: 'Commingled (Glass, Plastic, Metal)',
-            odd: 'Paper & Cardboard'
-          }
+            even: 'commingled',
+            odd: 'paper'
+          },
+          evenLabel: 'Commingled (Glass, Plastic, Metal)',
+          oddLabel: 'Paper & Cardboard'
         },
         yardWaste: {
           days: [1],
@@ -90,9 +94,11 @@ export const oradell: Town = {
           type: 'alternating',
           day: 3,
           weeks: {
-            even: 'Commingled (Glass, Plastic, Metal)',
-            odd: 'Paper & Cardboard'
-          }
+            even: 'commingled',
+            odd: 'paper'
+          },
+          evenLabel: 'Commingled (Glass, Plastic, Metal)',
+          oddLabel: 'Paper & Cardboard'
         },
         yardWaste: {
           days: [1],

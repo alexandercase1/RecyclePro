@@ -59,9 +59,11 @@ export const fairLawn: Town = {
           type: 'alternating',
           day: 5,                 // Friday
           weeks: {
-            even: 'Commingled (Glass, Plastic, Metal)',
-            odd: 'Paper & Cardboard',
+            even: 'commingled',   // 'commingled' | 'paper' | 'none'
+            odd: 'paper',         // 'commingled' | 'paper' | 'none'
           },
+          evenLabel: 'Commingled (Glass, Plastic, Metal)',
+          oddLabel: 'Paper & Cardboard',
         },
         yardWaste: {              // Optional - omit if town doesn't collect
           days: [2],              // Tuesday
@@ -105,6 +107,37 @@ export const fairLawnRules: RecyclingRule[] = [];
 **Day numbers:** `0` = Sunday, `1` = Monday, `2` = Tuesday, `3` = Wednesday, `4` = Thursday, `5` = Friday, `6` = Saturday
 
 **Zones:** Most towns have at least one zone. If the town has a single schedule for everyone, create one zone and list all streets. If different areas have different pickup days, create multiple zones with their respective streets.
+
+**Recycling schedule — `weeks` field:** The `weeks.even` and `weeks.odd` values control which calendar indicator appears on even and odd weeks of the year. They must be one of:
+
+| Value | Calendar indicator | Meaning |
+|---|---|---|
+| `'commingled'` | Blue square | Commingled recycling (glass, plastic, metal) |
+| `'paper'` | Green circle | Paper & cardboard recycling |
+| `'none'` | No indicator | No recycling pickup this week |
+
+The `evenLabel` and `oddLabel` fields are optional human-readable descriptions shown in the "Today's Collection" section.
+
+**Common schedule patterns:**
+
+```typescript
+// Pattern 1: Alternates between commingled and paper every week (most common)
+weeks: { even: 'commingled', odd: 'paper' },
+evenLabel: 'Commingled (Glass, Plastic, Metal)',
+oddLabel: 'Paper & Cardboard',
+
+// Pattern 2: Recycling only every other week (even weeks only)
+weeks: { even: 'commingled', odd: 'none' },
+evenLabel: 'Recycling Pickup',
+oddLabel: 'No Recycling',
+
+// Pattern 3: Recycling only every other week (odd weeks only)
+weeks: { even: 'none', odd: 'paper' },
+evenLabel: 'No Recycling',
+oddLabel: 'Paper & Cardboard',
+```
+
+**How even/odd weeks are determined:** The app uses the week number of the year (1-52). Week 1 is the first week of January. Even week numbers (2, 4, 6...) use the `even` value; odd week numbers (1, 3, 5...) use the `odd` value.
 
 **Streets:** You can list streets with or without address ranges:
 - `{ name: 'Main St' }` — entire street
@@ -252,6 +285,12 @@ Available disposal methods:
 - `mail_back` — mail-in recycling program
 
 ---
+When you add a new town, you touch 3 files:
+Say you're adding "Clinton" to Hunterdon County:
+
+Create hunterdon/towns/clinton.ts — the town data
+Add to hunterdon/towns/index.ts — add export { clinton } from './clinton'; (note: Hunterdon doesn't have a towns/index.ts yet, so you'd need to check if the county imports directly from the town file or via the barrel)
+Add to hunterdon/index.ts — add clinton to the towns: [bloomsbury, clinton] array
 
 ## Finding Schedule Data
 
@@ -263,7 +302,7 @@ Town collection schedules can usually be found at:
 
 Key information to collect for each town:
 1. Garbage pickup days and time
-2. Recycling pickup day and what alternates (commingled vs paper)
+2. Recycling pickup day and pattern (alternates commingled/paper, or every-other-week, etc.)
 3. Yard waste season dates and pickup day
 4. Zone boundaries (which streets belong to which zone)
 5. Recycling center address and hours

@@ -5,13 +5,17 @@ export interface ScheduleDay {
   time?: string;       // e.g., "6:00 AM"
 }
 
+export type RecyclingWeekType = 'commingled' | 'paper' | 'none';
+
 export interface AlternatingSchedule {
   type: 'alternating';
-  day: number;         // Which day of the week
+  day: number;         // Which day of the week (0=Sunday, 6=Saturday)
   weeks: {
-    even: string;      // What gets collected on even weeks
-    odd: string;       // What gets collected on odd weeks
+    even: RecyclingWeekType;   // What gets collected on even weeks
+    odd: RecyclingWeekType;    // What gets collected on odd weeks
   };
+  evenLabel?: string;  // Human-readable description, e.g., "Commingled (Glass, Plastic, Metal)"
+  oddLabel?: string;   // Human-readable description, e.g., "Paper & Cardboard"
 }
 
 export interface SeasonalSchedule {
