@@ -7,7 +7,9 @@ export const fairLawn: Town = {
   county: "Bergen",
 
   zones: [
-    // --- SECTIONS 1–5 ---
+    // ============================================================
+    // SECTION 1
+    // ============================================================
     {
       id: "fair-lawn-section-1",
       name: "Section 1",
@@ -94,16 +96,18 @@ export const fairLawn: Town = {
       ],
       schedule: {
         garbage: {
-          days: [3, 6], // Wednesday + Saturday
+          days: [3, 6], // Wednesday & Saturday
           time: "6:00 AM",
         },
         recycling: {
           type: "alternating",
           day: 2, // Tuesday
           weeks: {
-            even: "Paper & Cardboard",
-            odd: "Bottles & Cans",
+            even: "paper",
+            odd: "commingled",
           },
+          evenLabel: "Paper & Cardboard",
+          oddLabel: "Bottles & Cans",
         },
         yardWaste: {
           days: [],
@@ -112,6 +116,10 @@ export const fairLawn: Town = {
         },
       },
     },
+
+    // ============================================================
+    // SECTION 2
+    // ============================================================
     {
       id: "fair-lawn-section-2",
       name: "Section 2",
@@ -208,16 +216,18 @@ export const fairLawn: Town = {
       ],
       schedule: {
         garbage: {
-          days: [4, 1], // Thursday + Monday
+          days: [4, 1], // Thursday & Monday
           time: "6:00 AM",
         },
         recycling: {
           type: "alternating",
           day: 3, // Wednesday
           weeks: {
-            even: "Paper & Cardboard",
-            odd: "Bottles & Cans",
+            even: "paper",
+            odd: "commingled",
           },
+          evenLabel: "Paper & Cardboard",
+          oddLabel: "Bottles & Cans",
         },
         yardWaste: {
           days: [],
@@ -226,6 +236,10 @@ export const fairLawn: Town = {
         },
       },
     },
+
+    // ============================================================
+    // SECTION 3
+    // ============================================================
     {
       id: "fair-lawn-section-3",
       name: "Section 3",
@@ -274,7 +288,7 @@ export const fairLawn: Town = {
         { name: "Maywood Court" },
         { name: "McKinley Street" },
         { name: "Monroe Street" },
-        { name: "Morlot Avenue", rangeStart: 208, rangeEnd: 999 }, // Bridge to Saddle River Rd
+        { name: "Morlot Avenue", rangeStart: 208, rangeEnd: 999 },
         { name: "Newton Place" },
         { name: "Nicholson Drive" },
         { name: "Northern Drive" },
@@ -323,16 +337,18 @@ export const fairLawn: Town = {
       ],
       schedule: {
         garbage: {
-          days: [1, 4], // Monday + Thursday
+          days: [1, 4], // Monday & Thursday
           time: "6:00 AM",
         },
         recycling: {
           type: "alternating",
           day: 5, // Friday
           weeks: {
-            even: "Paper & Cardboard",
-            odd: "Bottles & Cans",
+            even: "paper",
+            odd: "commingled",
           },
+          evenLabel: "Paper & Cardboard",
+          oddLabel: "Bottles & Cans",
         },
         yardWaste: {
           days: [],
@@ -341,6 +357,10 @@ export const fairLawn: Town = {
         },
       },
     },
+
+    // ============================================================
+    // SECTION 4
+    // ============================================================
     {
       id: "fair-lawn-section-4",
       name: "Section 4",
@@ -390,7 +410,7 @@ export const fairLawn: Town = {
         { name: "Red Mill Road" },
         { name: "Romana Drive" },
         { name: "Rosalie Street" },
-        { name: "Route 4" }, // See Broadway
+        { name: "Route 4" },
         { name: "Ryan Road" },
         { name: "Saddle River Road", rangeStart: 0, rangeEnd: 0 },
         { name: "South Broadway" },
@@ -398,6 +418,7 @@ export const fairLawn: Town = {
         { name: "Strathmore Terrace" },
         { name: "Sunderland Drive" },
         { name: "Sycamore Drive" },
+        { name: "Tryon Place" },
         { name: "Tryon Place" },
         { name: "Turnbridge Road" },
         { name: "Urban Place" },
@@ -422,16 +443,18 @@ export const fairLawn: Town = {
       ],
       schedule: {
         garbage: {
-          days: [2, 5], // Tuesday + Friday
+          days: [2, 5], // Tuesday & Friday
           time: "6:00 AM",
         },
         recycling: {
           type: "alternating",
           day: 4, // Thursday
           weeks: {
-            even: "Paper & Cardboard",
-            odd: "Bottles & Cans",
+            even: "paper",
+            odd: "commingled",
           },
+          evenLabel: "Paper & Cardboard",
+          oddLabel: "Bottles & Cans",
         },
         yardWaste: {
           days: [],
@@ -440,6 +463,10 @@ export const fairLawn: Town = {
         },
       },
     },
+
+    // ============================================================
+    // SECTION 5
+    // ============================================================
     {
       id: "fair-lawn-section-5",
       name: "Section 5",
@@ -496,16 +523,18 @@ export const fairLawn: Town = {
       ],
       schedule: {
         garbage: {
-          days: [5, 2], // Friday + Tuesday
+          days: [5, 2], // Friday & Tuesday
           time: "6:00 AM",
         },
         recycling: {
           type: "alternating",
           day: 1, // Monday
           weeks: {
-            even: "Paper & Cardboard",
-            odd: "Bottles & Cans",
+            even: "paper",
+            odd: "commingled",
           },
+          evenLabel: "Paper & Cardboard",
+          oddLabel: "Bottles & Cans",
         },
         yardWaste: {
           days: [],
@@ -539,5 +568,4 @@ export const fairLawn: Town = {
   ],
 };
 
-// Fair Lawn does not require any rule overrides
 export const fairLawnRules: RecyclingRule[] = [];
