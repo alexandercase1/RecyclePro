@@ -78,7 +78,7 @@ export default function LocationSearchScreen() {
 
       {isLoading && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#2E8B57" />
+          <ActivityIndicator size="large" color="#33248d" />
         </View>
       )}
 
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    backgroundColor: '#2E8B57',
+    backgroundColor: '#2079cc',
     padding: 20,
     paddingTop: 60,
   },

@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    backgroundColor: '#2E8B57',
+    backgroundColor: '#473fb4',
     padding: 20,
     paddingTop: 60,
   },
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   saveButton: {
-    backgroundColor: '#2E8B57',
+    backgroundColor: '#354694',
     padding: 18,
     borderRadius: 12,
     alignItems: 'center',
