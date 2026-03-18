@@ -36,7 +36,7 @@ const paperItems: RecyclableItem[] = [
     aliases: ['pizza boxes', 'food box'],
     category: 'paper_cardboard',
     subcategory: 'corrugated',
-    defaultDisposal: 'curbside_recycling',
+    defaultDisposal: 'curbside_trash',
     defaultInstructions: 'Remove greasy parts, recycle clean sections only',
     searchTerms: ['pizza box', 'pizza', 'food box', 'delivery box'],
   },
