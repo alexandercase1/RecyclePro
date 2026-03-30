@@ -1,6 +1,7 @@
+import { BackgroundContainer } from '@/components/BackgroundContainer';
+import { getTownById } from '@/data/locations';
 import { CollectionZone, Town } from '@/data/types';
 import { getSavedLocation, SavedLocation } from '@/services/storageService';
-import { getTownById } from '@/data/locations';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -319,7 +320,8 @@ export default function HomeScreen() {
   const todayCollections = getCollectionTypes(new Date());
 
   return (
-    <ScrollView style={styles.container}>
+    <BackgroundContainer style={styles.container}>
+      <ScrollView style={styles.contentScroll}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>Recycle Pro</Text>
@@ -376,14 +378,14 @@ export default function HomeScreen() {
           )}
         </View>
       )}
-    </ScrollView>
+      </ScrollView>
+    </BackgroundContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#efefef',
   },
   centerContent: {
     justifyContent: 'center',
