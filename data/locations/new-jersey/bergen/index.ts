@@ -1,10 +1,16 @@
 import { CountyInfo } from '../../types';
-import { bergenTowns } from './towns';
+import { fairLawn } from './towns/fairlawn';
+import { oradell } from './towns/oradell';
+import { waldwick } from './towns/waldwick';
 
 export const bergenCounty: CountyInfo = {
   id: 'bergen',
   name: 'Bergen County',
-  towns: bergenTowns,
+  towns: [
+    oradell,
+    fairLawn,
+    waldwick,
+  ],
 };
 
 export { bergenCountyRules } from './rules';

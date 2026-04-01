@@ -6,8 +6,9 @@ import { nationalRules } from './national';
 // Location-specific rules (imported from their locations)
 import { newJerseyRules } from '@/data/locations/new-jersey/rules';
 import { bergenCountyRules } from '@/data/locations/new-jersey/bergen/rules';
-import { fairLawnRules } from '@/data/locations/new-jersey/bergen/towns/fair-lawn';
+import { fairLawnRules } from '@/data/locations/new-jersey/bergen/towns/fairlawn';
 import { oradellRules } from '@/data/locations/new-jersey/bergen/towns/oradell';
+import { waldwickRules } from '@/data/locations/new-jersey/bergen/towns/waldwick';
 
 /**
  * All recycling rules in the database
@@ -18,6 +19,7 @@ export const ALL_RULES: RecyclingRule[] = [
   ...bergenCountyRules,
   ...oradellRules,
   ...fairLawnRules,
+  ...waldwickRules,
 ];
 
 /**
