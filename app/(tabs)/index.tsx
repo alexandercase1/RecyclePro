@@ -3,7 +3,9 @@ import { getTownById } from '@/data/locations';
 import { CollectionZone, Town } from '@/data/types';
 import { getSavedLocation, SavedLocation } from '@/services/storageService';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+// useEffect removed — useFocusEffect below handles both mount and re-focus,
+// so importing useEffect here would just cause a double fetch on first render.
+import { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 // Collection type keys used for indicators
@@ -39,10 +41,9 @@ export default function HomeScreen() {
   const [savedLocation, setSavedLocation] = useState<SavedLocation | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    loadSavedLocation();
-  }, []);
-
+  // useFocusEffect runs on mount AND every time the tab comes back into view
+  // (e.g. returning from the location-search modal), so a separate useEffect
+  // is not needed and would cause a double fetch on first render.
   useFocusEffect(
     useCallback(() => {
       loadSavedLocation();
