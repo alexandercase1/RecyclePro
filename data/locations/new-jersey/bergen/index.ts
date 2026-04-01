@@ -1,5 +1,5 @@
 import { CountyInfo } from '../../types';
-import { fairLawn } from './towns/fairlawn';
+import { fairLawn } from './towns/fair-lawn';
 import { oradell } from './towns/oradell';
 import { waldwick } from './towns/waldwick';
 

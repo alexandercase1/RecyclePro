@@ -2,6 +2,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
+// BackgroundProvider has been moved up to app/_layout.tsx so that modals
+// can also access the background context. No need to re-wrap here.
 export default function TabLayout() {
   return (
     <Tabs
@@ -24,6 +26,24 @@ export default function TabLayout() {
           title: 'Search',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'search' : 'search-outline'} size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="cam"
+        options={{
+          title: 'Camera',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'camera' : 'camera-outline'} size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'cog' : 'cog-outline'} size={28} color={color} />
           ),
         }}
       />

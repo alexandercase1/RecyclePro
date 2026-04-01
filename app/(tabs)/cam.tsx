@@ -19,8 +19,8 @@ export default function Cam() {
         // perms denied
         return(
             <View style = {styles.container}>
-                <Text style = {styles.message}>Permissions needed to use the camera</Text>
-                <Button onPress = {requestPermission} title = "grant permission" />
+                <Text style = {styles.message}>Grant Permission to Access Camera</Text>
+                <Button onPress = {requestPermission} title = "Set Permissions" />
             </View>
         );
     }
