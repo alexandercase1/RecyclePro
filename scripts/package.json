@@ -1,0 +1,25 @@
+{
+  "name": "recyclepro-data-scripts",
+  "version": "1.0.0",
+  "description": "Data scraping and town builder tools for RecyclePro",
+  "private": true,
+  "scripts": {
+    "scrape:rc": "ts-node scrapers/scrape-recyclecoach.ts",
+    "scrape:town": "ts-node scrapers/scrape-town.ts",
+    "scrape:town:ai": "ts-node scrapers/scrape-town-ai.ts",
+    "build:town": "ts-node builder/cli.ts",
+    "build:town:help": "ts-node builder/cli.ts help"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.4.0"
+  }
+}

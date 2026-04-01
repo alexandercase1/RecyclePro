@@ -1,10 +1,9 @@
 import type {
   CollectionZone,
-  RecyclingRule,
   Street,
   Town,
   ZoneSchedule,
-} from '@/data/types';
+} from '../../../RecyclePro/data/types';
 import { parseStreetLines } from './parse-street-lines';
 import { scrapeColumnText } from './html-tables';
 import * as fs from 'fs';
