@@ -1,4 +1,4 @@
-import { Town } from '@/data/types';
+import type { Town } from '@/data/types';
 import { oradell } from './oradell';
 import { fairLawn } from './fair-lawn';
 import { bergenfield } from './bergenfield';
@@ -22,9 +22,11 @@ import { lyndhurst } from './lyndhurst';
 import { mahwah } from './mahwah';
 import { montvale } from './montvale';
 import { newMilford } from './new-milford';
+import { waldwick } from './waldwick';
 
 export { oradell, oradellRules } from './oradell';
 export { fairLawn, fairLawnRules } from './fair-lawn';
+export { waldwick, waldwickRules } from './waldwick';
 export { bergenfield } from './bergenfield';
 export { cliffsidePark } from './cliffside-park';
 export { cresskill } from './cresskill';
@@ -53,6 +55,7 @@ export { newMilford } from './new-milford';
 export const bergenTowns: Town[] = [
   oradell,
   fairLawn,
+  waldwick,
   bergenfield,
   cliffsidePark,
   cresskill,
