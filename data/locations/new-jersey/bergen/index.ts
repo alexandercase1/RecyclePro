@@ -1,12 +1,10 @@
 import { CountyInfo } from '../../types';
-import { oradell } from './towns/oradell';
+import { bergenTowns } from './towns';
 
 export const bergenCounty: CountyInfo = {
   id: 'bergen',
   name: 'Bergen County',
-  towns: [
-    oradell,
-  ],
+  towns: bergenTowns,
 };
 
 export { bergenCountyRules } from './rules';
