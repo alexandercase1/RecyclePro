@@ -1,4 +1,4 @@
-import type { RecyclingRule, Town } from '@/data/types';
+import type { RecyclingRule, Town } from '../../../RecyclePro/data/types';
 import * as fs from 'fs';
 import * as path from 'path';
 

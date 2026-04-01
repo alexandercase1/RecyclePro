@@ -1,4 +1,4 @@
-import type { Street } from '@/data/types';
+import type { Street } from '../../../RecyclePro/data/types';
 
 /**
  * Parse one line from a municipal street list into a Street object.
