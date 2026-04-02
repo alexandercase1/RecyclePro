@@ -37,7 +37,7 @@ export interface BackgroundPreset {
 //
 //  Example — uncomment and edit to activate an entry:
 //
-//  { id: 'nature-forest',    label: 'Forest',    category: 'Nature',    source: require('../assets/backgrounds/nature/forest.jpg') },
+//  { id: 'nature-forest', label: 'Forest',    category: 'Nature',    source: require('../assets/backgrounds/nature/forest.jpg') },
 //  { id: 'nature-ocean',     label: 'Ocean',     category: 'Nature',    source: require('../assets/backgrounds/nature/ocean.jpg') },
 //  { id: 'nature-mountain',  label: 'Mountain',  category: 'Nature',    source: require('../assets/backgrounds/nature/mountain.jpg') },
 //  { id: 'nature-sunset',    label: 'Sunset',    category: 'Nature',    source: require('../assets/backgrounds/nature/sunset.jpg') },
@@ -55,7 +55,7 @@ export interface BackgroundPreset {
 // Add your uncommented entries here.  The array can be empty while you are
 // still gathering images — the Settings screen handles that gracefully.
 export const BACKGROUND_PRESETS: BackgroundPreset[] = [
-  // Your entries go here once you have images ready.
+  { id: 'nature-forest', label: 'Forest', category: 'Nature', source: require('../assets/backgrounds/nature/test.png') },
 ];
 
 // ─── Utilities used by the picker and the context ────────────────────────────
