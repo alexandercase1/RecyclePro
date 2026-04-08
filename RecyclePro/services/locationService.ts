@@ -1,9 +1,16 @@
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
-// Initialize the Mapbox client
-const geocodingClient = mbxGeocoding({
-  accessToken: process.env.EXPO_PUBLIC_MAPBOX_TOKEN || ''
-});
+// Lazy-initialize the Mapbox client so a missing token doesn't crash at startup
+let geocodingClient: ReturnType<typeof mbxGeocoding> | null = null;
+
+function getGeocodingClient() {
+  if (!geocodingClient) {
+    const token = process.env.EXPO_PUBLIC_MAPBOX_TOKEN;
+    if (!token) return null;
+    geocodingClient = mbxGeocoding({ accessToken: token });
+  }
+  return geocodingClient;
+}
 
 export interface LocationResult {
   id: string;
@@ -27,7 +34,10 @@ export const searchLocations = async (query: string): Promise<LocationResult[]> 
       return [];
     }
 
-    const response = await geocodingClient
+    const client = getGeocodingClient();
+    if (!client) return [];
+
+    const response = await client
       .forwardGeocode({
         query: query,
         countries: ['US'],
@@ -83,11 +93,14 @@ export const getLocation = async (
   county?: string
 ): Promise<LocationResult | null> => {
   try {
-    const query = county 
+    const query = county
       ? `${town}, ${county} County, ${state}`
       : `${town}, ${state}`;
-    
-    const response = await geocodingClient
+
+    const client = getGeocodingClient();
+    if (!client) return null;
+
+    const response = await client
       .forwardGeocode({
         query: query,
         countries: ['US'],

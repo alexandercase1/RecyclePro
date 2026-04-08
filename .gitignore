@@ -46,3 +46,6 @@ app-example
 # Scripts tooling build output
 /scripts/dist
 
+# Dataset for classification model
+/dataset/merged
+
