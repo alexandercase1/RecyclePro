@@ -1,5 +1,7 @@
 package com.anonymous.RecyclePro
 
+import ai.onnxruntime.reactnative.OnnxruntimePackage
+
 import android.app.Application
 import android.content.res.Configuration
 
