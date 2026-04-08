@@ -1,4 +1,6 @@
 import type { Town } from '@/data/types';
+import { allendale } from './allendale';
+import { alpine } from './alpine';
 import { oradell } from './oradell';
 import { fairLawn } from './fair-lawn';
 import { bergenfield } from './bergenfield';
@@ -27,6 +29,8 @@ import { waldwick } from './waldwick';
 export { oradell, oradellRules } from './oradell';
 export { fairLawn, fairLawnRules } from './fair-lawn';
 export { waldwick, waldwickRules } from './waldwick';
+export { allendale, allendaleRules } from './allendale';
+export { alpine, alpineRules } from './alpine';
 export { bergenfield } from './bergenfield';
 export { cliffsidePark } from './cliffside-park';
 export { cresskill } from './cresskill';
@@ -53,6 +57,8 @@ export { newMilford } from './new-milford';
 // Placeholder files exist for remaining Bergen municipalities but are not
 // imported until populated.
 export const bergenTowns: Town[] = [
+  allendale,
+  alpine,
   oradell,
   fairLawn,
   waldwick,
