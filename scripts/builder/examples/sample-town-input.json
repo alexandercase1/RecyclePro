@@ -1,0 +1,81 @@
+{
+  "id": "nj-bergen-sample-borough",
+  "name": "Sample Borough",
+  "state": "NJ",
+  "county": "Bergen",
+  "recyclingCenter": {
+    "name": "Sample Recycling Center",
+    "address": "100 Example Rd, Sample Borough, NJ 07600",
+    "hours": {
+      "weekday": "Monday-Friday 8:00 AM - 3:00 PM",
+      "saturday": "Closed",
+      "sunday": "Closed"
+    },
+    "phone": "(201) 555-0100"
+  },
+  "specialInstructions": [
+    "Place carts curbside by 6:00 AM on collection day."
+  ],
+  "zones": [
+    {
+      "id": "sample-zone-1",
+      "name": "West Side",
+      "description": "Example zone — replace with real copy from the municipal site",
+      "schedule": {
+        "garbage": {
+          "days": [1, 4],
+          "time": "6:00 AM"
+        },
+        "recycling": {
+          "type": "alternating",
+          "day": 3,
+          "weeks": {
+            "even": "commingled",
+            "odd": "paper"
+          },
+          "evenLabel": "Commingled (Glass, Plastic, Metal)",
+          "oddLabel": "Paper & Cardboard"
+        },
+        "yardWaste": {
+          "days": [1],
+          "seasonStart": "04-01",
+          "seasonEnd": "10-31"
+        }
+      },
+      "streetLines": [
+        "Main Street",
+        "Oak Avenue 10-500"
+      ]
+    },
+    {
+      "id": "sample-zone-2",
+      "name": "East Side",
+      "description": "Second zone — use html.file after saving a page with cli fetch",
+      "schedule": {
+        "garbage": {
+          "days": [2, 5],
+          "time": "6:00 AM"
+        },
+        "recycling": {
+          "type": "alternating",
+          "day": 4,
+          "weeks": {
+            "even": "paper",
+            "odd": "commingled"
+          },
+          "evenLabel": "Paper & Cardboard",
+          "oddLabel": "Commingled (Glass, Plastic, Metal)"
+        },
+        "yardWaste": {
+          "days": [],
+          "seasonStart": "04-01",
+          "seasonEnd": "11-30"
+        }
+      },
+      "streetLines": [
+        "River Road 1-99",
+        "Elm Street"
+      ]
+    }
+  ]
+}
