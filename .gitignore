@@ -43,3 +43,10 @@ app-example
 # generated native folders
 /ios
 /android
+
+# image classification stuff
+dataset
+assets/models 
+services/model.ts
+app/(tabs)/cam.tsx
+metro.config.js 

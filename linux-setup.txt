@@ -1,0 +1,124 @@
+RECYCLEPRO — LINUX SETUP CHANGES
+=================================
+From Windows setup. Apply these changes before running the app.
+
+
+1. metro.config.js
+------------------
+The path.resolve and watchFolders workaround was added for Windows/OneDrive.
+On Linux it is still safe to keep, but you can simplify back to:
+
+    const { getDefaultConfig } = require('expo/metro-config');
+    const config = getDefaultConfig(__dirname);
+    config.resolver.assetExts.push('onnx');
+    config.resolver.assetExts.push('data');
+    module.exports = config;
+
+Keep the 'data' extension — that is required for the .onnx.data asset, not a Windows fix.
+
+
+2. package.json — react-native-reanimated and react-native-worklets
+--------------------------------------------------------------------
+These were removed because reanimated 4.x requires New Architecture, which
+conflicts with onnxruntime-react-native. This conflict exists on all platforms.
+Do NOT add them back.
+
+Current state (correct):
+    No react-native-reanimated entry
+    No react-native-worklets entry
+
+app/_layout.tsx already has the reanimated import removed.
+
+
+3. app.json — newArchEnabled
+-----------------------------
+Must stay false on all platforms:
+    "newArchEnabled": false
+
+This is required for onnxruntime-react-native to load its JSI binding.
+
+
+4. android/app/build.gradle — packagingOptions
+-----------------------------------------------
+The libreactnative.so conflict fix must be applied after every prebuild.
+After running `npx expo prebuild --clean --platform android`, open:
+    android/app/build.gradle
+Find the packagingOptions block and add pickFirsts:
+
+    packagingOptions {
+        jniLibs {
+            def enableLegacyPackaging = findProperty('expo.useLegacyPackaging') ?: 'false'
+            useLegacyPackaging enableLegacyPackaging.toBoolean()
+            pickFirsts += [
+                'lib/arm64-v8a/libreactnative.so',
+                'lib/x86_64/libreactnative.so',
+                'lib/x86/libreactnative.so',
+                'lib/armeabi-v7a/libreactnative.so'
+            ]
+        }
+    }
+
+
+5. android/app/src/main/java/com/anonymous/RecyclePro/MainApplication.kt
+--------------------------------------------------------------------------
+OnnxruntimePackage is not picked up by autolinking. After every prebuild,
+manually add it to MainApplication.kt:
+
+Add this import at the top:
+    import ai.onnxruntime.reactnative.OnnxruntimePackage
+
+Change getPackages() to:
+    override fun getPackages(): List<ReactPackage> =
+        PackageList(this).packages.apply {
+            add(OnnxruntimePackage())
+        }
+
+
+6. assets/models — required files
+-----------------------------------
+These files are gitignored and must be copied manually on the new machine.
+Both files must be present:
+    assets/models/rec_class_1.onnx
+    assets/models/rec_class_1.onnx.data
+
+Copy them from the dataset folder which is also gitignored but should
+exist locally if the repo was set up with training data:
+    cp dataset/rec_class_1.onnx assets/models/rec_class_1.onnx
+    cp dataset/rec_class_1.onnx.data assets/models/rec_class_1.onnx.data
+
+
+7. Full build sequence (Linux)
+-------------------------------
+Run these commands from the project root in order:
+
+    npm install
+    npx expo prebuild --clean --platform android
+    # Then manually apply changes from sections 4 and 5 above
+    npx expo run:android
+
+For subsequent runs (no dependency changes):
+    npx expo run:android
+
+
+8. Android emulator webcam (same as Windows)
+---------------------------------------------
+In the running emulator:
+    Extended Controls (...) -> Camera -> Back Camera -> Webcam0
+
+Linux will detect webcams as /dev/video0 etc. The emulator should
+pick them up automatically via the host system.
+
+
+9. ADB for physical device (same commands, no path issues on Linux)
+--------------------------------------------------------------------
+    adb devices
+    adb reverse tcp:8081 tcp:8081
+
+
+THINGS THAT DO NOT CHANGE
+--------------------------
+- services/model.ts — all fixes apply identically
+- app/(tabs)/cam.tsx — no platform-specific code
+- The onnxruntime-react-native version and all other dependencies
+- The model files and class labels
+- The New Architecture conflict — this is a library issue, not OS
