@@ -1,4 +1,3 @@
-import { BackgroundContainer } from '@/components/BackgroundContainer';
 import { getTownById } from '@/data/locations';
 import { CollectionZone, Town } from '@/data/types';
 import { getSavedLocation, SavedLocation } from '@/services/storageService';
@@ -320,8 +319,24 @@ export default function HomeScreen() {
 
   const todayCollections = getCollectionTypes(new Date());
 
+  // Look up to 14 days ahead for the next scheduled pickup
+  const getNextCollection = (): { date: Date; types: CollectionType[] } | null => {
+    for (let i = 1; i <= 14; i++) {
+      const d = new Date();
+      d.setDate(d.getDate() + i);
+      const types = getCollectionTypes(d);
+      if (types.length > 0) return { date: d, types };
+    }
+    return null;
+  };
+  const nextCollection = todayCollections.length === 0 ? getNextCollection() : null;
+
+  const collectionCardStyle = todayCollections.length > 0
+    ? [styles.section, styles.collectionCardActive]
+    : [styles.section, styles.collectionCardInactive];
+
   return (
-    <BackgroundContainer style={styles.container}>
+    <View style={[styles.container, styles.pageBackground]}>
       <ScrollView style={styles.contentScroll}>
       {/* Header */}
       <View style={styles.header}>
@@ -340,14 +355,11 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Monthly Calendar */}
-      {renderMonthCalendar(true)}
-
-      {/* Today's Collection */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Today's Collection</Text>
+      {/* Today's / Next Collection — promoted above the calendar */}
+      <View style={collectionCardStyle}>
         {todayCollections.length > 0 ? (
-          <View>
+          <>
+            <Text style={styles.sectionTitle}>Today's Collection</Text>
             {todayCollections.map((type, idx) => (
               <View key={idx} style={styles.collectionDetailRow}>
                 <CollectionIndicator type={type} />
@@ -359,11 +371,37 @@ export default function HomeScreen() {
             <Text style={styles.collectionTime}>
               Place at curb by {selectedZone.schedule.garbage.time}
             </Text>
-          </View>
+          </>
         ) : (
-          <Text style={styles.noCollectionText}>No collection scheduled for today</Text>
+          <>
+            <Text style={styles.sectionTitle}>Next Collection</Text>
+            {nextCollection ? (
+              <>
+                <Text style={styles.nextCollectionDate}>
+                  {nextCollection.date.toLocaleDateString('default', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </Text>
+                {nextCollection.types.map((type, idx) => (
+                  <View key={idx} style={styles.collectionDetailRow}>
+                    <CollectionIndicator type={type} />
+                    <Text style={styles.collectionDetailText}>
+                      {collectionLabels[type]}
+                    </Text>
+                  </View>
+                ))}
+              </>
+            ) : (
+              <Text style={styles.noCollectionText}>No upcoming collections scheduled</Text>
+            )}
+          </>
         )}
       </View>
+
+      {/* Monthly Calendar */}
+      {renderMonthCalendar(true)}
 
       {/* Recycling Center Info */}
       {selectedTown?.recyclingCenter && (
@@ -380,13 +418,16 @@ export default function HomeScreen() {
         </View>
       )}
       </ScrollView>
-    </BackgroundContainer>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  pageBackground: {
+    backgroundColor: '#efefef',
   },
   centerContent: {
     justifyContent: 'center',
@@ -633,6 +674,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  collectionCardActive: {
+    backgroundColor: '#f0faf4',
+    borderLeftWidth: 4,
+    borderLeftColor: '#2E8B57',
+  },
+  collectionCardInactive: {
+    backgroundColor: 'white',
+    borderLeftWidth: 4,
+    borderLeftColor: '#e0e0e0',
+  },
+  nextCollectionDate: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 10,
   },
   sectionTitle: {
     fontSize: 14,

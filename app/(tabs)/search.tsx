@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { BackgroundContainer } from '@/components/BackgroundContainer';
 import { ThemedText } from '@/components/themed-text';
 import { SearchBar } from '@/components/search/SearchBar';
 import { SearchResults } from '@/components/search/SearchResults';
@@ -41,9 +40,7 @@ export default function SearchScreen() {
   );
 
   return (
-    // BackgroundContainer reads color/imageUrl from context, so this screen
-    // will automatically reflect whatever background the user chose in Settings.
-    <BackgroundContainer style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Search Recyclables
@@ -67,13 +64,14 @@ export default function SearchScreen() {
         isSearching={isSearching}
         query={query}
       />
-    </BackgroundContainer>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#efefef',
   },
   header: {
     paddingHorizontal: 20,
