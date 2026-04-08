@@ -40,8 +40,8 @@ yarn-error.*
 app-example
 
 # Generated native folders
-/RecyclePro/ios
-/RecyclePro/android
+/ios
+/android
 
 # Scripts tooling build output
 /scripts/dist
