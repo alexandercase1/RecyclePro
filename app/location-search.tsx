@@ -1,4 +1,5 @@
 import { LocationResult, searchLocations } from '@/services/locationService';
+import { clearLocation } from '@/services/storageService';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -16,6 +17,14 @@ export default function LocationSearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<LocationResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [cleared, setCleared] = useState(false);
+
+  const handleClearLocation = async () => {
+    await clearLocation();
+    setCleared(true);
+    setTimeout(() => setCleared(false), 2000);
+  };
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query);
@@ -114,6 +123,12 @@ export default function LocationSearchScreen() {
             2. Select your location from the results{'\n'}
             3. We'll show you the recycling schedule for your area
           </Text>
+
+          <TouchableOpacity style={styles.clearButton} onPress={handleClearLocation}>
+            <Text style={styles.clearButtonText}>
+              {cleared ? '✓ Location Cleared' : 'Clear Saved Location'}
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>
@@ -210,5 +225,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     color: '#666',
+  },
+  clearButton: {
+    marginTop: 24,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+  },
+  clearButtonText: {
+    fontSize: 15,
+    color: '#999',
   },
 });
