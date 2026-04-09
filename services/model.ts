@@ -2,6 +2,7 @@ import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system/legacy';
 import { manipulateAsync } from 'expo-image-manipulator';
 import * as ort from 'onnxruntime-react-native';
+import { Platform } from 'react-native';
 
 export const CLASS_LABELS = [
     'Cardboard',
@@ -19,11 +20,31 @@ const MODEL_DIR = FileSystem.cacheDirectory + 'onnx_model/';
 const MODEL_PATH = MODEL_DIR + 'rec_class_1.onnx';
 const DATA_PATH = MODEL_DIR + 'rec_class_1.onnx.data';
 
-async function ensureFile(asset: Asset, targetPath: string) {
-    const info = await FileSystem.getInfoAsync(targetPath);
-    if (!info.exists) {
-        await asset.downloadAsync();
-        await FileSystem.copyAsync({ from: asset.localUri!, to: targetPath });
+// Minimum expected byte sizes — anything smaller is a corrupt/partial download
+const MIN_SIZES: Record<string, number> = {
+    [MODEL_PATH]: 300_000,    // .onnx is ~336 KB
+    [DATA_PATH]:  16_842_000, // .onnx.data is exactly 16,842,752 bytes
+};
+
+async function ensureFile(asset: Asset, targetPath: string, androidAssetName: string) {
+    const info = await FileSystem.getInfoAsync(targetPath, { size: true });
+    const size = (info as any).size ?? 0;
+    if (info.exists && size >= MIN_SIZES[targetPath]) return;
+
+    // File missing or too small — wipe it and re-copy
+    if (info.exists) await FileSystem.deleteAsync(targetPath, { idempotent: true });
+
+    if (Platform.OS === 'android') {
+        // Copy from native Android assets (bundled in APK) — bypasses Metro,
+        // which was truncating the 17 MB .onnx.data file by ~1 KB.
+        await FileSystem.copyAsync({
+            from: `asset:///models/${androidAssetName}`,
+            to: targetPath,
+        });
+    } else {
+        await FileSystem.downloadAsync(asset.uri, targetPath, {
+            headers: { 'Accept-Encoding': 'identity' },
+        });
     }
 }
 
@@ -35,23 +56,19 @@ export async function loadModel(): Promise<ort.InferenceSession> {
 
         await ensureFile(
             Asset.fromModule(require('../assets/models/rec_class_1.onnx')),
-            MODEL_PATH
+            MODEL_PATH,
+            'rec_class_1.onnx'
         );
         await ensureFile(
-            Asset.fromModule(require('../assets/models/rec_class_1.onnx.data')),
-            DATA_PATH
+            Asset.fromModule(require('../assets/models/rec_class_1.onnxdata')),
+            DATA_PATH,
+            'rec_class_1.onnx.data'
         );
-
-        // Delete stale cached files so a bad prior copy doesn't persist
-        const stale = [MODEL_DIR + 'rec_class.onnx', MODEL_DIR + 'rec_class.onnx.data'];
-        for (const p of stale) {
-            const info = await FileSystem.getInfoAsync(p);
-            if (info.exists) await FileSystem.deleteAsync(p, { idempotent: true });
-        }
 
         session = await ort.InferenceSession.create(MODEL_PATH);
         return session;
     } catch (e) {
+        session = null; // allow retry on next call
         const msg = e instanceof Error ? e.message : String(e);
         throw new Error(`ONNX model failed to load: ${msg}`);
     }

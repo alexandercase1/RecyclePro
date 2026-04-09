@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { BackgroundContainer } from '@/components/BackgroundContainer';
 import { ThemedText } from '@/components/themed-text';
 import { SearchBar } from '@/components/search/SearchBar';
@@ -10,6 +11,7 @@ import { getSavedLocation, SavedLocation } from '@/services/storageService';
 import { Fonts } from '@/constants/theme';
 
 export default function SearchScreen() {
+  const router = useRouter();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<RecyclingSearchResult[]>([]);
   const [location, setLocation] = useState<SavedLocation | null>(null);
@@ -59,6 +61,7 @@ export default function SearchScreen() {
         <SearchBar
           onSearch={handleSearch}
           placeholder="Search recyclable items..."
+          onCameraPress={() => router.push('/(tabs)/cam')}
         />
       </View>
 

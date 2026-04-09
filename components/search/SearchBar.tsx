@@ -8,12 +8,14 @@ import {
 } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { useThemeColor } from '@/hooks/use-theme-color';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
   placeholder?: string;
   debounceMs?: number;
   autoFocus?: boolean;
+  onCameraPress?: () => void;
 }
 
 export function SearchBar({
@@ -21,6 +23,7 @@ export function SearchBar({
   placeholder = 'Search recyclable items...',
   debounceMs = 300,
   autoFocus = false,
+  onCameraPress,
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const backgroundColor = useThemeColor({}, 'background');
@@ -58,11 +61,15 @@ export function SearchBar({
         autoCorrect={false}
         returnKeyType="search"
       />
-      {query.length > 0 && (
+      {query.length > 0 ? (
         <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
           <ThemedText style={styles.clearIcon}>✕</ThemedText>
         </TouchableOpacity>
-      )}
+      ) : onCameraPress ? (
+        <TouchableOpacity onPress={onCameraPress} style={styles.clearButton}>
+          <Ionicons name="camera-outline" size={22} color={textColor + '80'} />
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 }
