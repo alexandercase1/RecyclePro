@@ -1,7 +1,6 @@
 import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system/legacy';
 import { manipulateAsync } from 'expo-image-manipulator';
-import * as ort from 'onnxruntime-react-native';
 import { Platform } from 'react-native';
 
 export const CLASS_LABELS = [
@@ -14,7 +13,12 @@ export const CLASS_LABELS = [
     'Plastic',
 ];
 
-let session: ort.InferenceSession | null = null;
+let session: OrtType.InferenceSession | null = null;
+
+// Lazy loader — defers native JSI initialization until first use
+async function getOrt(): Promise<typeof OrtType> {
+    return require('onnxruntime-react-native');
+}
 
 const MODEL_DIR = FileSystem.cacheDirectory + 'onnx_model/';
 const MODEL_PATH = MODEL_DIR + 'rec_class_1.onnx';
@@ -48,8 +52,10 @@ async function ensureFile(asset: Asset, targetPath: string, androidAssetName: st
     }
 }
 
-export async function loadModel(): Promise<ort.InferenceSession> {
+export async function loadModel(): Promise<OrtType.InferenceSession> {
     if (session) return session;
+
+    const ort = await getOrt();
 
     try {
         await FileSystem.makeDirectoryAsync(MODEL_DIR, { intermediates: true });
@@ -75,6 +81,7 @@ export async function loadModel(): Promise<ort.InferenceSession> {
 }
 
 export async function classifyingImage(uri: string): Promise<number> {
+    const ort = await getOrt();
     const sess = await loadModel();
 
     const manipulated = await manipulateAsync(
@@ -86,8 +93,8 @@ export async function classifyingImage(uri: string): Promise<number> {
     const base64 = manipulated.base64!;
     const raw = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
 
-    const tensor = preprocess(raw);
-    const feeds: Record<string, ort.Tensor> = { input: tensor };
+    const tensor = preprocess(raw, ort);
+    const feeds: Record<string, OrtType.Tensor> = { input: tensor };
 
     try {
         const results = await sess.run(feeds);
@@ -103,7 +110,7 @@ export async function classifyingImage(uri: string): Promise<number> {
     }
 }
 
-function preprocess(raw: Uint8Array): ort.Tensor {
+function preprocess(raw: Uint8Array, ort: typeof OrtType): OrtType.Tensor {
     const mean = [0.485, 0.456, 0.406];
     const std = [0.229, 0.224, 0.225];
 

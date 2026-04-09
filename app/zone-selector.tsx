@@ -1,16 +1,16 @@
+import { getTownById } from '@/data/locations';
+import { CollectionZone } from '@/data/types';
+import { SavedLocation, saveLocation } from '@/services/storageService';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
+  ActivityIndicator,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  ScrollView,
-  ActivityIndicator,
 } from 'react-native';
-import { getTownById } from '@/data/locations';
-import { CollectionZone } from '@/data/types';
-import { SavedLocation, saveLocation } from '@/services/storageService';
 
 export default function ZoneSelectorScreen() {
   const router = useRouter();
