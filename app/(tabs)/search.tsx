@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { Fonts } from '@/constants/theme';
 import { RecyclingSearchResult } from '@/data/types';
 import { searchItems } from '@/services/searchService';
 import { getSavedLocation, SavedLocation } from '@/services/storageService';
