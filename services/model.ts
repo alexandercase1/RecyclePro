@@ -1,6 +1,7 @@
 import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system/legacy';
 import { manipulateAsync } from 'expo-image-manipulator';
+import type * as OrtType from 'onnxruntime-react-native';
 import { Platform } from 'react-native';
 
 export const CLASS_LABELS = [
