@@ -49,5 +49,3 @@ app-example
 # Dataset for classification model
 /dataset/merged
 
-# Jesse's Dev plan
-DEV_BUILD_PLAN.md
