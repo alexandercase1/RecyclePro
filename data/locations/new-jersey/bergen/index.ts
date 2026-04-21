@@ -1,6 +1,7 @@
 import { CountyInfo } from '../../types';
 import { allendale } from './towns/allendale';
 import { alpine } from './towns/alpine';
+import { bogota } from './towns/bogota';
 import { fairLawn } from './towns/fair-lawn';
 import { oradell } from './towns/oradell';
 import { waldwick } from './towns/waldwick';
@@ -11,6 +12,7 @@ export const bergenCounty: CountyInfo = {
   towns: [
     allendale,
     alpine,
+    bogota,
     oradell,
     fairLawn,
     waldwick,

@@ -18,7 +18,15 @@ let session: OrtType.InferenceSession | null = null;
 
 // Lazy loader — defers native JSI initialization until first use
 async function getOrt(): Promise<typeof OrtType> {
-    return require('onnxruntime-react-native');
+    const ort = require('onnxruntime-react-native');
+    if (!ort?.InferenceSession) {
+        throw new Error(
+            'ONNX Runtime native module is not available. ' +
+            'Install the dev build APK from the EAS dashboard and connect via "npm run start:dev". ' +
+            'Expo Go does not support native modules.'
+        );
+    }
+    return ort;
 }
 
 const MODEL_DIR = FileSystem.cacheDirectory + 'onnx_model/';

@@ -7,9 +7,10 @@
     "icon": "./assets/images/icon.png",
     "scheme": "recyclepro",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.recyclepro.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -20,18 +21,18 @@
       "predictiveBackGestureEnabled": false,
       "permissions": [
         "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO",
-        "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.anonymous.RecyclePro"
+      "package": "com.recyclepro.app"
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "expo-dev-client",
       "expo-router",
+      "./plugins/withOnnxRuntime",
       [
         "expo-splash-screen",
         {
@@ -50,6 +51,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e8e70320-2216-49f5-97d8-a837b2dcdfe5"
+      }
+    },
+    "owner": "santonijesse"
   }
 }

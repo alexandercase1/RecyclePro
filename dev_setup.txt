@@ -1,0 +1,54 @@
+FIRST-TIME EAS SETUP:
+
+	1.	npm install -g eas-cli
+
+	2.	eas login
+	
+	3.	eas init
+
+	4.	eas secret:create --scope project --name EXPO_PUBLIC_MAPBOX_TOKEN --value "your_token_here"
+
+	5.	npm run build:android:dev
+			Triggers cloud build (~10-15 min)
+			Download APK from expo.dev when complete
+
+	6.	npm run build:ios:dev
+			Mac only (~15-20 min)
+			Download .tar.gz from expo.dev when complete
+
+**************************************************************************************************************************************
+
+INSTALL ON ANDROID EMULATOR / DEVICE:
+
+	1.	adb install path/to/RecyclePro.apk
+			OR drag and drop APK onto emulator window
+
+	2.	adb reverse tcp:8081 tcp:8081
+			Physical device only — not needed for emulator
+
+	3.	npm run start:dev
+			Press 'a' to connect
+
+****************************************************************************************************************************************
+
+INSTALL ON IOS SIMULATOR (Mac only):
+
+	1.	tar -xf RecyclePro.tar.gz
+
+	2.	xcrun simctl install booted RecyclePro.app
+
+	3.	npm run start:dev
+			Press 'i' to connect
+
+****************************************************************************************************************************************
+
+SKIP THE BUILD — USE SHARED APK OR BUILD LINK:
+
+	expo.dev link:	Open link → Install → open app on device
+		JESSE'S: https://expo.dev/accounts/santonijesse/projects/RecyclePro/builds
+
+	APK file:	adb install path/to/RecyclePro.apk
+			OR drag and drop onto emulator window
+
+	Then run:	npm run start:dev  →  press 'a'
+
