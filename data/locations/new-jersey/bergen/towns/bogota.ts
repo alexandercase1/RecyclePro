@@ -34,6 +34,8 @@ export const bogota: Town = {
         yardWaste: {
           // Vegetative waste is collected town-wide on Mondays
           days: [1], // Monday
+          seasonStart: '01-01',
+          seasonEnd: '12-31',
         },
       },
     },
