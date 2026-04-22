@@ -15,18 +15,32 @@ export const CLASS_LABELS = [
 ];
 
 let session: OrtType.InferenceSession | null = null;
+const ORT_UNAVAILABLE_MESSAGE =
+    'ONNX Runtime native module is not available. ' +
+    'Install the dev build APK from the EAS dashboard and connect via "npm run start:dev". ' +
+    'Expo Go does not support native modules.';
 
 // Lazy loader — defers native JSI initialization until first use
 async function getOrt(): Promise<typeof OrtType> {
-    const ort = require('onnxruntime-react-native');
-    if (!ort?.InferenceSession) {
-        throw new Error(
-            'ONNX Runtime native module is not available. ' +
-            'Install the dev build APK from the EAS dashboard and connect via "npm run start:dev". ' +
-            'Expo Go does not support native modules.'
-        );
+    try {
+        const ort = require('onnxruntime-react-native');
+        if (!ort?.InferenceSession) {
+            throw new Error(ORT_UNAVAILABLE_MESSAGE);
+        }
+        return ort;
+    } catch (e) {
+        // In Expo Go, requiring the native module throws during initialization.
+        // Convert that hard crash into a controlled error that UI code can show.
+        const msg = e instanceof Error ? e.message : String(e);
+        if (
+            msg.includes('Cannot read property') ||
+            msg.includes('native module') ||
+            msg.includes('onnxruntime-react-native')
+        ) {
+            throw new Error(ORT_UNAVAILABLE_MESSAGE);
+        }
+        throw e;
     }
-    return ort;
 }
 
 const MODEL_DIR = FileSystem.cacheDirectory + 'onnx_model/';
