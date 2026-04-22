@@ -11,48 +11,94 @@ export const montclair: Town = {
 
   zones: [
     {
-      id: 'montclair-refuse-section-1',
-      name: 'Refuse Section 1',
-      description: 'Section 1 garbage schedule per township calendar.',
+      id: 'montclair-recycling-area-monday',
+      name: 'Recycling Area - Monday',
+      description:
+        'Montclair recycling area with Monday curbside recycling pickup. Garbage follows Refuse Section 1 schedule.',
       streets: [],
       schedule: {
         garbage: {
-          days: [1, 4], // Monday & Thursday
+          days: [1, 4], // Refuse Section 1: Monday & Thursday
           time: '6:00 AM',
         },
         recycling: {
-          // Curbside recycling in Montclair is area-based (A/B/C/D), not one borough-wide day.
-          // Keep this neutral until street-level area mapping is added.
           type: 'alternating',
-          day: 1, // Placeholder
+          day: 1, // Monday
           weeks: {
-            even: 'none',
-            odd: 'none',
+            even: 'commingled',
+            odd: 'commingled',
           },
-          evenLabel: 'Check Montclair recycling area calendar (A/B/C/D)',
-          oddLabel: 'Check Montclair recycling area calendar (A/B/C/D)',
+          evenLabel: 'Curbside Recycling Pickup',
+          oddLabel: 'Curbside Recycling Pickup',
         },
       },
     },
     {
-      id: 'montclair-refuse-section-2',
-      name: 'Refuse Section 2',
-      description: 'Section 2 garbage schedule per township calendar.',
+      id: 'montclair-recycling-area-tuesday',
+      name: 'Recycling Area - Tuesday',
+      description:
+        'Montclair recycling area with Tuesday curbside recycling pickup. Garbage follows Refuse Section 1 schedule.',
       streets: [],
       schedule: {
         garbage: {
-          days: [2, 5], // Tuesday & Friday
+          days: [1, 4], // Refuse Section 1: Monday & Thursday
           time: '6:00 AM',
         },
         recycling: {
           type: 'alternating',
-          day: 1, // Placeholder
+          day: 2, // Tuesday
           weeks: {
-            even: 'none',
-            odd: 'none',
+            even: 'commingled',
+            odd: 'commingled',
           },
-          evenLabel: 'Check Montclair recycling area calendar (A/B/C/D)',
-          oddLabel: 'Check Montclair recycling area calendar (A/B/C/D)',
+          evenLabel: 'Curbside Recycling Pickup',
+          oddLabel: 'Curbside Recycling Pickup',
+        },
+      },
+    },
+    {
+      id: 'montclair-recycling-area-wednesday',
+      name: 'Recycling Area - Wednesday',
+      description:
+        'Montclair recycling area with Wednesday curbside recycling pickup. Garbage follows Refuse Section 2 schedule.',
+      streets: [],
+      schedule: {
+        garbage: {
+          days: [2, 5], // Refuse Section 2: Tuesday & Friday
+          time: '6:00 AM',
+        },
+        recycling: {
+          type: 'alternating',
+          day: 3, // Wednesday
+          weeks: {
+            even: 'commingled',
+            odd: 'commingled',
+          },
+          evenLabel: 'Curbside Recycling Pickup',
+          oddLabel: 'Curbside Recycling Pickup',
+        },
+      },
+    },
+    {
+      id: 'montclair-recycling-area-thursday',
+      name: 'Recycling Area - Thursday',
+      description:
+        'Montclair recycling area with Thursday curbside recycling pickup. Garbage follows Refuse Section 2 schedule.',
+      streets: [],
+      schedule: {
+        garbage: {
+          days: [2, 5], // Refuse Section 2: Tuesday & Friday
+          time: '6:00 AM',
+        },
+        recycling: {
+          type: 'alternating',
+          day: 4, // Thursday
+          weeks: {
+            even: 'commingled',
+            odd: 'commingled',
+          },
+          evenLabel: 'Curbside Recycling Pickup',
+          oddLabel: 'Curbside Recycling Pickup',
         },
       },
     },
@@ -75,7 +121,7 @@ export const montclair: Town = {
     'Maximum 3 garbage cans per household per collection.',
     'Garbage cans and bulky waste may be put out between 6:00 PM the day before and 6:00 AM on collection day (Township Code 292-23).',
     'For holiday schedule changes, check the official township calendar.',
-    'Curbside recycling day depends on your recycling area (A/B/C/D).',
+    'Curbside recycling is one fixed day per zone (Monday, Tuesday, Wednesday, or Thursday) based on your Montclair area map.',
   ],
 };
 
