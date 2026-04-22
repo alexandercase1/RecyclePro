@@ -25,11 +25,11 @@ export const montclair: Town = {
           type: 'alternating',
           day: 1, // Monday
           weeks: {
-            even: 'commingled',
+            even: 'paper',
             odd: 'commingled',
           },
-          evenLabel: 'Curbside Recycling Pickup',
-          oddLabel: 'Curbside Recycling Pickup',
+          evenLabel: 'Mixed Paper',
+          oddLabel: 'Commingled Containers',
         },
       },
     },
@@ -48,11 +48,11 @@ export const montclair: Town = {
           type: 'alternating',
           day: 2, // Tuesday
           weeks: {
-            even: 'commingled',
+            even: 'paper',
             odd: 'commingled',
           },
-          evenLabel: 'Curbside Recycling Pickup',
-          oddLabel: 'Curbside Recycling Pickup',
+          evenLabel: 'Mixed Paper',
+          oddLabel: 'Commingled Containers',
         },
       },
     },
@@ -71,11 +71,11 @@ export const montclair: Town = {
           type: 'alternating',
           day: 3, // Wednesday
           weeks: {
-            even: 'commingled',
+            even: 'paper',
             odd: 'commingled',
           },
-          evenLabel: 'Curbside Recycling Pickup',
-          oddLabel: 'Curbside Recycling Pickup',
+          evenLabel: 'Mixed Paper',
+          oddLabel: 'Commingled Containers',
         },
       },
     },
@@ -94,11 +94,11 @@ export const montclair: Town = {
           type: 'alternating',
           day: 4, // Thursday
           weeks: {
-            even: 'commingled',
+            even: 'paper',
             odd: 'commingled',
           },
-          evenLabel: 'Curbside Recycling Pickup',
-          oddLabel: 'Curbside Recycling Pickup',
+          evenLabel: 'Mixed Paper',
+          oddLabel: 'Commingled Containers',
         },
       },
     },
