@@ -11,10 +11,10 @@ export const montclair: Town = {
 
   zones: [
     {
-      id: 'montclair-recycling-area-monday',
-      name: 'Recycling Area - Monday',
+      id: 'montclair-recycling-area-b',
+      name: 'Recycling Area B (RB)',
       description:
-        'Montclair recycling area with Monday curbside recycling pickup. Garbage follows Refuse Section 1 schedule.',
+        'Montclair Recycling Area B: curbside recycling pickup on Monday. Garbage follows Refuse Section 1 schedule.',
       streets: [],
       schedule: {
         garbage: {
@@ -34,10 +34,10 @@ export const montclair: Town = {
       },
     },
     {
-      id: 'montclair-recycling-area-tuesday',
-      name: 'Recycling Area - Tuesday',
+      id: 'montclair-recycling-area-c',
+      name: 'Recycling Area C (RC)',
       description:
-        'Montclair recycling area with Tuesday curbside recycling pickup. Garbage follows Refuse Section 1 schedule.',
+        'Montclair Recycling Area C: curbside recycling pickup on Tuesday. Garbage follows Refuse Section 1 schedule.',
       streets: [],
       schedule: {
         garbage: {
@@ -57,10 +57,10 @@ export const montclair: Town = {
       },
     },
     {
-      id: 'montclair-recycling-area-wednesday',
-      name: 'Recycling Area - Wednesday',
+      id: 'montclair-recycling-area-d',
+      name: 'Recycling Area D (RD)',
       description:
-        'Montclair recycling area with Wednesday curbside recycling pickup. Garbage follows Refuse Section 2 schedule.',
+        'Montclair Recycling Area D: curbside recycling pickup on Wednesday. Garbage follows Refuse Section 2 schedule.',
       streets: [],
       schedule: {
         garbage: {
@@ -80,10 +80,10 @@ export const montclair: Town = {
       },
     },
     {
-      id: 'montclair-recycling-area-thursday',
-      name: 'Recycling Area - Thursday',
+      id: 'montclair-recycling-area-a',
+      name: 'Recycling Area A (RA)',
       description:
-        'Montclair recycling area with Thursday curbside recycling pickup. Garbage follows Refuse Section 2 schedule.',
+        'Montclair Recycling Area A: curbside recycling pickup on Thursday. Garbage follows Refuse Section 2 schedule.',
       streets: [],
       schedule: {
         garbage: {
