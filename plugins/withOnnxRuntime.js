@@ -81,8 +81,8 @@ const withOnnxAssets = (config) => {
           }
 
           const modelFiles = [
-            { src: 'rec_class_1.onnx',     dest: 'rec_class_1.onnx' },
-            { src: 'rec_class_1.onnxdata', dest: 'rec_class_1.onnx.data' },
+            { src: 'recycle_classify.onnx',     dest: 'recycle_classify.onnx' },
+            { src: 'recycle_classify.onnxdata', dest: 'recycle_classify.onnx.data' },
           ];
 
           for (const { src, dest } of modelFiles) {

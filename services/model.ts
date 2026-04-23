@@ -1,6 +1,7 @@
 import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system/legacy';
 import { manipulateAsync } from 'expo-image-manipulator';
+import jpeg from 'jpeg-js';
 import type * as OrtType from 'onnxruntime-react-native';
 import { Platform } from 'react-native';
 
@@ -8,6 +9,7 @@ export const CLASS_LABELS = [
     'Cardboard',
     'Electronics',
     'Glass',
+    'Hazardous',
     'Metal',
     'Non-Recyclable',
     'Paper',
@@ -30,8 +32,8 @@ async function getOrt(): Promise<typeof OrtType> {
 }
 
 const MODEL_DIR = FileSystem.cacheDirectory + 'onnx_model/';
-const MODEL_PATH = MODEL_DIR + 'rec_class_1.onnx';
-const DATA_PATH = MODEL_DIR + 'rec_class_1.onnx.data';
+const MODEL_PATH = MODEL_DIR + 'recycle_classify.onnx';
+const DATA_PATH = MODEL_DIR + 'recycle_classify.onnx.data';
 
 // Minimum expected byte sizes — anything smaller is a corrupt/partial download
 const MIN_SIZES: Record<string, number> = {
@@ -70,14 +72,14 @@ export async function loadModel(): Promise<OrtType.InferenceSession> {
         await FileSystem.makeDirectoryAsync(MODEL_DIR, { intermediates: true });
 
         await ensureFile(
-            Asset.fromModule(require('../assets/models/rec_class_1.onnx')),
+            Asset.fromModule(require('../assets/models/recycle_classify.onnx')),
             MODEL_PATH,
-            'rec_class_1.onnx'
+            'recycle_classify.onnx'
         );
         await ensureFile(
-            Asset.fromModule(require('../assets/models/rec_class_1.onnxdata')),
+            Asset.fromModule(require('../assets/models/recycle_classify.onnxdata')),
             DATA_PATH,
-            'rec_class_1.onnx.data'
+            'recycle_classify.onnx.data'
         );
 
         session = await ort.InferenceSession.create(MODEL_PATH);
@@ -100,7 +102,8 @@ export async function classifyingImage(uri: string): Promise<number> {
     );
 
     const base64 = manipulated.base64!;
-    const raw = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    const jpegBytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    const { data: raw } = jpeg.decode(jpegBytes.buffer as ArrayBuffer, { useTArray: true });
 
     const tensor = preprocess(raw, ort);
     const feeds: Record<string, OrtType.Tensor> = { input: tensor };
