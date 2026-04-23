@@ -1,6 +1,8 @@
 import type { Town } from '@/data/types';
 import { allendale } from './allendale';
 import { alpine } from './alpine';
+import { bogota } from './bogota';
+import { carlstadt } from './carlstadt';
 import { oradell } from './oradell';
 import { fairLawn } from './fair-lawn';
 import { bergenfield } from './bergenfield';
@@ -31,6 +33,8 @@ export { fairLawn, fairLawnRules } from './fair-lawn';
 export { waldwick, waldwickRules } from './waldwick';
 export { allendale, allendaleRules } from './allendale';
 export { alpine, alpineRules } from './alpine';
+export { bogota, bogotaRules } from './bogota';
+export { carlstadt, carlstadtRules } from './carlstadt';
 export { bergenfield } from './bergenfield';
 export { cliffsidePark } from './cliffside-park';
 export { cresskill } from './cresskill';
@@ -59,6 +63,8 @@ export { newMilford } from './new-milford';
 export const bergenTowns: Town[] = [
   allendale,
   alpine,
+  bogota,
+  carlstadt,
   oradell,
   fairLawn,
   waldwick,
