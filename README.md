@@ -4,7 +4,20 @@ A cross-platform mobile app that helps residents find their local trash and recy
 
 Built with React Native and Expo. Currently covering **New Jersey** — the majority of Bergen County and a growing portion of Essex County, with ongoing expansion.
 
+
 ---
+
+## Team
+
+| Name | Role |
+|---|---|
+| Alex Case | Co-developer |
+| Ahmet Taskiran | Co-developer |
+| Vicente Contreras | Co-developer |
+| Jesse Santoni | Co-developer |
+
+---
+
 
 ## Features
 
@@ -143,14 +156,3 @@ RecyclePro/
 ├── waste_recog_train.py        # Model training script (PyTorch → ONNX)
 └── ADDING_LOCATIONS.md         # Guide for adding new towns
 ```
-
----
-
-## Team
-
-| Name | Role |
-|---|---|
-| Alex Case | Co-developer |
-| Ahmet Taskiran | Co-developer |
-| Vicente Contreras | Co-developer |
-| Jesse Santoni | Co-developer |
