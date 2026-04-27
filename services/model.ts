@@ -56,7 +56,7 @@ const MIN_SIZES: Record<string, number> = {
 };
 
 async function ensureFile(asset: Asset, targetPath: string, androidAssetName: string) {
-    const info = await FileSystem.getInfoAsync(targetPath, { size: true });
+    const info = await FileSystem.getInfoAsync(targetPath);
     const size = (info as any).size ?? 0;
     if (info.exists && size >= MIN_SIZES[targetPath]) return;
 
@@ -105,13 +105,30 @@ export async function loadModel(): Promise<OrtType.InferenceSession> {
     }
 }
 
-export async function classifyingImage(uri: string): Promise<number> {
+function softmax(raw: Float32Array): Float32Array {
+    const max = Math.max(...Array.from(raw));
+    const exps = raw.map(x => Math.exp(x - max));
+    const sum = Array.from(exps).reduce((a, b) => a + b, 0);
+    return exps.map(x => x / sum);
+}
+
+export async function classifyingImage(uri: string): Promise<{ index: number; confidence: number }> {
     const ort = await getOrt();
     const sess = await loadModel();
 
+    // Resize so the shorter side is 256px (maintains aspect ratio),
+    // then center-crop to 224×224 — matches standard ImageNet preprocessing
+    // and avoids the shape distortion of squishing directly to 224×224.
+    let resized = await manipulateAsync(uri, [{ resize: { width: 256 } }], {});
+    if (resized.height < 224) {
+        // Landscape photo — resize by height instead so the crop fits
+        resized = await manipulateAsync(uri, [{ resize: { height: 256 } }], {});
+    }
+    const cropX = Math.floor((resized.width - 224) / 2);
+    const cropY = Math.floor((resized.height - 224) / 2);
     const manipulated = await manipulateAsync(
-        uri,
-        [{ resize: { width: 224, height: 224 } }],
+        resized.uri,
+        [{ crop: { originX: Math.max(0, cropX), originY: Math.max(0, cropY), width: 224, height: 224 } }],
         { base64: true }
     );
 
@@ -124,12 +141,14 @@ export async function classifyingImage(uri: string): Promise<number> {
 
     try {
         const results = await sess.run(feeds);
-        const output = results.output.data as Float32Array;
+        const logits = results.output.data as Float32Array;
+        const probs = softmax(logits);
+
         let maxIdx = 0;
-        for (let i = 1; i < output.length; i++) {
-            if (output[i] > output[maxIdx]) maxIdx = i;
+        for (let i = 1; i < probs.length; i++) {
+            if (probs[i] > probs[maxIdx]) maxIdx = i;
         }
-        return maxIdx;
+        return { index: maxIdx, confidence: probs[maxIdx] };
     } catch (e) {
         const msg = e instanceof Error ? e.message : String(e);
         throw new Error(`ONNX inference failed: ${msg}`);

@@ -1,7 +1,8 @@
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
 import { Image } from 'expo-image';
-import { useEffect, useRef, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
     ActivityIndicator,
     Animated,
@@ -16,7 +17,9 @@ import { ItemCard } from '@/components/recyclability/ItemCard';
 import { RecyclingSearchResult, MaterialCategory } from '@/data/types';
 import { getItemsByCategoryWithDisposal } from '@/services/searchService';
 import { getSavedLocation, SavedLocation } from '@/services/storageService';
-import { CLASS_LABELS, classifyingImage } from '../../services/model';
+import { CLASS_LABELS, classifyingImage, loadModel } from '../../services/model';
+
+const CONFIDENCE_THRESHOLD = 0.45;
 
 const LABEL_TO_CATEGORY: Record<string, { category: MaterialCategory | null; emoji: string }> = {
     'Cardboard':      { category: 'paper_cardboard', emoji: '📦' },
@@ -40,11 +43,26 @@ export default function Cam() {
     const [location, setLocation] = useState<SavedLocation | null>(null);
     const [categoryItems, setCategoryItems] = useState<RecyclingSearchResult[]>([]);
     const [sheetVisible, setSheetVisible] = useState(false);
+    const [confidence, setConfidence] = useState(0);
     const sheetAnim = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         getSavedLocation().then(setLocation);
+        loadModel().catch(() => {});
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            return () => {
+                setUri(null);
+                setLabel(null);
+                setCategoryItems([]);
+                setSheetVisible(false);
+                setConfidence(0);
+                sheetAnim.setValue(0);
+            };
+        }, [sheetAnim])
+    );
 
     if (!permission) {
         return <View />;
@@ -78,13 +96,13 @@ export default function Cam() {
             const photo = await ref.current?.takePictureAsync();
             if (photo?.uri) {
                 setUri(photo.uri);
-                const idx = await classifyingImage(photo.uri);
+                const { index: idx, confidence: conf } = await classifyingImage(photo.uri);
                 const name = CLASS_LABELS[idx] ?? `Unknown (${idx})`;
                 setLabel(name);
-                console.log('Predicted class:', idx, name);
+                setConfidence(conf);
 
                 const meta = LABEL_TO_CATEGORY[name];
-                const items = meta?.category
+                const items = conf >= CONFIDENCE_THRESHOLD && meta?.category
                     ? getItemsByCategoryWithDisposal(meta.category, location)
                     : [];
                 setCategoryItems(items);
@@ -104,6 +122,7 @@ export default function Cam() {
         setUri(null);
         setLabel(null);
         setCategoryItems([]);
+        setConfidence(0);
     };
 
     const toggleFacing = () => {
@@ -134,7 +153,12 @@ export default function Cam() {
                     mute={false}
                     responsiveOrientationWhenOrientationLocked
                 />
+                <View style={styles.framingOverlay} pointerEvents="none">
+                    <View style={styles.framingBox} />
+                    <Text style={styles.framingHint}>Center item · fill the frame</Text>
+                </View>
                 <View style={styles.shutterContainer}>
+                    <View style={styles.shutterSide} />
                     <Pressable onPress={takePicture} disabled={loading}>
                         {({ pressed }: { pressed: boolean }) => (
                             <View style={[styles.shutterBtn, { opacity: pressed || loading ? 0.5 : 1 }]}>
@@ -142,9 +166,11 @@ export default function Cam() {
                             </View>
                         )}
                     </Pressable>
-                    <Pressable onPress={toggleFacing}>
-                        <FontAwesome6 name="rotate-left" size={32} color="white" />
-                    </Pressable>
+                    <View style={styles.shutterSide}>
+                        <Pressable onPress={toggleFacing}>
+                            <FontAwesome6 name="rotate-left" size={32} color="white" />
+                        </Pressable>
+                    </View>
                 </View>
             </View>
         );
@@ -157,7 +183,7 @@ export default function Cam() {
 
             {sheetVisible && label && (
                 <>
-                    <Pressable style={styles.backdrop} onPress={closeSheet} />
+                    <Pressable style={styles.backdrop} onPress={resetCamera} />
                     <Animated.View style={[
                         styles.sheet,
                         {
@@ -171,15 +197,21 @@ export default function Cam() {
                     ]}>
                         <View style={styles.sheetHeader}>
                             <Text style={styles.sheetTitle}>
-                                {LABEL_TO_CATEGORY[label]?.emoji} {label}
+                                {confidence >= CONFIDENCE_THRESHOLD
+                                    ? `${LABEL_TO_CATEGORY[label]?.emoji} ${label}`
+                                    : '🤔 Couldn\'t Identify'}
                             </Text>
-                            <Pressable onPress={closeSheet} hitSlop={12}>
+                            <Pressable onPress={resetCamera} hitSlop={12}>
                                 <Text style={styles.sheetClose}>✕</Text>
                             </Pressable>
                         </View>
 
                         <ScrollView contentContainerStyle={styles.sheetScroll}>
-                            {categoryItems.length > 0
+                            {confidence < CONFIDENCE_THRESHOLD ? (
+                                <Text style={styles.sheetLowConfidence}>
+                                    The image wasn't clear enough to identify. Try getting closer, improving lighting, or centering the item in the frame.
+                                </Text>
+                            ) : categoryItems.length > 0
                                 ? categoryItems.map(result => (
                                     <ItemCard key={result.item.id} result={result} />
                                 ))
@@ -218,6 +250,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 30,
+    },
+    shutterSide: {
+        width: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     shutterBtn: {
         backgroundColor: 'transparent',
@@ -307,6 +344,36 @@ const styles = StyleSheet.create({
         color: '#888',
         marginTop: 24,
         fontSize: 14,
+    },
+    framingOverlay: {
+        ...StyleSheet.absoluteFillObject,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom: 60,
+    },
+    framingBox: {
+        width: 260,
+        height: 260,
+        borderWidth: 1.5,
+        borderColor: 'rgba(255,255,255,0.75)',
+        borderRadius: 16,
+    },
+    framingHint: {
+        color: 'rgba(255,255,255,0.85)',
+        fontSize: 12,
+        marginTop: 10,
+        letterSpacing: 0.3,
+        textShadowColor: 'rgba(0,0,0,0.6)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 4,
+    },
+    sheetLowConfidence: {
+        textAlign: 'center',
+        color: '#555',
+        marginTop: 24,
+        marginHorizontal: 8,
+        fontSize: 15,
+        lineHeight: 22,
     },
     retakeBtn: {
         margin: 16,

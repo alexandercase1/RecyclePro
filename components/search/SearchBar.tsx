@@ -5,9 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  Text,
 } from 'react-native';
-import { ThemedText } from '@/components/themed-text';
-import { useThemeColor } from '@/hooks/use-theme-color';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 interface SearchBarProps {
@@ -26,14 +25,7 @@ export function SearchBar({
   onCameraPress,
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
-  const backgroundColor = useThemeColor({}, 'background');
-  const textColor = useThemeColor({}, 'text');
-  const borderColor = useThemeColor(
-    { light: '#E0E0E0', dark: '#424242' },
-    'icon'
-  );
 
-  // Debounce search
   useEffect(() => {
     const timer = setTimeout(() => {
       onSearch(query);
@@ -48,14 +40,14 @@ export function SearchBar({
   };
 
   return (
-    <View style={[styles.container, { backgroundColor, borderColor }]}>
-      <ThemedText style={styles.searchIcon}>🔍</ThemedText>
+    <View style={styles.container}>
+      <Text style={styles.searchIcon}>🔍</Text>
       <TextInput
-        style={[styles.input, { color: textColor }]}
+        style={styles.input}
         value={query}
         onChangeText={setQuery}
         placeholder={placeholder}
-        placeholderTextColor={textColor + '80'}
+        placeholderTextColor="#9e9e9e"
         autoFocus={autoFocus}
         autoCapitalize="none"
         autoCorrect={false}
@@ -63,11 +55,11 @@ export function SearchBar({
       />
       {query.length > 0 ? (
         <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
-          <ThemedText style={styles.clearIcon}>✕</ThemedText>
+          <Text style={styles.clearIcon}>✕</Text>
         </TouchableOpacity>
       ) : onCameraPress ? (
         <TouchableOpacity onPress={onCameraPress} style={styles.clearButton}>
-          <Ionicons name="camera-outline" size={22} color={textColor + '80'} />
+          <Ionicons name="camera-outline" size={22} color="#9e9e9e" />
         </TouchableOpacity>
       ) : null}
     </View>
@@ -78,11 +70,18 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'white',
     borderWidth: 1,
+    borderColor: '#E0E0E0',
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: Platform.OS === 'ios' ? 12 : 8,
     marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 3,
+    elevation: 2,
   },
   searchIcon: {
     fontSize: 18,
@@ -92,12 +91,13 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     paddingVertical: 0,
+    color: '#333',
   },
   clearButton: {
     padding: 4,
   },
   clearIcon: {
     fontSize: 18,
-    opacity: 0.5,
+    color: '#9e9e9e',
   },
 });

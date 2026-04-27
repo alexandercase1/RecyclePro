@@ -239,6 +239,10 @@ export default function HomeScreen() {
               <View style={[styles.legendSquare, { backgroundColor: '#2196F3' }]} />
               <Text style={styles.legendText}>Commingled</Text>
             </View>
+            <View style={styles.legendItem}>
+              <View style={[styles.diamondIndicator, { backgroundColor: '#8B4513' }]} />
+              <Text style={styles.legendText}>Yard Waste</Text>
+            </View>
           </View>
         )}
       </View>

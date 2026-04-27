@@ -1,9 +1,8 @@
 import { SearchBar } from '@/components/search/SearchBar';
 import { SearchResults } from '@/components/search/SearchResults';
-import { ThemedText } from '@/components/themed-text';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Fonts } from '@/constants/theme';
 import { RecyclingSearchResult } from '@/data/types';
@@ -18,7 +17,6 @@ export default function SearchScreen() {
   const [location, setLocation] = useState<SavedLocation | null>(null);
   const [isSearching, setIsSearching] = useState(false);
 
-  // Load user location on mount
   useEffect(() => {
     const loadLocation = async () => {
       const savedLocation = await getSavedLocation();
@@ -27,7 +25,6 @@ export default function SearchScreen() {
     loadLocation();
   }, []);
 
-  // Handle search
   const handleSearch = useCallback(
     (searchQuery: string) => {
       setQuery(searchQuery);
@@ -46,13 +43,13 @@ export default function SearchScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
+        <Text style={[styles.title, { fontFamily: Fonts.rounded }]}>
           Search Recyclables
-        </ThemedText>
+        </Text>
         {location && (
-          <ThemedText style={styles.locationText}>
+          <Text style={styles.locationText}>
             📍 {location.displayName}
-          </ThemedText>
+          </Text>
         )}
       </View>
 
@@ -79,16 +76,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#efefef',
   },
   header: {
+    backgroundColor: '#0051b3',
     paddingHorizontal: 20,
     paddingTop: 60,
-    paddingBottom: 16,
+    paddingBottom: 20,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'white',
   },
   locationText: {
     fontSize: 14,
-    opacity: 0.7,
+    color: 'rgba(255,255,255,0.85)',
     marginTop: 4,
   },
   searchContainer: {
     paddingHorizontal: 20,
+    paddingTop: 16,
   },
 });

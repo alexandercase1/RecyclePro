@@ -525,6 +525,7 @@ const styles = StyleSheet.create({
   },
 
   pageHeader: {
+    backgroundColor: '#0051b3',
     paddingHorizontal: 20,
     paddingTop: 60,
     paddingBottom: 20,
@@ -532,11 +533,11 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#1a1a1a',
+    color: 'white',
   },
   pageSubtitle: {
     fontSize: 15,
-    color: '#666',
+    color: 'rgba(255,255,255,0.85)',
     marginTop: 4,
   },
 
