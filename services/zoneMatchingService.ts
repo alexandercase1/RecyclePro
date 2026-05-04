@@ -1,4 +1,4 @@
-import { AddressRange, CollectionZone, GeoBoundary } from '@/data/types';
+import { CollectionZone, GeoBoundary } from '@/data/types';
 
 /**
  * Parse a street address to extract the street number and name
@@ -89,7 +89,7 @@ function matchesStreetList(
 /**
  * Check if an address matches a zone's address ranges
  */
-function matchesAddressRanges(
+export function matchesAddressRanges(
   parsedAddress: { number: number | null; street: string },
   zone: CollectionZone
 ): boolean {

@@ -9,10 +9,18 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
+    "test": "jest",
     "build:android:dev": "eas build --profile development --platform android",
     "build:ios:dev": "eas build --profile development --platform ios",
     "build:android:preview": "eas build --profile preview --platform android",
     "build:ios:preview": "eas build --profile preview --platform ios"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "@react-native-async-storage/async-storage": "@react-native-async-storage/async-storage/jest/async-storage-mock"
+    }
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -21,6 +29,7 @@
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
+    "@types/jest": "29.5.14",
     "dotenv": "^17.2.3",
     "expo": "~54.0.32",
     "expo-camera": "~17.0.10",
@@ -38,6 +47,7 @@
     "expo-system-ui": "~6.0.9",
     "expo-web-browser": "~15.0.10",
     "fuse.js": "^7.1.0",
+    "jest-expo": "~54.0.17",
     "jpeg-js": "^0.4.4",
     "onnxruntime-react-native": "^1.20.1",
     "react": "19.1.0",
